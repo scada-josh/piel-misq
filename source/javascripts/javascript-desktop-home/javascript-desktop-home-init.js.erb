@@ -1,0 +1,33 @@
+(function ($) {
+    "use strict";
+ 
+    ///////////////////////////////////////////////////// Your
+    // var venueAddress = "Grand Place, 1000, Brussels"; // Venue
+    var dailyKpiOperationDatatable;
+    
+    /////////////////////////////////////////////////// Adress
+ 
+    var fn = {
+ 
+        // Launch Functions
+        Launch: function () {
+            fn.DailyKpiOperationDatatable();
+            fn.Apps();
+        },
+        
+        // Daily KPI Operation - Datatable
+        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_DailyKpiOperationDatatable" %>
+        // Logout
+        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_Logout" %>
+ 		// Apps
+        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_Apps" %>
+
+    };
+ 
+    $(document).ready(function () {
+        fn.Launch();
+    });
+ 
+})(jQuery);
+
+

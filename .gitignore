@@ -9,7 +9,6 @@
 
 # Ignore the build directory
 /build
-/source/packages/vrana/notorm
 
 # Ignore cache
 /.sass-cache
