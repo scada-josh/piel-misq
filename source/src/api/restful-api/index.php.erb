@@ -1,0 +1,59 @@
+---
+title: IEL - MIS - API
+layout: "layout-api"
+---
+<?php
+ 
+    date_default_timezone_set("Asia/Bangkok");
+ 
+    require_once '../../../packages/autoload.php';
+ 
+    // Create and configure Slim app
+    /* Slim framework 2.x */
+    $app = new \Slim\Slim();
+ 
+
+      /* NuSOAP */
+    $client = new nusoap_client("http://58.137.5.126/epodws/service.asmx?wsdl", true);
+    // $client->soap_defencoding = 'UTF-8';
+
+<% if config[:phase_environment] == "Development" %>
+
+    /* forceEndpoint Partial : Localhost (Internet) */
+    <%= partial "/phaseEnvironment-partials/_forceEndpointViaInternet" %>
+
+<% elsif config[:phase_environment] == "Test" %>
+
+    /* forceEndpoint Partial : Localhost (Intranet) */
+    <%= partial "/phaseEnvironment-partials/_forceEndpointViaIntranet" %>
+
+<% elsif config[:phase_environment] == "Production" %>
+
+    /* forceEndpoint Partial : Production (Intranet) */
+    <%= partial "/phaseEnvironment-partials/_forceEndpointViaIntranet" %>
+
+<% end %>
+
+    $client->soap_defencoding = 'UTF-8';
+    $client->decode_utf8 = false; // แก้ปัญหาตัวอักษรภาษาไทยแสดง ???????? (web service unicode characters dispaly as question marks)
+    $client->encode_utf8 = true;
+
+
+
+    /* Test Manager */
+    <%= partial "/TestManager/_hello" %>
+
+    /* KPI manager */
+    $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
+
+ 
+    // Run app
+    $app->run();
+
+    /* Test Manager Partial */
+
+
+    /* KPI Manager Partial */
+    <%= partial "/KpiManager/_getOperationKPI" %>
+ 
+?>
