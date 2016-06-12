@@ -31,130 +31,17 @@ DailyKpiOperationDatatable: function () {
                         "sNext": "Next"
                     }
             },
-            "aoColumnDefs": [
-                    // {
-                    //     'bSortable': true,
-                    //     "bAutoWidth": true,
-                    //     'aTargets': [0]
-                    // },
-                    {
-                        'sWidth': '100px',
-                        'bSortable': true,
-                        'aTargets': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
-                    },{
-                        "render": function ( data, type, row ) {
-                            return row.job_date.substr(0,10);
-                    	},
-                        "targets": 0
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.job_no;
-                    	},
-                        "targets": 1
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.section;
-                    	},
-                        "targets": 2
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.vehicle_licence;
-                    	},
-                        "targets": 3
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.vehicle_type;
-                    	},
-                        "targets": 4
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.supervisor;
-                    	},
-                        "targets": 5
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.driver_name;
-                    	},
-                        "targets": 6
-                	},{
-                        "render": function ( data, type, row ) {
-                            return "-";
-                    	},
-                        "targets": 7
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.drop_all;
-                    	},
-                        "targets": 8
-                	},{
-                        "render": function ( data, type, row ) {
-                            return row.drop_success;
-                    	},
-                        "targets": 9
-                	},{
-                        "render": function ( data, type, row ) {
+            <%= partial js_dir + "/javascript-desktop-home/partials/_dailyKpiOperationDatatable_columnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home/partials/_dailyKpiOperationDatatable_footer" %>
 
-                            return ((row.drop_success)*100)/row.drop_all;
-                    	},
-                        "targets": 10
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return row.box_all;
-                    	},
-                        "targets": 11
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return row.box_success;
-                    	},
-                        "targets": 12
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return ((row.box_success)*100)/row.box_all;
-                    	},
-                        "targets": 13
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return row.bill_count;
-                    	},
-                        "targets": 14
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return row.bill_closed_with_epod_count;
-                    	},
-                        "targets": 15
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return ((row.bill_closed_with_epod_count)*100)/row.bill_count;
-                    	},
-                        "targets": 16
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return row.bill_closed_after_6pm_count;
-                    	},
-                        "targets": 17
-                	},{
-                        "render": function ( data, type, row ) {
-
-                            return "-";
-                    	},
-                        "targets": 18
-                	}
-                       
-            ],
             // scroller extension: http://datatables.net/extensions/scroller/
-            scrollY:        180,
-            deferRender:    true,
+            // scrollY:        ($("#tabContentID").height()-150),
+            // deferRender:    true,
             scroller:       true,
             deferRender:    true,
             scrollX:        true,
-            scrollCollapse: true,  
+            scrollY:        '50vh',
+            scrollCollapse: true,
             "order" : [[0, 'asc']] //disable default sorting, eg sorting on 1st column
             
         });
