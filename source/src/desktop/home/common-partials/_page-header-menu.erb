@@ -7,21 +7,13 @@
                     <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
                     <div class="hor-menu  ">
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href="javascript:;"> Dashboard
-                                    <span class="arrow"></span>
-                                </a>
-                            </li>
-                            <li class="menu-dropdown classic-menu-dropdown ">
-                                <a href="javascript:;"> KPI
-                                    <span class="arrow"></span>
-                                </a>
-                                <ul class="dropdown-menu pull-left">
-                                    <li class=" ">
-                                        <a href="layout_mega_menu_light.html" class="nav-link  "> Operation Performance </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                
+                                <%= partial "common-partials/page-header-menu/_dashboard-menu" %>
+                                <%= partial "common-partials/page-header-menu/_daily-report-menu" %>
+                                <%= partial "common-partials/page-header-menu/_kpi-menu" %>
+                                <%= partial "common-partials/page-header-menu/_service-level-menu" %>
+                                <%= partial "common-partials/page-header-menu/_management-level-menu" %>
+
                         </ul>
                     </div>
                     <!-- END MEGA MENU -->

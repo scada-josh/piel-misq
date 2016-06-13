@@ -4,6 +4,7 @@
     ///////////////////////////////////////////////////// Your
     // var venueAddress = "Grand Place, 1000, Brussels"; // Venue
     var dailyKpiOperationDatatable;
+    var dropPerformanceChart;
     
     /////////////////////////////////////////////////// Adress
  
@@ -12,9 +13,12 @@
         // Launch Functions
         Launch: function () {
             fn.DailyKpiOperationDatatable();
+            fn.Highcharts();
             fn.Apps();
         },
         
+        // Highcharts
+        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_Highcharts" %>
         // Daily KPI Operation - Datatable
         <%= partial js_dir + "/javascript-desktop-home/partials/_fn_DailyKpiOperationDatatable" %>
         // Logout
