@@ -21,17 +21,13 @@
         * apidoc @apiSampleRequest, iOS RESTKit use content-type is "application/json"
         * Web Form, Advance REST Client App use content-type is "application/x-www-form-urlencoded"
         */
-<<<<<<< HEAD
+
         if (($ContetnType == "application/json") || ($ContetnType == "application/json; charset=utf-8") ) {
-=======
-        if (($ContetnType == "application/json") || ($ContetnType == "application/json; charset=utf-8")) {
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
 
             $request = $app->request();
             $result = json_decode($request->getBody());
 
             /* receive request */
-<<<<<<< HEAD
             $postStartDate = $result->startDate;              /* รูปแบบ เดือน/วัน/ปี */
             $postEndDate = $result->endDate;               /* รูปแบบ เดือน/วัน/ปี */
             $postSiteName = $result->siteName;
@@ -42,25 +38,16 @@
 
 
         } else if (($ContetnType == "application/x-www-form-urlencoded") || ($ContetnType == "application/x-www-form-urlencoded; charset=UTF-8")){
-=======
-            $postStationID = $result->stationID;
-
-
-        } else if ($ContetnType == "application/x-www-form-urlencoded"){
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
 
             //$userID = $app->request()->params('userID_param');
             //$userID = $app->request()->post('userID_param');
 
-<<<<<<< HEAD
             // $postStartDate = $app->request()->post('startDate');            /* รูปแบบ เดือน/วัน/ปี */
             // $postEndDate = $app->request()->post('endDate');               /* รูปแบบ เดือน/วัน/ปี */
             // $postEndDate = $app->request()->post('siteName'); 
 
         } 
-=======
-        }
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
+
 
 
 
@@ -72,14 +59,6 @@
         /* ************************* */
         /* เริ่มกระบวนการเชื่อมต่อ Web Service */
         /* ************************* */
-<<<<<<< HEAD
-        
-
-=======
-        $postStartDate = "05/30/2016";              /* รูปแบบ เดือน/วัน/ปี */
-        $postEndDate = "05/30/2016";                /* รูปแบบ เดือน/วัน/ปี */
-        $postSiteName = "bc";
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
 
         $result = $client->call('getOperationKPI', array("startDate" => $postStartDate,
                                                          "endDate" => $postEndDate,
@@ -97,7 +76,6 @@
             if (!$tmpJobNo) {
                 $tmpJobDate = $mydata["array"][$i]['JobDate'];
                 $tmpJobNo = $mydata["array"][$i]['JobNo'];
-<<<<<<< HEAD
 
                 $tmpSection = $mydata["array"][$i]['section'];
                 $tmpSupervisor = $mydata["array"][$i]['Supervisor'];
@@ -107,11 +85,6 @@
                 // $tmpBill = $mydata["array"][$i]['DocNo'];
                 $tmpDestination = $mydata["array"][$i]['destination'];
                 $tmpDropAll = 1;
-
-=======
-                $tmpVehicleLicence = $mydata["array"][$i]['VehicleLicence'];
-                // $tmpBill = $mydata["array"][$i]['DocNo'];
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
             }
 
             <%= partial "/KpiManager/getOperationKPI/_working_with_last_record" %>
@@ -120,7 +93,6 @@
 
                 $j++;
 
-<<<<<<< HEAD
                 // $reports[] = array(
                 //         "id" => $j,
                 //         "job_date" => $tmpJobDate,
@@ -140,25 +112,15 @@
                 //         "details" => $reports_details
                 //     );
 
-=======
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
                 $reports[] = array(
                         "id" => $j,
                         "job_date" => $tmpJobDate,
                         "job_no" => $tmpJobNo,
-<<<<<<< HEAD
                         "section" => $tmpSection,
                         "supervisor" => $tmpSupervisor,
                         "vehicle_licence" => $tmpVehicleLicence,
                         "vehicle_type" => $tmpVehicleType,
                         "driver_name" => $tmpDriverName,
-=======
-                        "section" => $mydata["array"][$i]['section'],
-                        "supervisor" => $mydata["array"][$i]['Supervisor'],
-                        "vehicle_licence" => $tmpVehicleLicence,
-                        "vehicle_type" => $mydata["array"][$i]['VehicleType'],
-                        "driver_name" => $mydata["array"][$i]['DriverName'],
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
                         "drop_all" => $tmpDropAll,
                         "drop_success" => $tmpDropSuccess,
                         "box_all" => $tmpBoxAll,
@@ -195,17 +157,10 @@
                               "site_name" => $postSiteName,
                               "ws_records_count" => $rowCount, 
                               "info_records_count" => $j, 
-<<<<<<< HEAD
                               "rows" => $reports,
                               "content-type" => $ContetnType);
         $app->response()->header("Content-Type", "application/json");
         echo json_encode($reportResult);
 
 
-=======
-                              "rows" => $reports);
-        $app->response()->header("Content-Type", "application/json");
-        echo json_encode($reportResult);
-
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
     };

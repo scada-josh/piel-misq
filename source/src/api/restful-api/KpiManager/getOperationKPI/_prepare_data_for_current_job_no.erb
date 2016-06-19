@@ -2,19 +2,11 @@
                 $k++;
 
                 /* summary data for current JobNo Partial */
-<<<<<<< HEAD
                 if ($tmpDestination != $mydata["array"][$i]['destination']) {
                     $tmpDropAll++;
                 }
 
                 if ($tmpDestination != $mydata["array"][$i]['destination']) {
-=======
-                if ($tmpBill != $mydata["array"][$i]['DocNo']) {
-                    $tmpDropAll++;
-                }
-
-                if ($tmpBill != $mydata["array"][$i]['DocNo']) {
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
                     if ($mydata["array"][$i]['DeliveryDateTime']) {
                         $tmpDropSuccess++;
                     }
@@ -81,11 +73,7 @@
                     "death_line_date_time_formatted" => $death_line_date_time_formattedDate,
                     "death_line_date_time_unix" => $death_line_date_time_unixTimestamp,
                     "delivery_date_time_formatted" => $delivery_date_time_formattedDate,
-<<<<<<< HEAD
                     "delivery_date_time_unix" => $delivery_date_time_unixTimestamp,
                     "destination" => $tmpDestination
-=======
-                    "delivery_date_time_unix" => $delivery_date_time_unixTimestamp
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
                 );
                 

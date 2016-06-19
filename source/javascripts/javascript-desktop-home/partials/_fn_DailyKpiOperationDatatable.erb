@@ -1,14 +1,9 @@
 DailyKpiOperationDatatable: function () {
-<<<<<<< HEAD
 	// console.log('DailyKpiOperationDatatable');
-=======
-	console.log('DailyKpiOperationDatatable');
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
 
      //------------------------ dailyKpiOperationDatatable -----------------------//
     if (jQuery().dataTable) {
  
-<<<<<<< HEAD
        // var optionSelected = $('#station_selected_id').find("option:selected");
        // var valueSelected  = optionSelected.val();
        // var textSelected   = optionSelected.text();
@@ -24,14 +19,11 @@ DailyKpiOperationDatatable: function () {
 
 
 
-=======
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
         dailyKpiOperationDatatable = $('#dailyKpiOperationDatatable').DataTable( {
             "processing": true,
             "ajax": {
                 "url": "../../api/restful-api/kpiManager/getOperationKPI/",
                 "type": "POST",
-<<<<<<< HEAD
                 "dataType": "json",
                 "contentType": "application/json",
                 "data": function( d ) {
@@ -51,15 +43,6 @@ DailyKpiOperationDatatable: function () {
                     // console.log('textStatus: ' + textStatus);
                     // console.log('ierrorThrown: ' + errorThrown);
                 }
-=======
-                "dataSrc": "rows",
-                // "success": function(data) {
-                //     console.log(data);
-                // },
-                // "error": function(jqXHR, textStatus, errorThrown){
-                //     alert('init error: ' + textStatus);
-                // }
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
             },
             "aLengthMenu": [
                     [5, 10, 15, 25, 50, 100, -1],

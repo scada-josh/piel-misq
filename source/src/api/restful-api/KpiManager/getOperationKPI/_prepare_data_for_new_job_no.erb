@@ -5,31 +5,20 @@
                 $tmpJobNo = $mydata["array"][$i]['JobNo'];
                 $tmpVehicleLicence = $mydata["array"][$i]['VehicleLicence'];
 
-<<<<<<< HEAD
 
                 if ($tmpDestination != $mydata["array"][$i]['destination']) {
-=======
-                if ($tmpBill != $mydata["array"][$i]['DocNo']) {
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
                     $tmpDropAll = 1;
                 }
 
                 $tmpDropSuccess = 0;
-<<<<<<< HEAD
                 if ($tmpDestination != $mydata["array"][$i]['destination']) {
-=======
-                if ($tmpBill != $mydata["array"][$i]['DocNo']) {
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
                     if ($mydata["array"][$i]['DeliveryDateTime']) {
                         $tmpDropSuccess++;
                     }
                 }
-<<<<<<< HEAD
+
                 $tmpDestination = $mydata["array"][$i]['destination'];
                                                         
-
-=======
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
 
                 $tmpBoxAll = 0;
                 $tmpBoxAmount = $mydata["array"][$i]['amount'];
@@ -92,11 +81,8 @@
                     "death_line_date_time_formatted" => $death_line_date_time_formattedDate,
                     "death_line_date_time_unix" => $death_line_date_time_unixTimestamp,
                     "delivery_date_time_formatted" => $delivery_date_time_formattedDate,
-<<<<<<< HEAD
                     "delivery_date_time_unix" => $delivery_date_time_unixTimestamp,
                     "destination" => $tmpDestination
-=======
-                    "delivery_date_time_unix" => $delivery_date_time_unixTimestamp
->>>>>>> 039efbb709a1797a84a592a166671a108e9d7d95
+
                 );
                 
