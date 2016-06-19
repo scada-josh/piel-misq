@@ -35,6 +35,7 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :helper_dir, 'helper'
 
+
 set :partials_desktop_home, 'src/desktop/home'
 set :partials_desktop_home_kpi_operation_operationPerformance, 'src/desktop/home/menu-kpi/menu-operation/menu-operation-performance'
 
