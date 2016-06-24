@@ -26,16 +26,28 @@ IonRangeSlider: function () {
         return "Week-" + num;
     },
     onStart: function (data) {
-        console.log(data);
+        // console.log(data);
     },
     onChange: function (data) {
-        console.log(data);
+        // console.log(data);
     },
     onFinish: function (data) {
-        console.log(data);
+        // console.log(data);
+        // console.log(data.from);
+        // console.log(data.to);
+
+        var optionSelected = $('#year_selected_id').find("option:selected");
+        var valueSelected  = optionSelected.val();
+        var textSelected   = optionSelected.text();
+
+        var start_week = moment().week(data.from+1).startOf('week').year(valueSelected);
+        var end_week = moment().week(data.to+1).endOf('week').year(valueSelected);
+        // console.log(start_week.format('DD/MM/YYYY'));
+        // console.log(end_week.format('DD/MM/YYYY'));
+        fn.ShowRangeDate(start_week, end_week);
     },
     onUpdate: function (data) {
-        console.log(data);
+        // console.log(data);
     }
   });
 

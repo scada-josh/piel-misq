@@ -1,8 +1,8 @@
                         <div class="portlet light bordered">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="icon-speech font-yellow-casablanca"></i>
-                                    <span class="caption-subject bold font-yellow-casablanca uppercase"> Search </span>
+                                    <i class="fa fa-filter font-yellow-casablanca"></i>
+                                    <span class="caption-subject bold font-yellow-casablanca uppercase"> Filter </span>
                                     <span class="caption-helper"></span>
                                 </div>
                                 <div class="actions">
@@ -13,18 +13,23 @@
                                         <ul class="dropdown-menu pull-right">
                                             <li>
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-pencil"></i> Weekly </a>
+                                                    <i class="fa fa-calendar"></i> Weekly 
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-trash-o"></i> Monthly </a>
+                                                    <i class="fa fa-calendar"></i> Monthly 
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-ban"></i> Quater </a>
+                                                    <i class="fa fa-calendar"></i> Quater 
+                                                </a>
                                             </li>
                                             <li>
-                                                <a href="javascript:;"> Half Year </a>
+                                                <a href="javascript:;"> 
+                                                    <i class="fa fa-calendar"></i> Half Year 
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -83,11 +88,10 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Select year : </label><br/>
-                                                    <select class="form-control"> 
-                                                        <option value="#" selected="">เลือกปี</option>
+                                                    <select class="form-control" id="year_selected_id"> 
                                                         <option value="2014">2014</option>
                                                         <option value="2015">2015</option>
-                                                        <option value="2016">2016</option>
+                                                        <option value="2016" selected="true">2016</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -127,7 +131,7 @@
                                     </div>
 
                                     <div class="form-actions">
-                                        <button class="btn green bold uppercase btn-block" id="btnSearchInfo">Search</button>
+                                        <button class="btn green bold uppercase btn-block" id="btnSearchInfo">Filter</button>
                                         <div class="search-filter-divider bg-grey-steel"></div>
                                     </div>
                                 </form>

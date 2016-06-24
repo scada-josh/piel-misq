@@ -1,8 +1,36 @@
 // Apps
 Apps: function () {
-	console.log('Apps');
+	// console.log('Apps');
 
 
+	// var test = moment().day("Monday").week(1);
+	// console.log(test);
 
+	// var test = moment().day("Sunday").week(1).year(2015);
+	
+	// var start_week1 = moment().week(1).year(2016);
+	// var end_week1 = moment().week(1).year(2016);
+	// var start_week1 = moment().add(1, 'weeks').startOf('isoWeek').year(2016);
+	// var end_week1 = moment().add(1, 'weeks').endOf('isoWeek').year(2016);
+	// console.log(start_week1.format('DD/MM/YYYY'));
+	// console.log(end_week1.format('DD/MM/YYYY'));
+
+	// var start_week3 = moment().week(4).startOf('week').year(2016);
+	// var end_week3 = moment().week(4).endOf('week').year(2016);
+	// console.log(start_week3.format('DD/MM/YYYY'));
+	// console.log(end_week3.format('DD/MM/YYYY'));
+
+	// var week2 = moment().week(2).year(2016);
+	// console.log(week2.format('DD/MM/YYYY'));
+
+	$('#year_selected_id').on('change', function() {
+	  
+	  var optionSelected = $('#year_selected_id').find("option:selected");
+      var valueSelected  = optionSelected.val();
+      var textSelected   = optionSelected.text();
+
+      console.log('valueSelected : ' + valueSelected);
+
+	});
 
 }
