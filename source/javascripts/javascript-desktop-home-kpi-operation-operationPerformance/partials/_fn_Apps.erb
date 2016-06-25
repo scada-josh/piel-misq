@@ -23,14 +23,58 @@ Apps: function () {
 	// var week2 = moment().week(2).year(2016);
 	// console.log(week2.format('DD/MM/YYYY'));
 
-	$('#year_selected_id').on('change', function() {
-	  
-	  var optionSelected = $('#year_selected_id').find("option:selected");
-      var valueSelected  = optionSelected.val();
-      var textSelected   = optionSelected.text();
 
-      console.log('valueSelected : ' + valueSelected);
+	// year_selected_id handler
+    <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_Apps/_year_selected_id_handler" %>
+
+
+  	$("#form_layout_year_select_id").hide(1000);
+  	$("#form_layout_week_select_id").hide(1000);
+  	$("#form_layout_month_select_id").hide(1000);
+  	$("#form_layout_quater_id").hide(1000);
+  	$("#form_layout_halfYear_id").hide(1000);
+
+
+	$('#dropdown_weekly_filter_id').on('click', function() {
+      	console.log('dropdown_weekly_filter_id');
+
+      	$("#form_layout_year_select_id").show(1000);
+      	$("#form_layout_week_select_id").show(1000);
+      	$("#form_layout_month_select_id").hide(1000);
+      	$("#form_layout_quater_id").hide(1000);
+      	$("#form_layout_halfYear_id").hide(1000);
+
 
 	});
 
+	$('#dropdown_monthly_filter_id').on('click', function() {
+      	console.log('dropdown_monthly_filter_id');
+
+      	$("#form_layout_year_select_id").show(1000);
+      	$("#form_layout_week_select_id").hide(1000);
+      	$("#form_layout_month_select_id").show(1000);
+      	$("#form_layout_quater_id").hide(1000);
+      	$("#form_layout_halfYear_id").hide(1000);
+	});
+
+	$('#dropdown_quater_filter_id').on('click', function() {
+      console.log('dropdown_quater_filter_id');
+
+      	$("#form_layout_year_select_id").show(1000);
+      	$("#form_layout_week_select_id").hide(1000);
+      	$("#form_layout_month_select_id").hide(1000);
+      	$("#form_layout_quater_id").show(1000);
+      	$("#form_layout_halfYear_id").hide(1000);
+	});
+
+	$('#dropdown_half_year_filter_id').on('click', function() {
+      	console.log('dropdown_half_year_filter_id');
+
+      	$("#form_layout_year_select_id").show(1000);
+      	$("#form_layout_week_select_id").hide(1000);
+      	$("#form_layout_month_select_id").hide(1000);
+      	$("#form_layout_quater_id").hide(1000);
+      	$("#form_layout_halfYear_id").show(1000);
+	});
+	
 }

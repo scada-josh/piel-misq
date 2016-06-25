@@ -40,8 +40,8 @@ IonRangeSlider: function () {
         var valueSelected  = optionSelected.val();
         var textSelected   = optionSelected.text();
 
-        var start_week = moment().week(data.from+1).startOf('week').year(valueSelected);
-        var end_week = moment().week(data.to+1).endOf('week').year(valueSelected);
+        var start_week = moment().year(valueSelected).week(data.from+1).startOf('week');
+        var end_week = moment().year(valueSelected).week(data.to+1).endOf('week');
         // console.log(start_week.format('DD/MM/YYYY'));
         // console.log(end_week.format('DD/MM/YYYY'));
         fn.ShowRangeDate(start_week, end_week);
@@ -57,16 +57,27 @@ IonRangeSlider: function () {
     values: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug", "Sep", "Oct", "Nov", "Dec"],
     grid: true,
     onStart: function (data) {
-      console.log(data);
+      // console.log(data);
     },
     onChange: function (data) {
-      console.log(data);
+      // console.log(data);
     },
     onFinish: function (data) {
-      console.log(data);
+      // console.log(data);
+
+        var optionSelected = $('#year_selected_id').find("option:selected");
+        var valueSelected  = optionSelected.val();
+        var textSelected   = optionSelected.text();
+
+
+        var start_month = moment().year(valueSelected).months(data.from).startOf('month');
+        var end_month = moment().year(valueSelected).months(data.to).endOf("month");
+        // console.log(start_month.format('DD/MM/YYYY'));
+        // console.log(end_month.format('DD/MM/YYYY'));
+        fn.ShowRangeDate(start_month, end_month);
     },
     onUpdate: function (data) {
-      console.log(data);
+      // console.log(data);
     }
   });
 
@@ -76,16 +87,27 @@ IonRangeSlider: function () {
       values: ["Q1","Q2","Q3","Q4"],
       grid: true,
       onStart: function (data) {
-        console.log(data);
+        // console.log(data);
       },
       onChange: function (data) {
-        console.log(data);
+        // console.log(data);
       },
       onFinish: function (data) {
-        console.log(data);
+        // console.log(data);
+
+        var optionSelected = $('#year_selected_id').find("option:selected");
+        var valueSelected  = optionSelected.val();
+        var textSelected   = optionSelected.text();
+
+
+        var start_quater = moment().year(valueSelected).quarters(data.from + 1).startOf('quarter');
+        var end_quater = moment().year(valueSelected).quarters(data.to + 1).endOf("quarter");
+        // console.log(start_month.format('DD/MM/YYYY'));
+        // console.log(end_month.format('DD/MM/YYYY'));
+        fn.ShowRangeDate(start_quater, end_quater);
       },
       onUpdate: function (data) {
-        console.log(data);
+        // console.log(data);
       }
     });
 
@@ -99,16 +121,56 @@ IonRangeSlider: function () {
       values: ["1st-half","2nd-half"],
       grid: true,
       onStart: function (data) {
-        console.log(data);
+        // console.log(data);
       },
       onChange: function (data) {
-        console.log(data);
+        // console.log(data);
       },
       onFinish: function (data) {
-        console.log(data);
+        // console.log(data);
+
+        console.log("from : " + data.from);
+        console.log("to : " + data.to);
+
+        var optionSelected = $('#year_selected_id').find("option:selected");
+        var valueSelected  = optionSelected.val();
+        var textSelected   = optionSelected.text();
+
+
+        var start_year = moment().year(valueSelected).startOf('year');
+        var end_year = moment().year(valueSelected).endOf("year");
+
+        var tmpStart_year;
+        var tmpEnd_year;
+
+        if ((data.from == 0) && (data.to == 0)) {
+            tmpStart_year = start_year;
+            tmpEnd_year = end_year.subtract(6, 'months');
+        } else if ((data.from == 0) && (data.to == 1)) {
+            tmpStart_year = start_year;
+            tmpEnd_year = end_year;
+            
+        } else if ((data.from == 1) && (data.to == 1)) {
+            tmpStart_year = start_year.add(6, 'months');
+            tmpEnd_year = end_year;
+            
+        }
+
+        // start_year = start_year.add(6, 'months');
+
+        // if (data.to == 0) {
+        //     start_year = start_year;
+        // } else {
+        //     start_year = start_year.subtract(6, 'months');
+        // }
+
+
+        // console.log(start_year.format('DD/MM/YYYY'));
+        // console.log(end_year.format('DD/MM/YYYY'));
+        fn.ShowRangeDate(tmpStart_year, tmpEnd_year);
       },
       onUpdate: function (data) {
-        console.log(data);
+        // console.log(data);
       }
     });
 

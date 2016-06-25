@@ -1,0 +1,16 @@
+ShowRangeDate_Basic: function (start, end) {
+	// console.log('ShowRangeDate');
+
+	// console.log("start date : " + start.format('MM/DD/YYYY'));
+	// console.log("end date : " + end.format('MM/DD/YYYY'));
+
+	$("#form_layout_year_select_id").hide(1000);
+  	$("#form_layout_week_select_id").hide(1000);
+  	$("#form_layout_month_select_id").hide(1000);
+  	$("#form_layout_quater_id").hide(1000);
+  	$("#form_layout_halfYear_id").hide(1000);
+
+  	$('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+  
+  
+},

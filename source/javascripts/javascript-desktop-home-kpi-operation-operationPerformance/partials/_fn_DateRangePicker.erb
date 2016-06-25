@@ -28,7 +28,7 @@ DateRangePicker: function () {
 
 
     
-    fn.ShowRangeDate(moment().subtract(29, 'days'), moment());
+    fn.ShowRangeDate(moment().subtract(0, 'days'), moment());
 
     $('#reportrange').daterangepicker({
         ranges: {
@@ -40,6 +40,6 @@ DateRangePicker: function () {
            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
            'Year to Date': [moment().startOf('year'), moment()],
         }
-    }, fn.ShowRangeDate);
+    }, fn.ShowRangeDate_Basic);
     
 },
