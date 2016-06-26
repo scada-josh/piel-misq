@@ -40,20 +40,31 @@ layout: "layout-api"
 
 
 
+    /* PHP Excel : Create new PHPExcel object : http://phpexcel.codeplex.com */
+    $objPHPExcel = new \PHPExcel();
+
+
+
+
     /* Test Manager */
     <%= partial "/TestManager/_hello" %>
+    $app->get('/testManager/getApiTemplate/',function() use ($app) { getApiTemplate($app); });
+    $app->post('/testManager/postApiTemplate/',function() use ($app) { postApiTemplate($app); });
 
     /* KPI manager */
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
+    $app->post('/kpiManager/exportOperationKPI/',function() use ($app, $client, $objPHPExcel) { exportOperationKPI($app, $client, $objPHPExcel); });
 
  
     // Run app
     $app->run();
 
     /* Test Manager Partial */
-
+    <%= partial "/TestManager/_getApiTemplate" %>
+    <%= partial "/TestManager/_postApiTemplate" %>
 
     /* KPI Manager Partial */
     <%= partial "/KpiManager/_getOperationKPI" %>
+    <%= partial "/KpiManager/_exportOperationKPI" %>
  
 ?>

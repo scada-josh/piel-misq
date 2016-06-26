@@ -63,6 +63,10 @@ configure :build do
 
   # Any files you want to ignore:
   ignore '/helper/*'
+
+  ignore '/packages/phpoffice/phpexcel/license.md'
+  ignore '/packages/phpoffice/phpexcel/README.md'
+  ignore '/packages/phpoffice/phpexcel/Documentation/*'
 end
 
 
