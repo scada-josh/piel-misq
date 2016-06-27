@@ -45,11 +45,14 @@ layout: "layout-api"
 
 
 
+    /* PHP Function */
+    <%= partial "/Functions/_fn_url" %>
 
     /* Test Manager */
     <%= partial "/TestManager/_hello" %>
     $app->get('/testManager/getApiTemplate/',function() use ($app) { getApiTemplate($app); });
     $app->post('/testManager/postApiTemplate/',function() use ($app) { postApiTemplate($app); });
+    $app->post('/testManager/exportExcelTemplate/',function() use ($app, $objPHPExcel) { exportExcelTemplate($app, $objPHPExcel); });
 
     /* KPI manager */
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
@@ -62,6 +65,7 @@ layout: "layout-api"
     /* Test Manager Partial */
     <%= partial "/TestManager/_getApiTemplate" %>
     <%= partial "/TestManager/_postApiTemplate" %>
+    <%= partial "/TestManager/_exportExcelTemplate" %>
 
     /* KPI Manager Partial */
     <%= partial "/KpiManager/_getOperationKPI" %>

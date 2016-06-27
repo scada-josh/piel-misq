@@ -53,63 +53,76 @@
         $mydata = json_decode($result["getOperationKPIResult"],true);
 
         $reports = array();
-        $reports = $mydata;
+        // $reports = $mydata;
+
+        /* initial variable Partial */
+        $tmpJobNo = "";
+        $j = 0;
+        $row_excel = 1;
+        $headers = array( "JobDate",
+                          "JobNo",
+                          "VehicleLicence",
+                          "VehicleType",
+                          "section",
+                          "Supervisor",
+                          "DriverName",
+                          "StartTime",
+                          "JobRemark",
+                          "jobcost",
+                          "cm_call",
+                          "DocNo",
+                          "DocSeq",
+                          "destination",
+                          "district",
+                          "province",
+                          "RouteCode",
+                          "size",
+                          "amount",
+                          "DeliveryDateTime",
+                          "SaveDateTime",
+                          "UserUpdate",
+                          "ReasonCode",
+                          "podimage_path",
+                          "DocRemark");
 
 
         /* ************************* */
         /* เริ่มกระบวนการสร้าง Excel file */
         /* ************************* */
 
-        $sheetCount = $objPHPExcel->getSheetCount();
+        for ($i=0; $i < count($mydata["array"]); $i++) { 
 
-        /* Create Worksheet พร้อมกำหนดชื่อ */
-        $objPHPExcel_ITEM_HIS_DF_Worksheet = new \PHPExcel_Worksheet($objPHPExcel, 'ITEM_HIS_DF');
-        $objPHPExcel->addSheet($objPHPExcel_ITEM_HIS_DF_Worksheet, $sheetCount);
-        $objPHPExcel_ITEM_HIS_DF_Worksheet->setTitle('ITEM_HIS_DF');
+          if (!$tmpJobNo) {
 
-        /* กำหนดให้เป็น ActiveWorkSheet */
-        // Set active sheet index to the first sheet, so Excel opens this as the first sheet
-        $objPHPExcel->setActiveSheetIndex($sheetCount);
+              $tmpJobNo = $mydata["array"][$i]['JobNo'];
+              $tmpJobDate = $mydata["array"][$i]['JobDate'];
+              $tmpVehicleLicence = $mydata["array"][$i]['VehicleLicence'];
+              $tmpDocNo = $mydata["array"][$i]['DocNo'];
 
-        $col = 0;
-        $row = 1;
-        $value = "Josh-00";
-        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+              <%= partial "/KpiManager/exportOperationKPI/_create_worksheet_init" %>
+              <%= partial "/KpiManager/exportOperationKPI/_create_header_init" %>
+              <%= partial "/KpiManager/exportOperationKPI/_return_info_init" %>
 
-        $col = 1;
-        $row = 1;
-        $value = "Josh-11";
-        $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+          } else if ($tmpJobNo != $mydata["array"][$i]['JobNo']) {
 
-        // Set document properties
-        $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-                                     ->setLastModifiedBy("Maarten Balliauw")
-                                     ->setTitle("Office 2007 XLSX Test Document")
-                                     ->setSubject("Office 2007 XLSX Test Document")
-                                     ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-                                     ->setKeywords("office 2007 openxml php")
-                                     ->setCategory("Test result file");
+              $j++;
+              $tmpJobNo = $mydata["array"][$i]['JobNo'];
+              $tmpJobDate = $mydata["array"][$i]['JobDate'];
+              $tmpVehicleLicence = $mydata["array"][$i]['VehicleLicence'];
+              $tmpDocNo = $mydata["array"][$i]['DocNo'];
 
+              <%= partial "/KpiManager/exportOperationKPI/_create_worksheet" %>
+              <%= partial "/KpiManager/exportOperationKPI/_create_header" %>
+              <%= partial "/KpiManager/exportOperationKPI/_return_info" %>
+              $row_excel = 1;
+          }
 
-        // Redirect output to a client’s web browser (Excel5)
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="01simple.xls"');
-        header('Cache-Control: max-age=0');
-        // If you're serving to IE 9, then the following may be needed
-        header('Cache-Control: max-age=1');
+          $row_excel++;
 
-        // If you're serving to IE over SSL, then the following may be needed
-        header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
-        header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-        header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-        header ('Pragma: public'); // HTTP/1.0
+          <%= partial "/KpiManager/exportOperationKPI/_insert_data_to_active_worksheet" %>
+        }
 
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-        $date = new DateTime();
-        // $fileName = 'Quickload_for_MODBUS('.$paramFastToolsDestination.')'.'_'.date("Y-m-d").'_'.$date->getTimestamp().'.xls';
-        $fileName = 'Test.xls';
-        $filePath = '../../../files/'.$fileName;
-        $objWriter->save($filePath);
+        <%= partial "/KpiManager/exportOperationKPI/_create_excel_file" %>
 
 
         /* ************************* */
