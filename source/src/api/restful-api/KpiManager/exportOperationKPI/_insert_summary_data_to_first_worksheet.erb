@@ -1,0 +1,60 @@
+
+        $headers_result = array(
+            'job_date' => 'วันที่สั่งงาน',
+            'job_no' => 'เลขที่ใบสั่งงาน',
+            'section' => 'หน่วยงาน',
+            'supervisor' => 'หัวหน้าสายงาน',
+            'vehicle_licence' => 'ทะเบียนรถ',
+            'vehicle_type' => 'ประเภทรถ',
+            'driver_name' => 'พนักงานขับรถ',
+            'route' => 'Route',
+            'เวลาเข้างาน (DateTime)' => 'เวลาเข้างาน (DateTime)',
+            'เวลาออกศูนย์ (DateTime)' => 'เวลาออกศูนย์ (DateTime)',
+            'เวลาขึ้นสินค้า (ชั่วโมง นาที)' => 'เวลาขึ้นสินค้า (ชั่วโมง นาที)',
+            'เวลาส่งจุดแรก (DateTime)' => 'เวลาส่งจุดแรก (DateTime)',
+            'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)' => 'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)',
+            'เวลาส่งจุดสุดท้าย (DateTime)' => 'เวลาส่งจุดสุดท้าย (DateTime)',
+            'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)' => 'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)',
+            'ค่าจ้าง พขร.' => 'ค่าจ้าง พขร.',
+            'drop_all' => 'จำนวน (Drop)',
+            'drop_success' => 'ส่งได้ (Drop)',
+            '% ส่งได้ (Drop)' => '% ส่งได้ (Drop)',
+            'box_all' => 'กล่องทั้งหมด',
+            'box_success' => 'ส่งได้ (กล่อง)',
+            '% ส่งได้ (กล่อง)' => '% ส่งได้ (กล่อง)',
+            'bill_count' => 'จำนวนบิล',
+            'bill_closed_with_epod_count' => 'ปิดด้วย E-POD (บิล)',
+            '% E-POD' => '% E-POD',
+            'bill_closed_after_6pm_count' => 'จำนวนบิลปิดหลัง 18:00 น.',
+            'ได้ตาม Target' => 'ได้ตาม Target',
+            '-' => '-');
+
+        $m = 0;
+
+
+        /* กำหนดให้เป็น ActiveWorkSheet */
+        // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+        $objPHPExcel->setActiveSheetIndex(0);
+
+        // this cycle echoes all associative array
+        // key where value equals "apple"
+        while ($header_name = current($headers_result)) {
+              
+            $col = $m;
+            $row = 1;
+            $value = $header_name;
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+
+            $col = $m;
+            $row = 2;
+            $value = key($headers_result);
+            $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+
+            $m++;
+
+            next($headers_result);
+        }
+
+        /* Set Title */
+        // Rename worksheet
+        $objPHPExcel->getActiveSheet()->setTitle('Summary');
