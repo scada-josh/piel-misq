@@ -57,7 +57,7 @@
 
         /* initial variable Partial */
         $tmpJobNo = "";
-        $j = 0;
+        $j = 1;             // id
         $row_excel = 1;
         $headers = array( "JobDate",
                           "JobNo",
@@ -84,6 +84,7 @@
                           "ReasonCode",
                           "podimage_path",
                           "DocRemark");
+        $tmpFirstSentDatetime = "";
 
 
         /* ************************* */
@@ -96,7 +97,18 @@
 
               $tmpJobNo = $mydata["array"][$i]['JobNo'];
               $tmpJobDate = $mydata["array"][$i]['JobDate'];
+              $tmpSection = $mydata["array"][$i]['section'];
+              $tmpSupervisor = $mydata["array"][$i]['Supervisor'];
               $tmpVehicleLicence = $mydata["array"][$i]['VehicleLicence'];
+              $tmpVehicleType = $mydata["array"][$i]['VehicleType'];
+              $tmpDriverName = $mydata["array"][$i]['DriverName'];
+              $tmpRouteCode = $mydata["array"][$i]['RouteCode'];
+              $tmpFingerScanDateTime = "";
+              $tmpStartDateTime = $mydata["array"][$i]['StartTime'];
+              $tmpShipoutTime = calculateShipoutTime($tmpStartDateTime, $tmpFingerScanDateTime);
+              $tmpDeliveryDateTime = $mydata["array"][$i]['DeliveryDateTime'];
+              $tmpFirstSentDatetime = $tmpDeliveryDateTime;
+
               $tmpDocNo = $mydata["array"][$i]['DocNo'];
 
               <%= partial "/KpiManager/exportOperationKPI/_create_worksheet_init" %>
@@ -105,16 +117,46 @@
 
           } else if ($tmpJobNo != $mydata["array"][$i]['JobNo']) {
 
+              $tmpFirstSentDatetime = "";
+
               $j++;
               $tmpJobNo = $mydata["array"][$i]['JobNo'];
               $tmpJobDate = $mydata["array"][$i]['JobDate'];
+              $tmpSection = $mydata["array"][$i]['section'];
+              $tmpSupervisor = $mydata["array"][$i]['Supervisor'];
               $tmpVehicleLicence = $mydata["array"][$i]['VehicleLicence'];
+              $tmpVehicleType = $mydata["array"][$i]['VehicleType'];
+              $tmpDriverName = $mydata["array"][$i]['DriverName'];
+              $tmpRouteCode = $mydata["array"][$i]['RouteCode'];
+              $tmpFingerScanDateTime = "";
+              $tmpStartDateTime = $mydata["array"][$i]['StartTime'];
+              $tmpShipoutTime = calculateShipoutTime($tmpStartDateTime, $tmpFingerScanDateTime);
+              $tmpDeliveryDateTime = $mydata["array"][$i]['DeliveryDateTime'];
+              $tmpFirstSentDatetime = $tmpDeliveryDateTime;
+
               $tmpDocNo = $mydata["array"][$i]['DocNo'];
 
               <%= partial "/KpiManager/exportOperationKPI/_create_worksheet" %>
               <%= partial "/KpiManager/exportOperationKPI/_create_header" %>
               <%= partial "/KpiManager/exportOperationKPI/_return_info" %>
               $row_excel = 1;
+          } else {
+
+              /* ****************************************** */
+              /* เริ่มกระบวนการ คำนวณเวลาส่งจุดแรก (DateTime) */
+              /* ****************************************** */
+
+              /* แก้ปัญหากรณี record แรก มีค่า null ทำให้ตัวแปร $tmpFirstSentDatetime ไม่มีค่า */
+              if (!$tmpFirstSentDatetime) {
+                  $tmpFirstSentDatetime = $mydata["array"][$i]['DeliveryDateTime'];
+              }
+              $tmpDeliveryDateTime = $mydata["array"][$i]['DeliveryDateTime'];
+              if ($tmpDeliveryDateTime) {
+                  $tmpFirstSentDatetime = calculateFirstSentDatetime($tmpDeliveryDateTime, $tmpFirstSentDatetime);
+                  /* Edit last record */
+                  $reports[count($reports)-1]["first_sent_datetime"] = $tmpFirstSentDatetime;
+              }
+
           }
 
           $row_excel++;
@@ -124,8 +166,6 @@
 
 
         <%= partial "/KpiManager/exportOperationKPI/_insert_summary_data_to_first_worksheet" %>
-
-
 
 
         <%= partial "/KpiManager/exportOperationKPI/_create_excel_file" %>

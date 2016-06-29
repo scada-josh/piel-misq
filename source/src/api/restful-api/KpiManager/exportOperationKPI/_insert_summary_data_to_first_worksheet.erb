@@ -7,11 +7,11 @@
             'vehicle_licence' => 'ทะเบียนรถ',
             'vehicle_type' => 'ประเภทรถ',
             'driver_name' => 'พนักงานขับรถ',
-            'route' => 'Route',
-            'เวลาเข้างาน (DateTime)' => 'เวลาเข้างาน (DateTime)',
-            'เวลาออกศูนย์ (DateTime)' => 'เวลาออกศูนย์ (DateTime)',
-            'เวลาขึ้นสินค้า (ชั่วโมง นาที)' => 'เวลาขึ้นสินค้า (ชั่วโมง นาที)',
-            'เวลาส่งจุดแรก (DateTime)' => 'เวลาส่งจุดแรก (DateTime)',
+            'route_code' => 'Route code',
+            'fingerscan_datetime' => 'เวลาเข้างาน (DateTime)',
+            'start_datetime' => 'เวลาออกศูนย์ (DateTime)',
+            'shipout_time' => 'เวลาขึ้นสินค้า (ชั่วโมง นาที)',
+            'first_sent_datetime' => 'เวลาส่งจุดแรก (DateTime)',
             'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)' => 'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)',
             'เวลาส่งจุดสุดท้าย (DateTime)' => 'เวลาส่งจุดสุดท้าย (DateTime)',
             'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)' => 'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)',
@@ -54,6 +54,48 @@
 
             next($headers_result);
         }
+
+
+
+        $headers_arr= array('id', 'job_no', 'section', 'supervisor', 'vehicle_licence', 'vehicle_type', 'driver_name', 'route_code', 
+                            'fingerscan_datetime', 'start_datetime', 'shipout_time', 'first_sent_datetime');
+
+        $start_row = 3;
+        for ($i = 0; $i < count($reports); $i++) {
+
+            for ($j = 0; $j < count($headers_arr); $j++) {
+                $col = $j;
+                $row = $start_row + $i;
+                $value = $reports[$i][$headers_arr[$j]];
+                $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+            }
+
+            // $col = 0;
+            // $row = $start_row + $i;
+            // $value = $reports[$i]["id"];
+            // $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+
+            // $col = 1;
+            // $row = $start_row + $i;
+            // $value = $reports[$i]["job_no"];
+            // $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+
+            // $col = 2;
+            // $row = $start_row + $i;
+            // $value = $reports[$i]["section"];
+            // $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+
+            // $col = 3;
+            // $row = $start_row + $i;
+            // $value = $reports[$i]["supervisor"];
+            // $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($col, $row, $value);
+            
+        }
+
+
+
+
+
 
         /* Set Title */
         // Rename worksheet
