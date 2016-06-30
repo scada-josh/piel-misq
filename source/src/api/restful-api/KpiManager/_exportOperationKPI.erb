@@ -85,6 +85,11 @@
                           "podimage_path",
                           "DocRemark");
         $tmpFirstSentDatetime = "";
+        $tmpTimeBetweenStartToFirstEntryPoint = "N/A";
+        $tmpMaximumDeliveryDateTime = "";
+        $tmpMaximumDeliveryTime = "";
+        $tmpTotalTimeDelivery = "";
+        $tmpJobCost = "";
 
 
         /* ************************* */
@@ -108,7 +113,9 @@
               $tmpShipoutTime = calculateShipoutTime($tmpStartDateTime, $tmpFingerScanDateTime);
               $tmpDeliveryDateTime = $mydata["array"][$i]['DeliveryDateTime'];
               $tmpFirstSentDatetime = $tmpDeliveryDateTime;
+              $tmpMaximumDeliveryDateTime = $tmpDeliveryDateTime;
 
+              $tmpJobCost = $mydata["array"][$i]['jobcost'];
               $tmpDocNo = $mydata["array"][$i]['DocNo'];
 
               <%= partial "/KpiManager/exportOperationKPI/_create_worksheet_init" %>
@@ -118,6 +125,10 @@
           } else if ($tmpJobNo != $mydata["array"][$i]['JobNo']) {
 
               $tmpFirstSentDatetime = "";
+              $tmpMaximumDeliveryDateTime = "";
+              $tmpMaximumDeliveryTime = "";
+              $tmpTotalTimeDelivery = "";
+              $tmpJobCost = "";
 
               $j++;
               $tmpJobNo = $mydata["array"][$i]['JobNo'];
@@ -133,7 +144,9 @@
               $tmpShipoutTime = calculateShipoutTime($tmpStartDateTime, $tmpFingerScanDateTime);
               $tmpDeliveryDateTime = $mydata["array"][$i]['DeliveryDateTime'];
               $tmpFirstSentDatetime = $tmpDeliveryDateTime;
+              $tmpMaximumDeliveryDateTime = $tmpDeliveryDateTime;
 
+              $tmpJobCost = $mydata["array"][$i]['jobcost'];
               $tmpDocNo = $mydata["array"][$i]['DocNo'];
 
               <%= partial "/KpiManager/exportOperationKPI/_create_worksheet" %>
@@ -142,20 +155,13 @@
               $row_excel = 1;
           } else {
 
-              /* ****************************************** */
-              /* เริ่มกระบวนการ คำนวณเวลาส่งจุดแรก (DateTime) */
-              /* ****************************************** */
+              <%= partial "/KpiManager/exportOperationKPI/_firstSentDatetime" %>
+              <%= partial "/KpiManager/exportOperationKPI/_timeBetweenStartToFirstEntryPoint" %>
+              <%= partial "/KpiManager/exportOperationKPI/_maximumDeliveryTime" %>
+              <%= partial "/KpiManager/exportOperationKPI/_totalTimeDelivery" %>
 
-              /* แก้ปัญหากรณี record แรก มีค่า null ทำให้ตัวแปร $tmpFirstSentDatetime ไม่มีค่า */
-              if (!$tmpFirstSentDatetime) {
-                  $tmpFirstSentDatetime = $mydata["array"][$i]['DeliveryDateTime'];
-              }
-              $tmpDeliveryDateTime = $mydata["array"][$i]['DeliveryDateTime'];
-              if ($tmpDeliveryDateTime) {
-                  $tmpFirstSentDatetime = calculateFirstSentDatetime($tmpDeliveryDateTime, $tmpFirstSentDatetime);
-                  /* Edit last record */
-                  $reports[count($reports)-1]["first_sent_datetime"] = $tmpFirstSentDatetime;
-              }
+
+
 
           }
 

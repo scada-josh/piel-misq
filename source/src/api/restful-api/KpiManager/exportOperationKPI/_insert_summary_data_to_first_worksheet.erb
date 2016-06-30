@@ -12,10 +12,10 @@
             'start_datetime' => 'เวลาออกศูนย์ (DateTime)',
             'shipout_time' => 'เวลาขึ้นสินค้า (ชั่วโมง นาที)',
             'first_sent_datetime' => 'เวลาส่งจุดแรก (DateTime)',
-            'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)' => 'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)',
-            'เวลาส่งจุดสุดท้าย (DateTime)' => 'เวลาส่งจุดสุดท้าย (DateTime)',
-            'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)' => 'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)',
-            'ค่าจ้าง พขร.' => 'ค่าจ้าง พขร.',
+            'time_between_start_to_first_entry_point' => 'เวลาที่เข้าพื้นที่จุดแรก (ชั่วโมง นาที)',
+            'maximum_delivery_time' => 'เวลาส่งจุดสุดท้าย (DateTime)',
+            'total_time_delivery' => 'รวมเวลาที่ใช้จัดส่ง (ชั่วโมง นาที)',
+            'job_cost' => 'ค่าจ้าง พขร.',
             'drop_all' => 'จำนวน (Drop)',
             'drop_success' => 'ส่งได้ (Drop)',
             '% ส่งได้ (Drop)' => '% ส่งได้ (Drop)',
@@ -58,7 +58,8 @@
 
 
         $headers_arr= array('id', 'job_no', 'section', 'supervisor', 'vehicle_licence', 'vehicle_type', 'driver_name', 'route_code', 
-                            'fingerscan_datetime', 'start_datetime', 'shipout_time', 'first_sent_datetime');
+                            'fingerscan_datetime', 'start_datetime', 'shipout_time', 'first_sent_datetime', 
+                            'time_between_start_to_first_entry_point', 'maximum_delivery_time', 'total_time_delivery', 'job_cost');
 
         $start_row = 3;
         for ($i = 0; $i < count($reports); $i++) {
