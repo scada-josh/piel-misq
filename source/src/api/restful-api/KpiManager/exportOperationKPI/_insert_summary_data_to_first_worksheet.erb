@@ -59,7 +59,10 @@
 
         $headers_arr= array('id', 'job_no', 'section', 'supervisor', 'vehicle_licence', 'vehicle_type', 'driver_name', 'route_code', 
                             'fingerscan_datetime', 'start_datetime', 'shipout_time', 'first_sent_datetime', 
-                            'time_between_start_to_first_entry_point', 'maximum_delivery_time', 'total_time_delivery', 'job_cost');
+                            'time_between_start_to_first_entry_point', 'maximum_delivery_time', 'total_time_delivery', 'job_cost',
+                            'drop_all', 'drop_success', 'percentage_drop', 'box_all', 'box_success', 'percentage_box', 'bill_count', 'bill_closed_with_epod_count', 'percentage_epod', 'bill_closed_after_6pm_count', 'target_result');
+
+
 
         $start_row = 3;
         for ($i = 0; $i < count($reports); $i++) {
