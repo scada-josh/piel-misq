@@ -104,7 +104,7 @@
         $periodEndMonth = substr($postEndDate,0,2);
         $periodEndYear = substr($postEndDate,6,4);
         $endDatePeriod = $periodEndYear."-".$periodEndMonth."-".$periodEndDate;
-        
+
         $period = createDateRangeArray($startDatePeriod, $endDatePeriod);
 
         for ($i=0; $i < count($period); $i++) { 
@@ -339,6 +339,9 @@
         // $data_results[] = array("กค-3395", "20", "34", "16", "45", "45", "45");
         // $data_results[] = array("กค-3396", "21", "35", "17", "46", "45", "45");
 
+        // $app->log->debug('Request path: ' . $request->getPathInfo());
+        // $app->log->debug('Response status: ' . $response->getStatus());
+        $app->log->debug("This is a test from the logger...");
 
         $reportResult = array("columns" =>  $header_results, 
                               "rows" => $data_results,
