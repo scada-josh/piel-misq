@@ -3,7 +3,7 @@ title: IEL - MIS - API
 layout: "layout-api"
 ---
 <?php
- 
+
     date_default_timezone_set("Asia/Bangkok");
  
     require_once '../../../packages/autoload.php';
@@ -47,6 +47,8 @@ layout: "layout-api"
 
     /* PHP Function */
     <%= partial "/Functions/_fn_url" %>
+    <%= partial "/Functions/_fn_array_find_deep" %>
+    <%= partial "/Functions/_fn_createDateRangeArray" %>
     <%= partial "/Functions/_fn_exportOperationKPI_calculateShipoutTime" %>
     <%= partial "/Functions/_fn_exportOperationKPI_calculateFirstSentDatetime" %>
     <%= partial "/Functions/_fn_exportOperationKPI_calculateTimeBetweenStartToFirstEntryPoint" %>
