@@ -88,12 +88,14 @@ Apps: function () {
 
 
         if (centerValueSelected != "#") {
-          console.log('centerValueSelected : ' + centerValueSelected);
-          console.log('centerTextSelected : ' + centerTextSelected);
+          // console.log('centerValueSelected : ' + centerValueSelected);
+          // console.log('centerTextSelected : ' + centerTextSelected);
 
-          console.log("site name : " + fn.paramSiteName);
-          console.log("start date : " + fn.paramStartDate);
-          console.log("end date : " + fn.paramEndDate);
+          // console.log("site name : " + fn.paramSiteName);
+          // console.log("start date : " + fn.paramStartDate);
+          // console.log("end date : " + fn.paramEndDate);
+
+          fn.DatatableDrop(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
 
 
 
@@ -113,12 +115,12 @@ Apps: function () {
 
         fn.paramSiteName = centerTextSelected;
 
-        fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+        fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate.format('MM/DD/YYYY'), fn.paramEndDate.format('MM/DD/YYYY'));
 
-        console.log('Dropdown selected');
-        console.log("site name : " + fn.paramSiteName);
-        console.log("start date : " + fn.paramStartDate);
-        console.log("end date : " + fn.paramEndDate);
+        // console.log('Dropdown selected');
+        // console.log("site name : " + fn.paramSiteName);
+        // console.log("start date : " + fn.paramStartDate);
+        // console.log("end date : " + fn.paramEndDate);
 
   })
 

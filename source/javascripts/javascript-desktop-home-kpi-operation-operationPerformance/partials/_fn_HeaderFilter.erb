@@ -1,7 +1,13 @@
 HeaderFilter: function (paramSiteName, paramStartDate, paramEndDate) {
-	console.log("HeaderFilter");
+	// console.log("HeaderFilter");
 
-	$("#header_filter > h3").html("ประสิทธิภาพ" + paramSiteName);
-  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+	if (paramSiteName) {
+		$("#header_filter > h3").html("ประสิทธิภาพ : " + paramSiteName);
+	  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+	} else {
+		$("#header_filter > h3").html("ประสิทธิภาพ : -");
+	  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+	}
+
   
 },
