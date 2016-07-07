@@ -114,8 +114,20 @@ Apps: function () {
         var centerTextSelected   = centerOptionSelected.text();
 
         fn.paramSiteName = centerTextSelected;
+        console.log(fn.paramStartDate);
+        console.log(fn.paramEndDate);
+        // if (fn.paramStartDate) {
+        //   fn.paramStartDate = fn.paramStartDate.format('MM/DD/YYYY');
+        // }
 
-        fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate.format('MM/DD/YYYY'), fn.paramEndDate.format('MM/DD/YYYY'));
+        // if (fn.paramEndDate) {
+        //   fn.paramEndDate = fn.paramEndDate.format('MM/DD/YYYY');
+        // }
+        
+        if (fn.paramStartDate && fn.paramEndDate) {
+          fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+        }
+        
 
         // console.log('Dropdown selected');
         // console.log("site name : " + fn.paramSiteName);

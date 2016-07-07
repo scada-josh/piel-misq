@@ -1,6 +1,14 @@
 HeaderFilter: function (paramSiteName, paramStartDate, paramEndDate) {
 	// console.log("HeaderFilter");
 
+	if (fn.paramStartDate) {
+		paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+	}
+
+	if (fn.paramEndDate) {
+		paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+	}
+	
 	if (paramSiteName) {
 		$("#header_filter > h3").html("ประสิทธิภาพ : " + paramSiteName);
 	  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);

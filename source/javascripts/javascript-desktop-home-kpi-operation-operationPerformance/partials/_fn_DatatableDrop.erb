@@ -18,6 +18,13 @@ DatatableDrop: function (myParamSiteName, myParamStartDate, myParamEndDate) {
         $('#datatableDrop > thead > tr').remove();
     }
 
+    if (fn.paramStartDate) {
+        myParamStartDate = fn.paramStartDate.format('MM/DD/YYYY');
+    }
+
+    if (fn.paramEndDate) {
+        myParamEndDate = fn.paramEndDate.format('MM/DD/YYYY');
+    }
 
     var tmpData = {
         "startDate" : myParamStartDate, 
@@ -99,8 +106,8 @@ DatatableDrop: function (myParamSiteName, myParamStartDate, myParamEndDate) {
                 "data": function( d ) {
 
                     var tmpData = {
-                        "startDate" : fn.paramStartDate, 
-                        "endDate" : fn.paramEndDate, 
+                        "startDate" : fn.paramStartDate.format('MM/DD/YYYY'), 
+                        "endDate" : fn.paramEndDate.format('MM/DD/YYYY'), 
                         "siteName" : fn.paramSiteName
                     }
                     return JSON.stringify(tmpData);

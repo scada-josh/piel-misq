@@ -4,13 +4,16 @@ ShowRangeDate_Basic: function (start, end) {
 	// console.log("start date : " + start.format('MM/DD/YYYY'));
 	// console.log("end date : " + end.format('MM/DD/YYYY'));
 
-	fn.paramStartDate =  start.format('MM/DD/YYYY');
-	fn.paramEndDate = end.format('MM/DD/YYYY');
+	// fn.paramStartDate =  start.format('MM/DD/YYYY');
+	// fn.paramEndDate = end.format('MM/DD/YYYY');
 
-	console.log('ShowRangeDate_Basic');
-	console.log("site name : " + fn.paramSiteName);
-	console.log("start date : " + fn.paramStartDate);
-	console.log("end date : " + fn.paramEndDate);
+	fn.paramStartDate =  start;
+	fn.paramEndDate = end;
+	
+	// console.log('ShowRangeDate_Basic');
+	// console.log("site name : " + fn.paramSiteName);
+	// console.log("start date : " + fn.paramStartDate);
+	// console.log("end date : " + fn.paramEndDate);
 
 	
 	$("#form_layout_year_select_id").hide(1000);
