@@ -36,7 +36,7 @@ Apps: function () {
 
 
 	$('#dropdown_weekly_filter_id').on('click', function() {
-      	console.log('dropdown_weekly_filter_id');
+      	// console.log('dropdown_weekly_filter_id');
 
       	$("#form_layout_year_select_id").show(1000);
       	$("#form_layout_week_select_id").show(1000);
@@ -48,7 +48,7 @@ Apps: function () {
 	});
 
 	$('#dropdown_monthly_filter_id').on('click', function() {
-      	console.log('dropdown_monthly_filter_id');
+      	// console.log('dropdown_monthly_filter_id');
 
       	$("#form_layout_year_select_id").show(1000);
       	$("#form_layout_week_select_id").hide(1000);
@@ -58,7 +58,7 @@ Apps: function () {
 	});
 
 	$('#dropdown_quater_filter_id').on('click', function() {
-      console.log('dropdown_quater_filter_id');
+      // console.log('dropdown_quater_filter_id');
 
       	$("#form_layout_year_select_id").show(1000);
       	$("#form_layout_week_select_id").hide(1000);
@@ -68,7 +68,7 @@ Apps: function () {
 	});
 
 	$('#dropdown_half_year_filter_id').on('click', function() {
-      	console.log('dropdown_half_year_filter_id');
+      	// console.log('dropdown_half_year_filter_id');
 
       	$("#form_layout_year_select_id").show(1000);
       	$("#form_layout_week_select_id").hide(1000);
@@ -76,5 +76,51 @@ Apps: function () {
       	$("#form_layout_quater_id").hide(1000);
       	$("#form_layout_halfYear_id").show(1000);
 	});
+
+  $('#btnFilterInfo').on('click', function() {
+        // console.log('btnFilterInfo');
+
+        var centerOptionSelected = $('#center_selected_id').find("option:selected");
+        var centerValueSelected  = centerOptionSelected.val();
+        var centerTextSelected   = centerOptionSelected.text();
+
+        fn.paramSiteName = centerTextSelected;
+
+
+        if (centerValueSelected != "#") {
+          console.log('centerValueSelected : ' + centerValueSelected);
+          console.log('centerTextSelected : ' + centerTextSelected);
+
+          console.log("site name : " + fn.paramSiteName);
+          console.log("start date : " + fn.paramStartDate);
+          console.log("end date : " + fn.paramEndDate);
+
+
+
+        } else {
+          alert('กรุณาเลือกศูนย์รถ');
+        }
+        
+        return false;
+  });
+
+
+  $("#center_selected_id").change(function() {
+
+        var centerOptionSelected = $('#center_selected_id').find("option:selected");
+        var centerValueSelected  = centerOptionSelected.val();
+        var centerTextSelected   = centerOptionSelected.text();
+
+        fn.paramSiteName = centerTextSelected;
+
+        fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+
+        console.log('Dropdown selected');
+        console.log("site name : " + fn.paramSiteName);
+        console.log("start date : " + fn.paramStartDate);
+        console.log("end date : " + fn.paramEndDate);
+
+  })
+
 	
 }

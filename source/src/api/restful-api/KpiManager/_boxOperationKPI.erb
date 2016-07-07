@@ -32,6 +32,12 @@
             $postEndDate = $result->endDate;               /* รูปแบบ เดือน/วัน/ปี */
             $postSiteName = $result->siteName;
 
+            <% if config[:phase_environment] == "Development" %>
+            $app->log->debug(date("Y-m-d H:i:s")." : "."startDate : ".$postStartDate);
+            $app->log->debug(date("Y-m-d H:i:s")." : "."endDate : ".$postEndDate);
+            $app->log->debug(date("Y-m-d H:i:s")." : "."siteName : ".$postSiteName);
+            <% end %>
+
         } else if (($ContetnType == "application/x-www-form-urlencoded") || ($ContetnType == "application/x-www-form-urlencoded; charset=UTF-8")){
 
 
@@ -341,7 +347,7 @@
 
         // $app->log->debug('Request path: ' . $request->getPathInfo());
         // $app->log->debug('Response status: ' . $response->getStatus());
-        $app->log->debug("This is a test from the logger...");
+        
 
         $reportResult = array("columns" =>  $header_results, 
                               "rows" => $data_results,

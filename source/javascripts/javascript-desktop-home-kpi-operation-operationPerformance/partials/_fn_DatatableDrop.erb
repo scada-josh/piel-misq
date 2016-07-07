@@ -1,75 +1,65 @@
-DatatableBox: function () {
-	// console.log('DatatableBox');
+DatatableDrop: function () {
+	// console.log('DatatableDrop');
+    // console.log('DatatableBox');
 
     // reference : http://stackoverflow.com/questions/28140671/datatables-with-dynamic-columns
     // referenct : https://datatables.net/forums/discussion/29260/dynamic-column-headers-via-ajax
-    var tmpData = {
-        "startDate" : ($('#dateSelected').val()) ? $('#dateSelected').val() : "06/16/2016", 
-        "endDate" : ($('#dateSelected').val()) ? $('#dateSelected').val() : "06/21/2016", 
-        "siteName" : ($('#station_selected_id').find("option:selected").text()) ? $('#station_selected_id').find("option:selected").text() : "bc"
-    }
+    // var tmpData = {
+    //     "startDate" : ($('#dateSelected').val()) ? $('#dateSelected').val() : "06/16/2016", 
+    //     "endDate" : ($('#dateSelected').val()) ? $('#dateSelected').val() : "06/21/2016", 
+    //     "siteName" : ($('#station_selected_id').find("option:selected").text()) ? $('#station_selected_id').find("option:selected").text() : "bc"
+    // }
 
-    $.ajax({
-        url: "../../../../../api/restful-api/kpiManager/boxOperationKPI/", 
-        "type": "POST",
-        "dataType": "json",
-        "contentType": "application/json",
-        "data": JSON.stringify(tmpData),
-        success: function(result){
-            boxDatatableRender(result);
+    // $.ajax({
+    //     url: "../../../../../api/restful-api/kpiManager/boxOperationKPI/", 
+    //     "type": "POST",
+    //     "dataType": "json",
+    //     "contentType": "application/json",
+    //     "data": JSON.stringify(tmpData),
+    //     success: function(result){
+    //         dropDatatableRender(result);
 
-        }
-    });
+    //     }
+    // });
 
-
-
-    function boxDatatableRender(result) {
+    function generateJSONColTable() {
 
         var valJSONColTable = [];
-        var aryJSONColTable = [];
+        var tmpResult = [
+                            "Box",
+                            "16/06/2016",
+                            "17/06/2016",
+                            "18/06/2016",
+                            "19/06/2016",
+                            "20/06/2016",
+                            "21/06/2016",
+                            "Average"
+                        ];
 
-        var aryColTableChecked = result.columns;
-        var valColTableChecked = result.rows;
-        // console.log(result.rows);
+        var tmpJSONColTable = tmpResult;
 
-        for (var i=0; i < aryColTableChecked.length; i++ ) {
-            
-              aryJSONColTable.push({
-                        "sTitle": aryColTableChecked[i],
+        for (var i=0; i < tmpJSONColTable.length; i++ ) {
+              valJSONColTable.push({
+                        "sTitle": tmpJSONColTable[i],
                         "aTargets": [i]
                });
-
-             
-              valJSONColTable.push({
-                        "sTitle": valColTableChecked[i],
-                        "aTargets": [i],
-                        "mRender": function ( data, type, row ) {
-
-                            var tmpRender;
-
-                            if (data < 2) {
-                                tmpRender = "<b>" + data + "</b>";
-                            } else {
-                                tmpRender = data;
-                            }
-
-                            return tmpRender;
-                        },
-                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
-                            if (sData == '20') { 
-                                $(nTd).css('background-color', '#DFF2BF').css('color', '#4F8A10').css('font-weight', 'bold'); 
-                            } else if (sData == '45') { 
-                                $(nTd).css('background-color', '#BDE5F8').css('font-weight', 'bold').css('color', '#009'); 
-                            } else { 
-                                $(nTd).css('font-weight', 'bold').css('background-color', '#FFBABA').css('color', '#D8000C'); 
-                            }
-                        } 
-               });
+          
         }
 
+      return valJSONColTable;
+    }
 
 
-        boxDatatable = $('#datatableBox').dataTable({
+
+    function dropDatatableRender(result) {
+
+
+    var datatableJSONColTable;
+
+        datatableJSONColTable = generateJSONColTable();
+
+
+        datatableDrop = $('#datatableDrop').dataTable({
             "processing": true,
             "ajax": {
                 "url": "../../../../../api/restful-api/kpiManager/boxOperationKPI/",
@@ -82,7 +72,7 @@ DatatableBox: function () {
                                          "siteName" : ($('#station_selected_id').find("option:selected").text()) ? $('#station_selected_id').find("option:selected").text() : "bc"
                                        });
                 },
-                "dataSrc": "rows",
+                // "dataSrc": "rows",
                 "beforeSend" : function()    {           
                     // console.log("beforeSend");
                 },
@@ -124,32 +114,13 @@ DatatableBox: function () {
                 "search": "Search:",
                 "zeroRecords": "No matching records found"
             },
-            "aoColumnDefs": valJSONColTable,
-            // "aoColumnDefs": [
-            //         {
-            //             "render": function ( data, type, row ) {
-            //                 return row.vehicle_license;
-            //             },
-            //             "data": "id",
-            //             "targets": 0
-            //         },{
-            //             "render": function ( data, type, row ) {
-            //                 return row.box_success;
-            //             },
-            //             "data": "job_date",
-            //             "targets": 1
-            //         },{
-            //             "render": function ( data, type, row ) {
-            //                 return row.box_success;
-            //             },
-            //             "data": "job_no",
-            //             "targets": 2
-            //         }
-            // ],
-            // Or you can use remote translation file
-            //"language": {
-            //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
-            //},
+            "aoColumnDefs":[
+                            {
+                                'bSortable': true,
+                                "bAutoWidth": true,
+                                'aTargets': [0]
+                            }
+            ],
 
             // setup buttons extentension: http://datatables.net/extensions/buttons/
             buttons: [
@@ -192,16 +163,12 @@ DatatableBox: function () {
             scrollCollapse: true,
             
             "dom": "<'row' <'col-md-12'B>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r><'table-scrollable't><'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>", // horizobtal scrollable datatable
-            "columns": aryJSONColTable
-
-            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
-            // So when dropdowns used the scrollable div should be removed. 
-            //"dom": "<'row' <'col-md-12'T>><'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
+            "columns": datatableJSONColTable
         });
     
 
 
     }
+
     
 },

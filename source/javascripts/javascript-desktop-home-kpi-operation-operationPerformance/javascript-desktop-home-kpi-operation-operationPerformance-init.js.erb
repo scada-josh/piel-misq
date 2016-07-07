@@ -5,6 +5,12 @@
     // var venueAddress = "Grand Place, 1000, Brussels"; // Venue
 
     var boxDatatable;
+    var datatableDrop;
+
+    // RESTful Web Service - Parameter
+    var paramStartDate;
+    var paramEndDate;       /* MM/DD/YYYY */
+    var paramSiteName;      /* MM/DD/YYYY */
     
     /////////////////////////////////////////////////// Adress
  
@@ -16,11 +22,15 @@
             fn.DateRangePicker();
             fn.IonRangeSlider();
             fn.DatatableBox();
+            fn.DatatableDrop();
             fn.DatatableNonEPOD();
         },
         
+        // Header Filter
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilter" %>
         // Datatable
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableBox" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableDrop" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableNonEPOD" %>
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_IonRangeSlider" %>
