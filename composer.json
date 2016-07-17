@@ -3,7 +3,8 @@
         "slim/slim": "2.*",
         "vrana/notorm": "dev-master",
         "fergusean/nusoap": "^0.9.5",
-        "phpoffice/phpexcel": "dev-master"
+        "phpoffice/phpexcel": "dev-master",
+        "wisembly/elephant.io": "~3.0"
     },
     "config" : {
         "vendor-dir" : "./source/packages"
