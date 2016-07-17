@@ -29,5 +29,44 @@
 
     </body>
 
+    <script id="dataTable-header-Template" type="text/x-handlebars-template">
+
+            <thead>
+                
+                <tr>
+                    {{#each headers}}
+
+                    {{#if_eq dateHeader 'ลำดับ'}}
+                        <th class="" rowspan="2">{{dateHeader}}</th>
+                    {{else if_eq dateHeader 'ทะเบียนรถ'}}
+                        <th class="" rowspan="2">{{dateHeader}}</th>
+                    {{else}}
+                        <th class="" colspan="2">{{dateHeader}}</th>
+                    {{/if_eq}}
+                    
+                    {{/each}}
+                </tr>
+                <tr>
+                    {{#each headers}}
+
+                    {{#if_eq dateHeader 'ลำดับ'}}
+                       <!--  <th class="" ></th> -->
+                    {{else if_eq dateHeader 'ทะเบียนรถ'}}
+                        <!-- <th class="" ></th> -->
+                    {{else}}
+                        <th>Box</th>
+                        <th>Drop</th>
+                    {{/if_eq}}
+
+
+                    {{/each}}
+                </tr>
+                
+            </thead>
+            <tbody>
+            </tbody>
+
+    </script>
+
 </html>
 
