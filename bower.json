@@ -8,6 +8,9 @@
     "chosen-bootstrap": "^1.1.0",
     "numeral": "^1.5.3",
     "smooth-scroll": "https://github.com/cferdinandi/smooth-scroll.git#^9.1.4",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "datatables-fixedcolumns": "^3.2.2",
+    "datatables.net-fixedcolumns": "^3.2.2",
+    "datatables.net-fixedcolumns-dt": "^3.2.2"
   }
 }

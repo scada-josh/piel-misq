@@ -1,6 +1,7 @@
 DatatableOperationKPI: function () {
 	// console.log('DatatableOperationKPI');
     var dataSet = [];
+    var objVehicleType = {};
     var valJSONColTable = [];
 
     function datatableOperationKPIRender(result) {
@@ -24,7 +25,10 @@ DatatableOperationKPI: function () {
             // console.log(result.rows[i].vehicle_licence);
 
             tmpDataSet.push(result.rows[i].id);
+            // tmpDataSet.push(result.rows[i].vehicle_type);
             tmpDataSet.push(result.rows[i].vehicle_licence);
+
+            objVehicleType[result.rows[i].vehicle_licence] = result.rows[i].vehicle_type;
 
             // console.log(result.rows[i].details);
 
@@ -172,6 +176,9 @@ DatatableOperationKPI: function () {
             "scrollY":        '50vh',
             "scrollCollapse": true,
             "paging":         false,
+        //     "fixedColumns":   {
+        //     "leftColumns": 2
+        // },
             // "aoColumnDefs": [
             //         {
             //             'bSortable': true,
@@ -179,14 +186,45 @@ DatatableOperationKPI: function () {
             //             'aTargets': [0]
             //         }
             // ],
-            "data": dataSet,
+            // "data": dataSet,
+            "aaData": dataSet,
             // "aoColumnDefs": valJSONColTable,
             "aoColumnDefs": [
                     {
                         'bSortable': true,
-                        "bAutoWidth": true,
-                        'aTargets': [0, 1]
-                    }, {
+                        // "bAutoWidth": true,
+                        "sWidth": "50px",
+                        'aTargets': [0]
+                    },{
+                        'bSortable': true,
+                        // "bAutoWidth": true,
+                        "render": function ( data, type, row ) {
+                            
+                            
+
+                            // console.log(objVehicleType[data]);
+                            
+                            var tmpRender;
+
+                            tmpRender = "<div style = 'width:110px'>"
+
+                            if (objVehicleType[data] == 'Motorcycle') {
+                                tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" + data;
+                                // tmpRender = "<i class='fa fa-motorcycle'> " + data + "</i>";
+                            } else if(objVehicleType[data] == 'Pickup') {
+                                tmpRender = tmpRender + "<i class='fa fa-truck'></i> " + data;
+                                // tmpRender = "<i class='fa fa-truck'> " + data + "</i>" ;
+                            } else {
+                                tmpRender = tmpRender + data;
+                            }
+
+                            tmpRender = tmpRender + "</div>";
+
+                            return tmpRender;
+                        },
+                        "targets": [1]
+                    },{
+                        'bSortable': true,
                         "render": function ( data, type, row ) {
  
                             var tmpRender;
@@ -205,7 +243,9 @@ DatatableOperationKPI: function () {
                             } 
                         },
                         "targets": [-1, -2]
-                    }, {
+                    },{
+                        'bSortable': true,
+                        "bAutoWidth": false,
                         "render": function ( data, type, row ) {
  
                             var tmpRender;
@@ -217,18 +257,76 @@ DatatableOperationKPI: function () {
                             }
 
                             return tmpRender;
-                        },
-                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                        }, "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                             if (sData > 35) { 
                                 $(nTd).css('background-color', '#00ab4e').css('color', '#000').css('font-weight', 'bold'); 
                             } 
                         },
                         "targets": '_all'
+                    },{ 
+                        "sClass": "DatatableOperationKPI-col-01", 
+                        "aTargets": [0] 
+                    },{ 
+                        "sClass": "DatatableOperationKPI-col-02", 
+                        "aTargets": [1] 
+                    },{ 
+                        "sClass": "DatatableOperationKPI-common", 
+                        "aTargets": '_all'
                     }
-            ],
-            "order" : [] //disable default sorting, eg sorting on 1st column
-            
+            ],"footerCallback": function ( row, data, start, end, display ) {
+
+                var api = this.api(), data, total, pageTotal;
+
+                    // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                    i : 0;
+                };
+
+                // console.log(data.length);
+
+                for (var i=2; i < (dataSet.length*2 + 4); i++ ) {
+                    // Total over all pages
+                    total = api.column(i).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                        // Total over this page
+                    pageTotal = api.column( i, { page: 'current'} ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                        // Update footer
+                    $( api.column( i ).footer() ).html(
+                        // '$'+pageTotal +' ( $'+ total +' total)'
+                        numeral(pageTotal).format('0,0.00')
+                    );
+                }
+
+
+
+            },
+            "order" : [], //disable default sorting, eg sorting on 1st column
+            scrollY:        "300px",
+            scrollX:        true,
+            scrollCollapse: true,
+            paging:         false,
+            fixedColumns:   true
         });
+
+        // datatableOperationKPI.columns( '.sum' ).every( function () {
+        //     var sum = this
+        //     .data()
+        //     .reduce( function (a,b) {
+        //         return a + b;
+        //     } );
+
+        //     $( this.footer() ).html( 'Sum: '+sum );
+        // } );
+
+
     }
     
 },

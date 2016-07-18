@@ -124,7 +124,7 @@ Apps: function () {
         // $("#datatableOperationKPI").html(resultDataTableHeaderTemplate(context));
 
 
-        $('#datatableOperationKPI').html(resultDataTableHeaderTemplate(context)).promise().done(function(){
+        $('#datatableOperationKPI_Canvas').html(resultDataTableHeaderTemplate(context)).promise().done(function(){
           fn.DatatableOperationKPI();
         });
 
@@ -178,6 +178,7 @@ Apps: function () {
         
         if (fn.paramStartDate && fn.paramEndDate) {
           fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+          // fn.DatatableOperationKPI_FF();
         }
         
 

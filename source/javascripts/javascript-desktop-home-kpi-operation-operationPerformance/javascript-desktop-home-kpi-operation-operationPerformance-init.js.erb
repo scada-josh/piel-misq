@@ -7,6 +7,7 @@
     var boxDatatable;
     var datatableDrop;
     var datatableOperationKPI;
+    var datatableOperationKPI_FF;
 
     // RESTful Web Service - Parameter
     var paramStartDate;
@@ -22,6 +23,7 @@
             fn.Apps();
             fn.DateRangePicker();
             fn.IonRangeSlider();
+            // fn.DatatableOperationKPI_FF();
             // fn.DatatableBox();
             // fn.DatatableDrop(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
             // fn.DatatableNonEPOD();
@@ -34,6 +36,7 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableDrop" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableNonEPOD" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_FF" %>
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_IonRangeSlider" %>
         // Advanced Form Filter

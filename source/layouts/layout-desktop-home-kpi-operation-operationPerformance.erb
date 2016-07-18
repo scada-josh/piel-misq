@@ -14,6 +14,7 @@
         <meta content="" name="author" />
         
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+
         <%= stylesheet_link_tag "stylesheet-desktop-home-kpi-operation-operationPerformance" %>
 
     <body class="page-container-bg-solid page-md page-header-top-fixed">
@@ -30,7 +31,7 @@
     </body>
 
     <script id="dataTable-header-Template" type="text/x-handlebars-template">
-
+        <table class="table table-striped table-bordered table-hover" width="100%" id="datatableOperationKPI">
             <thead>
                 
                 <tr>
@@ -39,9 +40,9 @@
                     {{#if_eq dateHeader 'ลำดับ'}}
                         <th class="" rowspan="2">{{dateHeader}}</th>
                     {{else if_eq dateHeader 'ทะเบียนรถ'}}
-                        <th class="" rowspan="2">{{dateHeader}}</th>
+                        <th class="DatatableOperationKPI-common" rowspan="2">{{dateHeader}}</th>
                     {{else}}
-                        <th class="" colspan="2">{{dateHeader}}</th>
+                        <th class="DatatableOperationKPI-common" colspan="2">{{dateHeader}}</th>
                     {{/if_eq}}
                     
                     {{/each}}
@@ -65,7 +66,23 @@
             </thead>
             <tbody>
             </tbody>
+            <tfoot>
+                <tr>
+                    {{#each headers}}
 
+                    {{#if_eq dateHeader 'ลำดับ'}}
+                     <th class="" colspan="2">Average</th>
+                    {{else if_eq dateHeader 'ทะเบียนรถ'}}
+                    <!-- <th class="" ></th> -->
+                    {{else}}
+                    <th>-</th>
+                    <th>-</th>
+                    {{/if_eq}}
+
+                    {{/each}}
+                </tr>
+            </tfoot>
+        </table>
     </script>
 
 </html>
