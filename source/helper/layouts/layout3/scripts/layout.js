@@ -80,21 +80,6 @@ var Layout = function () {
             }
         });
 
-        // handle hover dropdown menu for desktop devices only
-        if (App.getViewPort().width >= resBreakpointMd) {
-            $('.hor-menu [data-hover="megamenu-dropdown"]').not('.hover-initialized').each(function() {   
-                $(this).dropdownHover(); 
-                $(this).addClass('hover-initialized'); 
-            });
-        } 
-
-        // handle auto scroll to selected sub menu node on mobile devices
-        $(document).on('click', '.hor-menu .menu-dropdown > a[data-hover="megamenu-dropdown"]', function() {
-            if (App.getViewPort().width < resBreakpointMd) {
-                App.scrollTo($(this));
-            }
-        });
-
         // close main menu on final link click for mobile mode
         $(".hor-menu li > a").on("click", function(e) {
             if (App.getViewPort().width < resBreakpointMd) {
@@ -179,36 +164,15 @@ var Layout = function () {
         var width = App.getViewPort().width;
         var menu = $(".page-header-menu");
             
-        if (width >= resBreakpointMd && menu.data('breakpoint') !== 'desktop') { 
-            // reset active states
-            $('.hor-menu [data-toggle="dropdown"].active').removeClass('open');
-
-            menu.data('breakpoint', 'desktop');
-            $('.hor-menu [data-hover="megamenu-dropdown"]').not('.hover-initialized').each(function() {   
-                $(this).dropdownHover(); 
-                $(this).addClass('hover-initialized'); 
-            });
-            $('.hor-menu .navbar-nav li.open').removeClass('open');
+        if (width >= resBreakpointMd) { 
             $(".page-header-menu").css("display", "block");
-        } else if (width < resBreakpointMd && menu.data('breakpoint') !== 'mobile') {
-            // set active states as open
-            $('.hor-menu [data-toggle="dropdown"].active').addClass('open');
-            
-            menu.data('breakpoint', 'mobile');
-            // disable hover bootstrap dropdowns plugin
-            $('.hor-menu [data-hover="megamenu-dropdown"].hover-initialized').each(function() {   
-                $(this).unbind('hover');
-                $(this).parent().unbind('hover').find('.dropdown-submenu').each(function() {
-                    $(this).unbind('hover');
-                });
-                $(this).removeClass('hover-initialized');    
-            });
         } else if (width < resBreakpointMd) {
-            //$(".page-header-menu").css("display", "none");  
-        }
+            $(".page-header-menu").css("display", "none"); 
+        } 
     };
 
     var handleContentHeight = function() {
+        return;
         var height;
 
         if ($('body').height() < App.getViewPort().height) {            

@@ -126,11 +126,11 @@ Page Header
     .page-header.navbar .menu-toggler > span:before,
     .page-header.navbar .menu-toggler > span:after {
       display: inline-block;
-      width: 16px;
+      width: 19px;
       height: 1px;
       background: #ffffff;
       position: relative;
-      top: -5px;
+      top: -6px;
       transition: all ease .3s; }
     .page-header.navbar .menu-toggler > span:before,
     .page-header.navbar .menu-toggler > span:after {
@@ -138,23 +138,23 @@ Page Header
       left: 0;
       content: ''; }
     .page-header.navbar .menu-toggler > span:before {
-      top: 5px; }
+      top: 6px; }
     .page-header.navbar .menu-toggler > span:after {
-      top: -5px; }
+      top: -6px; }
     .page-header.navbar .menu-toggler.th-toggle-exit > span {
       background-color: transparent !important; }
     .page-header.navbar .menu-toggler.th-toggle-exit > span:after {
-      webkit-transform: translateY(5px) rotateZ(45deg);
-      -moz-transform: translateY(5px) rotateZ(45deg);
-      -ms-transform: translateY(5px) rotateZ(45deg);
-      -o-transform: translateY(5px) rotateZ(45deg);
-      transform: translateY(5px) rotateZ(45deg); }
+      webkit-transform: translateY(6px) rotateZ(45deg);
+      -moz-transform: translateY(6px) rotateZ(45deg);
+      -ms-transform: translateY(6px) rotateZ(45deg);
+      -o-transform: translateY(6px) rotateZ(45deg);
+      transform: translateY(6px) rotateZ(45deg); }
     .page-header.navbar .menu-toggler.th-toggle-exit > span:before {
-      webkit-transform: translateY(-5px) rotateZ(-45deg);
-      -moz-transform: translateY(-5px) rotateZ(-45deg);
-      -ms-transform: translateY(-5px) rotateZ(-45deg);
-      -o-transform: translateY(-5px) rotateZ(-45deg);
-      transform: translateY(-5px) rotateZ(-45deg); }
+      webkit-transform: translateY(-6px) rotateZ(-45deg);
+      -moz-transform: translateY(-6px) rotateZ(-45deg);
+      -ms-transform: translateY(-6px) rotateZ(-45deg);
+      -o-transform: translateY(-6px) rotateZ(-45deg);
+      transform: translateY(-6px) rotateZ(-45deg); }
     .page-header.navbar .menu-toggler:hover {
       webkit-transition: opacity 0.3s;
       -moz-transition: opacity 0.3s;
@@ -437,6 +437,7 @@ Horizontal Menu
     margin: 0;
     float: left; }
     .page-header.navbar .hor-menu .navbar-nav {
+      min-height: 50px;
       position: static;
       /* Mega menu */
       /* Mega Menu Dropdown */
@@ -499,7 +500,8 @@ Horizontal Menu
       .page-header.navbar .hor-menu .navbar-nav > li > a {
         font-size: 14px;
         font-weight: 400;
-        padding: 13px 13px; }
+        padding: 13px 13px;
+        min-height: 50px; }
         .page-header.navbar .hor-menu .navbar-nav > li > a:focus {
           background: none !important; }
       .page-header.navbar .hor-menu .navbar-nav > li.current .selected, .page-header.navbar .hor-menu .navbar-nav > li.active .selected {
@@ -600,7 +602,7 @@ Horizontal Menu
     .page-header.navbar .menu-toggler.sidebar-toggler {
       display: none !important; }
     .page-header.navbar .menu-toggler.responsive-toggler {
-      display: inline-block; }
+      display: block; }
     .page-header.navbar .top-menu .navbar-nav {
       display: inline-block;
       margin: 0 10px 0 0; }
@@ -1376,6 +1378,9 @@ Page sidebar
     .page-sidebar-menu.page-sidebar-menu-light.page-sidebar-menu-hover-submenu li:hover > .sub-menu > li > .sub-menu {
       margin-top: -41px; } }
 
+.page-sidebar-wrapper .page-sidebar-menu > li.sidebar-mobile-offcanvas-toggler {
+  display: none; }
+
 @media (max-width: 991px) {
   /* 991px */
   .page-sidebar {
@@ -1402,7 +1407,33 @@ Page sidebar
     .page-sidebar .mega-menu-responsive-content {
       padding: 10px 18px 10px 45px; }
   .page-full-width .page-sidebar-menu {
-    display: block; } }
+    display: block; }
+  .page-sidebar-mobile-offcanvas .page-sidebar-wrapper {
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    width: 235px;
+    left: -235px;
+    transition: all 0.3s; }
+    .page-sidebar-mobile-offcanvas .page-sidebar-wrapper .page-sidebar {
+      margin: 0 !important; }
+      .page-sidebar-mobile-offcanvas .page-sidebar-wrapper .page-sidebar .page-sidebar-menu {
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 0 20px 0; }
+        .page-sidebar-mobile-offcanvas .page-sidebar-wrapper .page-sidebar .page-sidebar-menu > li.sidebar-mobile-offcanvas-toggler {
+          display: block;
+          border: 0;
+          text-align: right; }
+          .page-sidebar-mobile-offcanvas .page-sidebar-wrapper .page-sidebar .page-sidebar-menu > li.sidebar-mobile-offcanvas-toggler > a {
+            border: 0; }
+            .page-sidebar-mobile-offcanvas .page-sidebar-wrapper .page-sidebar .page-sidebar-menu > li.sidebar-mobile-offcanvas-toggler > a:hover {
+              background: none; }
+  .page-sidebar-mobile-offcanvas.page-sidebar-mobile-offcanvas-open .page-sidebar-wrapper {
+    left: 0;
+    transition: all 0.3s; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* 768px & 991px */
@@ -1601,6 +1632,9 @@ Page content
 
 @media (max-width: 991px) {
   /* 991px */
+  html,
+  body {
+    overflow-x: hidden; }
   /* Bg solid content's breadcrumb */
   .page-content-white .page-bar,
   .page-container-bg-solid .page-bar {
@@ -1614,7 +1648,21 @@ Page content
   .page-content-wrapper .page-content {
     margin: 0px !important;
     padding: 20px 20px 20px 20px !important;
-    min-height: 280px; } }
+    min-height: 280px; }
+  .page-sidebar-mobile-offcanvas .page-wrapper {
+    left: 0;
+    transition: all 0.3s; }
+    .page-sidebar-mobile-offcanvas .page-wrapper .page-header {
+      transition: all 0.3s; }
+  .page-sidebar-mobile-offcanvas.page-sidebar-mobile-offcanvas-open {
+    overflow-x: hidden;
+    transition: all 0.3s; }
+    .page-sidebar-mobile-offcanvas.page-sidebar-mobile-offcanvas-open .page-wrapper {
+      position: relative;
+      left: 235px;
+      transition: all 0.3s; }
+      .page-sidebar-mobile-offcanvas.page-sidebar-mobile-offcanvas-open .page-wrapper .page-header {
+        transition: all 0.3s; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /*  768px & 991px */

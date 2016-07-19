@@ -251,7 +251,7 @@
     .page-header .navbar .navbar-nav li.open.selected > a {
       color: #2a3239; }
     .page-header .navbar .navbar-nav .dropdown-menu {
-      z-index: 3;
+      z-index: 10;
       border: none;
       box-shadow: none;
       margin-top: -4px;

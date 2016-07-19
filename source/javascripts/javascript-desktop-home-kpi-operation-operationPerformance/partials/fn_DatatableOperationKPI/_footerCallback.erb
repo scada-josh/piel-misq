@@ -1,0 +1,49 @@
+            "footerCallback": function ( row, data, start, end, display ) {
+
+                var api = this.api(), data, total, pageTotal;
+
+                    // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                    i : 0;
+                };
+
+                // console.log(data.length);
+                var rowCount;
+                if (dataSet.length) {
+                    rowCount = dataSet.length;
+                } else {
+                    rowCount = 1;
+                }
+                
+                // console.log(rowCount);
+                // console.log(row);
+                // console.log(data);
+
+                for (var i=2; i < (dataSet.length*2 + 4); i++ ) {
+                    // Total over all pages
+                    total = api.column(i).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                        // Total over this page
+                    pageTotal = api.column( i, { page: 'current'} ).data().reduce( function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+
+                    var pageAverage = pageTotal/rowCount;
+
+                        // Update footer
+                    $( api.column( i ).footer() ).html(
+                        // '$'+pageTotal +' ( $'+ total +' total)'
+
+                        numeral(pageAverage).format('0,0.00')
+                    );
+                }
+
+
+
+            },

@@ -1226,7 +1226,8 @@ Page footer
     clear: both; }
   .page-footer .page-footer-inner {
     float: left;
-    display: inline-block; }
+    display: inline-block;
+    margin-bottom: 15px; }
   .page-footer .page-footer-tools {
     float: right;
     display: inline-block; }

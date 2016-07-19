@@ -214,7 +214,7 @@ var TableDatatablesScroller = function () {
             ],
 
             // scroller extension: http://datatables.net/extensions/scroller/
-            scrollY:        180,
+            scrollY:        300,
             deferRender:    true,
             scroller:       true,
             deferRender:    true,

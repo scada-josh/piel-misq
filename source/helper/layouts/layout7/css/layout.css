@@ -12,10 +12,9 @@
 
 /*** Breadcrumbs ***/
 .breadcrumbs {
-  background: #fff;
   overflow: hidden;
   padding: 30px 15px;
-  margin-bottom: 35px; }
+  margin-bottom1: 35px; }
   .breadcrumbs .breadcrumbs-title {
     float: left;
     font-size: 20px;

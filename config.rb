@@ -63,6 +63,7 @@ configure :build do
 
   # Any files you want to ignore:
   ignore '/helper/*'
+  ignore '/helper_metronic_v4.5.6/*'
 
   ignore '/packages/phpoffice/phpexcel/license.md'
   ignore '/packages/phpoffice/phpexcel/README.md'
