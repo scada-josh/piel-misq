@@ -1,7 +1,15 @@
 DatatableOperationKPI: function () {
 	// console.log('DatatableOperationKPI');
-    // var dataSet = [];
+    var dataSet = [];
     // var dataSet_aoColumns = [];
+
+    // if ($.fn.DataTable.isDataTable('#datatableOperationKPI') ) {
+    //     $('#datatableOperationKPI').empty();
+    //     $('#datatableOperationKPI').dataTable().fnDestroy();
+    //     $('#datatableOperationKPI > thead > tr').remove();
+    // }
+
+
     var objVehicleType = {};
     var valJSONColTable = [];
 
@@ -14,6 +22,7 @@ DatatableOperationKPI: function () {
  
         datatableOperationKPI = $('#datatableOperationKPI').DataTable( {
             "processing": true,
+            "destroy": true,
             "ajax": {
                 "url": "../../../../../api/restful-api/KpiManager/getOperationKPI.json",
                 "type": "GET",
@@ -32,7 +41,8 @@ DatatableOperationKPI: function () {
             "paging":         false,
             // "data": dataSet,
             "aaData": dataSet,
-            "aoColumns": dataSet_aoColumns, 
+            // "aoColumns": dataSet_aoColumns, 
+            
             //  'aoColumnDefs': [ 
             //     { "mData": 'id', 
             //       "aTargets": [0], 
@@ -48,7 +58,6 @@ DatatableOperationKPI: function () {
             // "aoColumnDefs": valJSONColTable,
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_aoColumnDefs" %>
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_footerCallback" %>
-            <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_fnRowCallback" %>
             "order" : [] //disable default sorting, eg sorting on 1st column
         });
 

@@ -12,15 +12,19 @@
 
                 // console.log(data.length);
                 var rowCount;
-                if (dataSet.length) {
-                    rowCount = dataSet.length;
+                if (end) {
+                    rowCount = end;
                 } else {
                     rowCount = 1;
                 }
+                // rowCount = row;
                 
                 // console.log(rowCount);
-                // console.log(row);
-                // console.log(data);
+                console.log(row);
+                console.log(data);
+                console.log(start);
+                console.log(end);
+                console.log(display);
 
                 for (var i=2; i < (dataSet.length*2 + 4); i++ ) {
                     // Total over all pages

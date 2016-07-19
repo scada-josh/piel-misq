@@ -21,8 +21,11 @@
             var tmpDataSetObj = {};
 
 
-            tmpDataSetObj['id'] = result.rows[i].id;
-            tmpDataSetObj['vehicle_licence'] = result.rows[i].vehicle_licence;
+            // tmpDataSetObj['id'] = result.rows[i].id;
+            // tmpDataSetObj['vehicle_licence'] = result.rows[i].vehicle_licence;
+            tmpDataSet.push(result.rows[i].id);
+            tmpDataSet.push(result.rows[i].vehicle_licence);
+
 
             objVehicleType[result.rows[i].vehicle_licence] = result.rows[i].vehicle_type;
 
@@ -33,8 +36,10 @@
                 var dataCollectionsObj_inner = {};
                 var strDate = result.rows[i].details[j].job_date;
 
-                tmpDataSetObj[strDate + '_drop'] = result.rows[i].details[j].drop_success;
-                tmpDataSetObj[strDate + '_box'] = result.rows[i].details[j].box_success;
+                // tmpDataSetObj[strDate + '_drop'] = result.rows[i].details[j].drop_success;
+                // tmpDataSetObj[strDate + '_box'] = result.rows[i].details[j].box_success;
+                tmpDataSet.push(result.rows[i].details[j].drop_success);
+                tmpDataSet.push(result.rows[i].details[j].box_success);
 
                 // tmpDataSetObj[strDate + '_job_no'] = result.rows[i].details[j].job_no;
                 // tmpDataSetObj[strDate + '_drop_all'] = result.rows[i].details[j].drop_all;
@@ -81,8 +86,10 @@
                 tmpBoxCount = tmpBoxCount + parseInt(result.rows[i].details[j].box_success);
             }
 
-            tmpDataSetObj['average_drop'] = numeral(tmpDropCount/j).format('0.00');
-            tmpDataSetObj['average_box'] = numeral(tmpBoxCount/j).format('0.00');
+            // tmpDataSetObj['average_drop'] = numeral(tmpDropCount/j).format('0.00');
+            // tmpDataSetObj['average_box'] = numeral(tmpBoxCount/j).format('0.00');
+            tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
+            tmpDataSet.push(numeral(tmpBoxCount/j).format('0.00'));
 
             // Average column
             // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
@@ -92,8 +99,8 @@
             // tmpDate["mDate"] = "2016-06-01";
             // tmpDataSet.push(tmpDate);
 
-            // dataSet.push(tmpDataSet);
-            dataSet.push(tmpDataSetObj);
+            dataSet.push(tmpDataSet);
+            // dataSet.push(tmpDataSetObj);
 
         }
 
