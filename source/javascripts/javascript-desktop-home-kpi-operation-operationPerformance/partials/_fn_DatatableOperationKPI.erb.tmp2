@@ -1,6 +1,7 @@
 DatatableOperationKPI: function () {
 	// console.log('DatatableOperationKPI');
     var dataSet = [];
+    var dataSet_aoColumns = [];
     var objVehicleType = {};
     var valJSONColTable = [];
 

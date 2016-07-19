@@ -124,8 +124,110 @@ Apps: function () {
         // $("#datatableOperationKPI").html(resultDataTableHeaderTemplate(context));
 
 
+        var tmp_aoColumns = [ 
+                { "mData": 'id'}, 
+                { "mData": 'vehicle_licence'},
+                { "mData": '2016-06-01_box'},
+                { "mData": '2016-06-01_drop'},
+                { "mData": '2016-06-02_box'},
+                { "mData": '2016-06-02_drop'},
+                { "mData": '2016-06-03_box'},
+                { "mData": '2016-06-03_drop'},
+                { "mData": '2016-06-04_box'},
+                { "mData": '2016-06-04_drop'},
+                { "mData": '2016-06-05_box'},
+                { "mData": '2016-06-05_drop'},
+                { "mData": '2016-06-06_box'},
+                { "mData": '2016-06-06_drop'},
+                { "mData": '2016-06-07_box'},
+                { "mData": '2016-06-07_drop'},
+                { "mData": '2016-06-08_box'},
+                { "mData": '2016-06-08_drop'},
+                { "mData": '2016-06-09_box'},
+                { "mData": '2016-06-09_drop'},
+                { "mData": '2016-06-10_box'},
+                { "mData": '2016-06-10_drop'},
+                { "mData": '2016-06-11_box'},
+                { "mData": '2016-06-11_drop'},
+                { "mData": '2016-06-12_box'},
+                { "mData": '2016-06-12_drop'},
+                { "mData": '2016-06-13_box'},
+                { "mData": '2016-06-13_drop'},
+                { "mData": '2016-06-14_box'},
+                { "mData": '2016-06-14_drop'},
+                { "mData": '2016-06-15_box'},
+                { "mData": '2016-06-15_drop'},
+                { "mData": '2016-06-16_box'},
+                { "mData": '2016-06-16_drop'},
+                { "mData": '2016-06-17_box'},
+                { "mData": '2016-06-17_drop'},
+                { "mData": '2016-06-18_box'},
+                { "mData": '2016-06-18_drop'},
+                { "mData": '2016-06-19_box'},
+                { "mData": '2016-06-19_drop'},
+                { "mData": '2016-06-20_box'},
+                { "mData": '2016-06-20_drop'},
+                { "mData": '2016-06-21_box'},
+                { "mData": '2016-06-21_drop'},
+                { "mData": '2016-06-22_box'},
+                { "mData": '2016-06-22_drop'},
+                { "mData": '2016-06-23_box'},
+                { "mData": '2016-06-23_drop'},
+                { "mData": '2016-06-24_box'},
+                { "mData": '2016-06-24_drop'},
+                { "mData": '2016-06-25_box'},
+                { "mData": '2016-06-25_drop'},
+                { "mData": '2016-06-26_box'},
+                { "mData": '2016-06-26_drop'},
+                { "mData": '2016-06-27_box'},
+                { "mData": '2016-06-27_drop'},
+                { "mData": '2016-06-28_box'},
+                { "mData": '2016-06-28_drop'},
+                { "mData": '2016-06-29_box'},
+                { "mData": '2016-06-29_drop'},
+                { "mData": '2016-06-30_box'},
+                { "mData": '2016-06-30_drop'},
+                { "mData": 'average_box'},
+                { "mData": 'average_drop'}           
+            ];
+
+        dataSet_aoColumns = tmp_aoColumns;
+
         $('#datatableOperationKPI_Canvas').html(resultDataTableHeaderTemplate(context)).promise().done(function(){
           fn.DatatableOperationKPI();
+
+          $('#datatableOperationKPI tbody').on( 'click', 'td', function () {
+              // alert( 'Clicked on cell in visible column: '+datatableOperationKPI.cell( this ).index().columnVisible );
+
+              var data = datatableOperationKPI.row($(this).closest('tr')).data();
+              // console.log(data);
+
+              var rowIdx = datatableOperationKPI.cell( this ).index().row;
+              console.log(rowIdx);
+
+              var columnIdx = datatableOperationKPI.cell( this ).index().column;
+              console.log(columnIdx);
+
+              var col_offset = 2;
+
+              if (dataCollections) {
+                if (columnIdx >= 2) {
+                  // console.log(dataCollections);
+                  // console.log(dataCollections['"' + rowIdx.toString() + columnIdx.toString() + '"']);
+                  var tmpObj = dataCollections['"' + rowIdx.toString() + (columnIdx - col_offset).toString() + '"'];
+                  var myJobDate = tmpObj.job_date;
+                  console.log(myJobDate);
+                  var myVehicleLicence = tmpObj.vehicle_licence;
+                  console.log(myVehicleLicence);
+                }
+              }
+              
+
+              // console.log( 'You clicked on ' + data.id+'\'s row' );
+              // console.log( 'You clicked on job date :  ' + data.job_date );
+              // console.log( 'You clicked on job no :  ' + data.job_no );
+          });
+
         });
 
 

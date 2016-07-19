@@ -1,6 +1,7 @@
 DatatableOperationKPI: function () {
 	// console.log('DatatableOperationKPI');
-    var dataSet = [];
+    // var dataSet = [];
+    // var dataSet_aoColumns = [];
     var objVehicleType = {};
     var valJSONColTable = [];
 
@@ -31,6 +32,19 @@ DatatableOperationKPI: function () {
             "paging":         false,
             // "data": dataSet,
             "aaData": dataSet,
+            "aoColumns": dataSet_aoColumns, 
+            //  'aoColumnDefs': [ 
+            //     { "mData": 'id', 
+            //       "aTargets": [0], 
+            //       "render": function ( data, type, row ) {
+            //         return data;
+            //       }
+
+            //     }, 
+            //     { "mData": 'vehicle_licence', "aTargets": [1]},
+            //     { "mData": 'average_box', "aTargets": [2]},
+            //     { "mData": 'average_drop', "aTargets": [3]}           
+            // ],
             // "aoColumnDefs": valJSONColTable,
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_aoColumnDefs" %>
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_footerCallback" %>
