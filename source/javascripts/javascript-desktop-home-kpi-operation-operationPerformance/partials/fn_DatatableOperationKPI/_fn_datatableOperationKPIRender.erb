@@ -28,6 +28,7 @@
 
 
             objVehicleType[result.rows[i].vehicle_licence] = result.rows[i].vehicle_type;
+            objDeliveryType[result.rows[i].vehicle_licence] = result.rows[i].delivery_type;
 
             var k = 0;
             for (var j=0; j < result.rows[i].details.length; j++ ) {

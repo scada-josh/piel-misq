@@ -13,13 +13,25 @@
                             tmpRender = "<div style = 'width:110px'>"
 
                             if (objVehicleType[data] == 'Motorcycle') {
-                                tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" + data;
+                                if (objDeliveryType[data] == 'EPOD') {
+                                    tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i> <i class='fa fa-mobile'></i>&nbsp;" + data;
+                                } else {
+                                    tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" + data;
+                                }
                                 // tmpRender = "<i class='fa fa-motorcycle'> " + data + "</i>";
                             } else if(objVehicleType[data] == 'Pickup') {
-                                tmpRender = tmpRender + "<i class='fa fa-truck'></i> " + data;
+                                if (objDeliveryType[data] == 'EPOD') {
+                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> <i class='fa fa-mobile'></i> " + data;
+                                } else {
+                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> " + data;
+                                }
                                 // tmpRender = "<i class='fa fa-truck'> " + data + "</i>" ;
                             } else {
-                                tmpRender = tmpRender + data;
+                                if (objDeliveryType[data] == 'EPOD') {
+                                    tmpRender = tmpRender + "<i class='fa fa-bus'></i> <i class='fa fa-mobile'></i> " + data;
+                                } else {
+                                    tmpRender = tmpRender + "<i class='fa fa-bus'></i> " + data;
+                                }
                             }
 
                             tmpRender = tmpRender + "</div>";

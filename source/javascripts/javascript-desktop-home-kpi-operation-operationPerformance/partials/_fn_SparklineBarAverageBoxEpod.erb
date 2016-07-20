@@ -1,10 +1,10 @@
-SparklineBarAverageBoxEpod: function () {
+SparklineBarAverageBoxEpod: function (arrDataSet) {
 	console.log("SparklineBarAverageBoxEpod");
 
 	if (!jQuery().sparkline) {
 		return;
 	}
-	$("#sparkline_bar_averageBox_Epod").sparkline([8, 9, 10, 11, 10, 10, 12, 10, 10, 11, 9, 12, 11, 10, 9, 11, 13, 13, 12], {
+	$("#sparkline_bar_averageBox_Epod").sparkline(arrDataSet, {
 		type: 'bar',
 		width: '100',
 		barWidth: 5,

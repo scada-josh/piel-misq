@@ -17,6 +17,15 @@
     // var dataSet = [];
     // var dataSet_aoColumns = [];
     var dataCollections = {}; /* Array 2 dimensions */
+
+    var fAverageBox_EPOD;
+    var fAverageDrop_EPOD;
+    var arrAverageBox_EPOD = [];
+    var arrAverageDrop_EPOD = [];
+    var fAverageBox_NonEPOD;
+    var fAverageDrop_NonEPOD;
+    var arrAverageBox_NonEPOD = [];
+    var arrAverageDrop_NonEPOD = [];
     
     /////////////////////////////////////////////////// Adress
  
@@ -46,7 +55,7 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableDrop" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableNonEPOD" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI" %>
-        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_FF" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_Click_Handler" %>
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_IonRangeSlider" %>
         // Advanced Form Filter
