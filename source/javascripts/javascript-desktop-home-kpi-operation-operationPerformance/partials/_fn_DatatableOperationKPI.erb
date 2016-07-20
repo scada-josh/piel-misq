@@ -18,6 +18,30 @@ DatatableOperationKPI: function () {
     <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_fn_datatableOperationKPIRender" %>
 
 
+        if (fn.paramStartDate) {
+          paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+        }
+
+        if (fn.paramEndDate) {
+          paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+        }
+        
+
+          var tmpData = {
+              "startDate" : paramStartDate, 
+              "endDate" : paramEndDate, 
+              "siteName" : fn.paramSiteName
+          }
+
+          console.log(tmpData);
+
+          if (!fn.paramSiteName) {
+            
+            alert("กรุณาเลือกศูนย์");
+            return false;
+
+          } 
+
     //------------------------ datatableOperationKPI -----------------------//
     if (jQuery().dataTable) {
  
@@ -25,8 +49,9 @@ DatatableOperationKPI: function () {
             "processing": true,
             "destroy": true,
             "ajax": {
-                "url": "../../../../../api/restful-api/KpiManager/getOperationKPI.json",
-                "type": "GET",
+                "url": "../../../../../api/restful-api/kpiManager/getOperationKpiSummary/",
+                "type": "POST",
+                "data": JSON.stringify(tmpData),
                 "dataSrc": "rows",
                 "success": function(data) {
                         datatableOperationKPIRender(data);

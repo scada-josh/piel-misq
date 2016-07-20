@@ -10,9 +10,9 @@
     var datatableOperationKPI_FF;
 
     // RESTful Web Service - Parameter
-    var paramStartDate;
+    var paramStartDate;     /* MM/DD/YYYY */
     var paramEndDate;       /* MM/DD/YYYY */
-    var paramSiteName;      /* MM/DD/YYYY */
+    var paramSiteName;      
 
     // var dataSet = [];
     // var dataSet_aoColumns = [];
@@ -43,6 +43,7 @@
         },
         
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowJobNoDetail" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ConvertToContext" %>
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilter" %>
         // sparkline

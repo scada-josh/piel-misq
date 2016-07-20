@@ -75,6 +75,7 @@ layout: "layout-api"
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
     $app->post('/kpiManager/exportOperationKPI/',function() use ($app, $client, $objPHPExcel) { exportOperationKPI($app, $client, $objPHPExcel); });
     $app->post('/kpiManager/boxOperationKPI/',function() use ($app, $client, $objPHPExcel) { boxOperationKPI($app, $client, $objPHPExcel); });
+    $app->post('/kpiManager/getOperationKpiSummary/',function() use ($app, $client) { getOperationKpiSummary($app, $client); });
 
  
     // Run app
@@ -89,5 +90,6 @@ layout: "layout-api"
     <%= partial "/KpiManager/_getOperationKPI" %>
     <%= partial "/KpiManager/_exportOperationKPI" %>
     <%= partial "/KpiManager/_boxOperationKPI" %>
+    <%= partial "/KpiManager/_getOperationKpiSummary" %>
  
 ?>
