@@ -4,13 +4,18 @@
                                                 <i class="icon-settings font-dark"></i>
                                                 <span class="caption-subject bold uppercase">Operation KPI</span>
                                             </div>
+                                            <div class="actions">
+                                                <a class="btn btn-circle btn-icon-only btn-default fullscreen" data-container="false" data-placement="bottom" href="javascript:;"> </a>
+                                            </div>
                                             <div class="tools"> </div>
                                         </div>
-                                        <div class="portlet-body" id="datatableOperationKPI_Canvas">
+                                        <div class="portlet-body" >
 
-                                      
+                                            <!-- TAB Average -->
+                                            <%= partial partials_desktop_home_kpi_operation_operationPerformance + "/partials/_tab_epod_nonEpod" %>
                                             
-
+                                            <table class="table table-striped table-bordered table-hover" width="100%" id="datatableOperationKPI">
+                                            </table>
 
 
                                         </div>

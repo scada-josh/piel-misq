@@ -1,0 +1,19 @@
+SparklineBarAverageDropEpod: function () {
+	console.log("SparklineBarAverageDropEpod");
+
+	if (!jQuery().sparkline) {
+		return;
+	}
+
+	$("#sparkline_bar_averageDrop_Epod").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11, 10, 12, 11, 10], {
+		type: 'bar',
+		width: '100',
+		barWidth: 5,
+		height: '55',
+		barColor: '#5c9bd1',
+		negBarColor: '#e02222'
+	});
+
+  
+},
+

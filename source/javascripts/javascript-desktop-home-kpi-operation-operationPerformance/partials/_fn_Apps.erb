@@ -193,8 +193,14 @@ Apps: function () {
 
         // dataSet_aoColumns = tmp_aoColumns;
 
-        $('#datatableOperationKPI_Canvas').html(resultDataTableHeaderTemplate(context)).promise().done(function(){
+        $('#datatableOperationKPI').html(resultDataTableHeaderTemplate(context)).promise().done(function(){
           fn.DatatableOperationKPI();
+
+          fn.SparklineBarAverageBoxEpod();
+          fn.SparklineBarAverageDropEpod();
+
+          fn.SparklineBarAverageBoxNonEpod();
+          fn.SparklineBarAverageDropNonEpod();
 
           $('#datatableOperationKPI tbody').on( 'click', 'td', function () {
               // alert( 'Clicked on cell in visible column: '+datatableOperationKPI.cell( this ).index().columnVisible );
