@@ -18,29 +18,7 @@ DatatableOperationKPI: function () {
     <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_fn_datatableOperationKPIRender" %>
 
 
-        if (fn.paramStartDate) {
-          paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
-        }
-
-        if (fn.paramEndDate) {
-          paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
-        }
-        
-
-          var tmpData = {
-              "startDate" : paramStartDate, 
-              "endDate" : paramEndDate, 
-              "siteName" : fn.paramSiteName
-          }
-
-          console.log(tmpData);
-
-          if (!fn.paramSiteName) {
-            
-            alert("กรุณาเลือกศูนย์");
-            return false;
-
-          } 
+    <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_prepare_ajax_param" %>
 
     //------------------------ datatableOperationKPI -----------------------//
     if (jQuery().dataTable) {
@@ -67,21 +45,6 @@ DatatableOperationKPI: function () {
             "paging":         false,
             // "data": dataSet,
             "aaData": dataSet,
-            // "aoColumns": dataSet_aoColumns, 
-            
-            //  'aoColumnDefs': [ 
-            //     { "mData": 'id', 
-            //       "aTargets": [0], 
-            //       "render": function ( data, type, row ) {
-            //         return data;
-            //       }
-
-            //     }, 
-            //     { "mData": 'vehicle_licence', "aTargets": [1]},
-            //     { "mData": 'average_box', "aTargets": [2]},
-            //     { "mData": 'average_drop', "aTargets": [3]}           
-            // ],
-            // "aoColumnDefs": valJSONColTable,
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_aoColumnDefs" %>
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_footerCallback" %>
             "order" : [] //disable default sorting, eg sorting on 1st column

@@ -1,0 +1,23 @@
+        if (fn.paramStartDate) {
+          paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+        }
+
+        if (fn.paramEndDate) {
+          paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+        }
+        
+
+          var tmpData = {
+              "startDate" : paramStartDate, 
+              "endDate" : paramEndDate, 
+              "siteName" : fn.paramSiteName
+          }
+
+          console.log(tmpData);
+
+          if (!fn.paramSiteName) {
+            
+            // alert("กรุณาเลือกศูนย์");
+            return false;
+
+          } 
