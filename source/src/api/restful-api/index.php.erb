@@ -17,6 +17,8 @@ layout: "layout-api"
 
     // $app->config('debug', true);
 
+    $memcachedClient = new \Blablacar\Memcached\Client();
+    $memcachedClient->addServer('127.0.0.1', 11211);
     
 
  
@@ -70,6 +72,7 @@ layout: "layout-api"
     $app->get('/testManager/getApiTemplate/',function() use ($app) { getApiTemplate($app); });
     $app->post('/testManager/postApiTemplate/',function() use ($app) { postApiTemplate($app); });
     $app->post('/testManager/exportExcelTemplate/',function() use ($app, $objPHPExcel) { exportExcelTemplate($app, $objPHPExcel); });
+    $app->get('/testManager/memcachedTemplate/',function() use ($app, $memcachedClient) { memcachedTemplate($app, $memcachedClient); });
 
     /* KPI manager */
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
@@ -85,6 +88,7 @@ layout: "layout-api"
     <%= partial "/TestManager/_getApiTemplate" %>
     <%= partial "/TestManager/_postApiTemplate" %>
     <%= partial "/TestManager/_exportExcelTemplate" %>
+    <%= partial "/TestManager/_memcachedTemplate" %>
 
     /* KPI Manager Partial */
     <%= partial "/KpiManager/_getOperationKPI" %>

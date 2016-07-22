@@ -4,7 +4,8 @@
         "vrana/notorm": "dev-master",
         "fergusean/nusoap": "^0.9.5",
         "phpoffice/phpexcel": "dev-master",
-        "wisembly/elephant.io": "~3.0"
+        "wisembly/elephant.io": "~3.0",
+        "blablacar/memcached-client": "@stable"
     },
     "config" : {
         "vendor-dir" : "./source/packages"

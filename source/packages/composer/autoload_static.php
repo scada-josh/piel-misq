@@ -10,6 +10,21 @@ class ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed
         '17fd9fef37c97cfdc0c7794299a8423d' => __DIR__ . '/..' . '/vrana/notorm/NotORM.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'E' => 
+        array (
+            'ElephantIO\\' => 11,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'ElephantIO\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/wisembly/elephant.io/src',
+            1 => __DIR__ . '/..' . '/wisembly/elephant.io/test',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'S' => 
         array (
@@ -20,9 +35,20 @@ class ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/psr/log',
+            ),
             'PHPExcel' => 
             array (
                 0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
+            ),
+        ),
+        'B' => 
+        array (
+            'Blablacar' => 
+            array (
+                0 => __DIR__ . '/..' . '/blablacar/memcached-client/src',
             ),
         ),
     );
@@ -53,6 +79,8 @@ class ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit0584b30e0cb4addd2336e392b49be3ed::$classMap;
 

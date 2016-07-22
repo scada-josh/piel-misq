@@ -11,6 +11,8 @@
     "handlebars": "^4.0.5",
     "datatables-fixedcolumns": "^3.2.2",
     "datatables.net-fixedcolumns": "^3.2.2",
-    "datatables.net-fixedcolumns-dt": "^3.2.2"
+    "datatables.net-fixedcolumns-dt": "^3.2.2",
+    "defiant": "defiantjs#^1.3.9",
+    "moment-range": "^2.2.0"
   }
 }
