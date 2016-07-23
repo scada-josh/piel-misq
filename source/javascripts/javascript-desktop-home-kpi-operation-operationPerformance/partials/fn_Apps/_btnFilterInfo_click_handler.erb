@@ -13,10 +13,13 @@
             "success": function(result){
                 // console.log(result);
 
-                $("#epod-average-box-id").html(result.epod_average_box);
-                $("#epod-average-drop-id").html(result.epod_average_drop);
-                $("#non-epod-average-box-id").html(result.non_epod_average_box);
-                $("#non-epod-average-drop-id").html(result.non_epod_average_drop);
+
+
+
+                $("#epod-average-box-id").html(numeral(result.epod_average_box).format('0,0.00'));
+                $("#epod-average-drop-id").html(numeral(result.epod_average_drop).format('0,0.00'));
+                $("#non-epod-average-box-id").html(numeral(result.non_epod_average_box).format('0,0.00'));
+                $("#non-epod-average-drop-id").html(numeral(result.non_epod_average_drop).format('0,0.00'));
 
 
                 var resultDataTableHeaderTemplate = Handlebars.compile($("#dataTable-header-Template").html());
