@@ -62,25 +62,49 @@
                     },{
                         'bSortable': true,
                         "bAutoWidth": false,
-                        "render": function ( data, type, row ) {
- 
+                        "mRender": function ( data, type, row ) {
+                            
+                            var arrSplitData = data.toString().split('#');
+                            var _val = parseInt(arrSplitData[0]);
+                            var _deliveryType = arrSplitData[1];
+
+                            var tmpDeliveryType;
                             var tmpRender;
 
-                            if (data > 35) {
-                                tmpRender = "<button type='button' class='btn green-haze'>" + data + "</button>";
+                            if (_val > 35) {
+
+                                if (_deliveryType == 'EPOD') {
+                                    tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                } else {
+                                    tmpRender = "<button type='button' class='btn green-haze'>" + _val + "</button>";
+                                }
+                                
                             } else {
-                                tmpRender = "<button type='button' class='btn btn-link'>" + data + "</button>";
+                                if (_deliveryType == 'EPOD') {
+                                    tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                } else {
+                                    tmpRender = "<button type='button' class='btn btn-link'>" + _val + "</button>";
+                                }
+                                
                             }
 
-                             
+                        
 
                             return tmpRender;
-                        }, "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                        },
+                        // "mData": function ( source, type, val  ) {
+                        //     console.log(source);
+                        //     console.log(type);
+
+
+                        //     return 1;
+                        // }, 
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
                             // if (sData > 35) { 
                             //     $(nTd).css('background-color', '#00ab4e').css('color', '#000').css('font-weight', 'bold'); 
                             // } 
                         },
-                        "targets": '_all'
+                        "aTargets": '_all'
                     },{ 
                         "sClass": "DatatableOperationKPI-col-01", 
                         "aTargets": [0] 
