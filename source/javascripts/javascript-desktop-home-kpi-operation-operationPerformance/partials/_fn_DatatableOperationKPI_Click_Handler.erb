@@ -13,10 +13,10 @@ DatatableOperationKPI_Click_Handler: function () {
               var columnIdx = datatableOperationKPI.cell( this ).index().column;
               console.log(columnIdx);
 
-              var col_offset = 2;
+              var col_offset = 3;
 
               if (dataCollections) {
-                if (columnIdx >= 2) {
+                if (columnIdx >= 3) {
                   // console.log(dataCollections);
                   // console.log(dataCollections['"' + rowIdx.toString() + columnIdx.toString() + '"']);
                   var tmpObj = dataCollections['"' + rowIdx.toString() + (columnIdx - col_offset).toString() + '"'];

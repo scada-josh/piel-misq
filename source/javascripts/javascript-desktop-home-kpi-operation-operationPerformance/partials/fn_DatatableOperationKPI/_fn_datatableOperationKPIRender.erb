@@ -23,7 +23,8 @@
 
             // tmpDataSetObj['id'] = result.rows[i].id;
             // tmpDataSetObj['vehicle_licence'] = result.rows[i].vehicle_licence;
-            tmpDataSet.push(result.rows[i].id);
+            tmpDataSet.push(parseInt(result.rows[i].id));
+            tmpDataSet.push(result.rows[i].vehicle_type);
             tmpDataSet.push(result.rows[i].vehicle_licence);
 
 

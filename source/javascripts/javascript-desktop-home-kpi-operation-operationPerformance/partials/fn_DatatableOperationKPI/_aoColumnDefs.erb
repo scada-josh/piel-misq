@@ -1,8 +1,20 @@
             "aoColumnDefs": [
                     {
                         'bSortable': true,
+                        // 'sType': 'numeric',
+                        // 'type': 'numeric-comma',
+                        // 'targets': 0,
                         // "bAutoWidth": true,
-                        "sWidth": "50px",
+                        "sWidth": "40px",
+                        // 'orderData': [ 0 ],
+                        // "mData": function ( source, type, val  ) {
+                        //     console.log(source[0]);
+                        //     console.log(type);
+                        //     console.log(val);
+
+
+                        //     return source[0];
+                        // }, 
                         'aTargets': [0]
                     },{
                         'bSortable': true,
@@ -10,28 +22,15 @@
                         "render": function ( data, type, row ) {
                             var tmpRender;
 
-                            tmpRender = "<div style = 'width:110px'>"
+                            tmpRender = "<div style = 'width:40px'>"
 
-                            if (objVehicleType[data] == 'Motorcycle') {
-                                if (objDeliveryType[data] == 'EPOD') {
-                                    tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i> <i class='fa fa-mobile'></i>&nbsp;" + data;
-                                } else {
-                                    tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" + data;
-                                }
+                            if (data == 'Motorcycle') {
+                                    tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" ;
                                 // tmpRender = "<i class='fa fa-motorcycle'> " + data + "</i>";
-                            } else if(objVehicleType[data] == 'Pickup') {
-                                if (objDeliveryType[data] == 'EPOD') {
-                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> <i class='fa fa-mobile'></i> " + data;
-                                } else {
-                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> " + data;
-                                }
-                                // tmpRender = "<i class='fa fa-truck'> " + data + "</i>" ;
+                            } else if(data == 'Pickup') {
+                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> " ;
                             } else {
-                                if (objDeliveryType[data] == 'EPOD') {
-                                    tmpRender = tmpRender + "<i class='fa fa-bus'></i> <i class='fa fa-mobile'></i> " + data;
-                                } else {
-                                    tmpRender = tmpRender + "<i class='fa fa-bus'></i> " + data;
-                                }
+                                    tmpRender = tmpRender + "<i class='fa fa-bus'></i> " ;
                             }
 
                             tmpRender = tmpRender + "</div>";
@@ -39,6 +38,41 @@
                             return tmpRender;
                         },
                         "targets": [1]
+                    },{
+                        'bSortable': true,
+                        // "bAutoWidth": true,
+                        "render": function ( data, type, row ) {
+                            var tmpRender;
+
+                            tmpRender = "<div style = 'width:90px'>";
+
+                            // if (objVehicleType[data] == 'Motorcycle') {
+                            //     if (objDeliveryType[data] == 'EPOD') {
+                            //         tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i> <i class='fa fa-mobile'></i>&nbsp;" + data;
+                            //     } else {
+                            //         tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" + data;
+                            //     }
+                            //     // tmpRender = "<i class='fa fa-motorcycle'> " + data + "</i>";
+                            // } else if(objVehicleType[data] == 'Pickup') {
+                            //     if (objDeliveryType[data] == 'EPOD') {
+                            //         tmpRender = tmpRender + "<i class='fa fa-truck'></i> <i class='fa fa-mobile'></i> " + data;
+                            //     } else {
+                            //         tmpRender = tmpRender + "<i class='fa fa-truck'></i> " + data;
+                            //     }
+                            //     // tmpRender = "<i class='fa fa-truck'> " + data + "</i>" ;
+                            // } else {
+                            //     if (objDeliveryType[data] == 'EPOD') {
+                            //         tmpRender = tmpRender + "<i class='fa fa-bus'></i> <i class='fa fa-mobile'></i> " + data;
+                            //     } else {
+                            //         tmpRender = tmpRender + "<i class='fa fa-bus'></i> " + data;
+                            //     }
+                            // }
+
+                            tmpRender = tmpRender + data + "</div>";
+
+                            return tmpRender;
+                        },
+                        "targets": [2]
                     },{
                         'bSortable': true,
                         "render": function ( data, type, row ) {
@@ -60,7 +94,8 @@
                         },
                         "targets": [-1, -2]
                     },{
-                        'bSortable': true,
+                        'bSortable': false,
+                        // 'sType': 'numeric',
                         "bAutoWidth": false,
                         "mRender": function ( data, type, row ) {
                             
@@ -76,14 +111,14 @@
                                 if (_deliveryType == 'EPOD') {
                                     tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
                                 } else {
-                                    tmpRender = "<button type='button' class='btn green-haze'>" + _val + "</button>";
+                                    tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
                                 }
                                 
                             } else {
                                 if (_deliveryType == 'EPOD') {
                                     tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
                                 } else {
-                                    tmpRender = "<button type='button' class='btn btn-link'>" + _val + "</button>";
+                                    tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
                                 }
                                 
                             }
@@ -111,6 +146,9 @@
                     },{ 
                         "sClass": "DatatableOperationKPI-col-02", 
                         "aTargets": [1] 
+                    },{ 
+                        "sClass": "DatatableOperationKPI-col-03", 
+                        "aTargets": [2] 
                     },{ 
                         "sClass": "DatatableOperationKPI-common", 
                         "aTargets": '_all'
