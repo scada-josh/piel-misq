@@ -1,9 +1,13 @@
         if (fn.paramStartDate) {
           paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+        } else {
+          console.log('fn.paramStartDate is ' + fn.paramStartDate);
         }
 
         if (fn.paramEndDate) {
           paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+        } else {
+          console.log('fn.paramEndDate is ' + fn.paramEndDate);
         }
         
 
@@ -13,7 +17,7 @@
               "siteName" : fn.paramSiteName
           }
 
-          console.log(tmpData);
+          // console.log(tmpData);
 
           if (!fn.paramSiteName) {
             

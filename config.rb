@@ -44,7 +44,7 @@ set :partials_desktop_home_kpi_operation_operationPerformance, 'src/desktop/home
 # Reload the browser automatically whenever files change
  configure :development do
 #   activate :livereload
-	activate :php
+	  activate :php
     activate :bower
  end
 

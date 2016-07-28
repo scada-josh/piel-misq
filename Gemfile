@@ -17,3 +17,4 @@ gem 'middleman-bower'
 gem 'sprockets', '~> 2.0'
 
 gem 'font-awesome-middleman'
+

@@ -1,5 +1,6 @@
   $('#btnFilterInfo').on('click', function() {
-        // console.log('btnFilterInfo');
+        console.log('btnFilterInfo');
+        // alert('btnFilterInfo');
 
 
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_Apps/btnFilterInfo_click_handler/_prepare_ajax_param" %>
@@ -134,7 +135,7 @@
 
                     $.each( returnedData_delivery_type_epod, function( i, val ) {
                          var details = val.details;
-                         console.log(details);
+                         // console.log(details);
 
                          $.each( details, function( _i_details, _val_details ) {
                             // console.log(_val_details.job_date);
@@ -217,10 +218,14 @@
             "error": function(jqXHR, textStatus, errorThrown){
               console.log('textStatus: ' + textStatus);
               // console.log('ierrorThrown: ' + errorThrown);
+              // alert('textStatus: ' + textStatus);
+
+
             }
           });
 
   
+    return false;
 
 
   });
