@@ -21,6 +21,23 @@ layout: "layout-api"
     $memcachedClient->addServer('127.0.0.1', 11211);
     
 
+<% if config[:phase_environment] == "Development" %>
+
+    /* Connect Database Manager Partial : Localhost */
+    <%= partial "/ConnectDatabase/_connectMySQL_Localhost" %>
+
+<% elsif config[:phase_environment] == "Test" %>
+
+    /* Connect Database Manager Partial : Localhost */
+    <%= partial "/ConnectDatabase/_connectMySQL_Localhost" %>
+
+<% elsif config[:phase_environment] == "Production" %>
+
+    /* Connect Database Manager Partial : Production */
+    <%= partial "/ConnectDatabase/_connectMySQL_Production" %>
+
+<% end %>
+
  
 
       /* NuSOAP */
@@ -80,6 +97,8 @@ layout: "layout-api"
     $app->post('/kpiManager/boxOperationKPI/',function() use ($app, $client, $objPHPExcel) { boxOperationKPI($app, $client, $objPHPExcel); });
     $app->post('/kpiManager/getOperationKpiSummary/',function() use ($app, $client) { getOperationKpiSummary($app, $client); });
 
+    /* Menu Manager */
+    $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
  
     // Run app
     $app->run();
@@ -95,5 +114,8 @@ layout: "layout-api"
     <%= partial "/KpiManager/_exportOperationKPI" %>
     <%= partial "/KpiManager/_boxOperationKPI" %>
     <%= partial "/KpiManager/_getOperationKpiSummary" %>
+
+    /* Menu Manager Partial */
+    <%= partial "/MenuManager/_listMenu" %>
  
 ?>
