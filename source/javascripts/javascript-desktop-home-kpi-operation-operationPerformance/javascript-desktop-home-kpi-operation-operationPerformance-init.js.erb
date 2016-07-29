@@ -4,6 +4,13 @@
     ///////////////////////////////////////////////////// Your
     // var venueAddress = "Grand Place, 1000, Brussels"; // Venue
 
+    // Common Partials : Global Constant
+    <%= partial js_dir + "/common-partials/_var_GlobalConstant" %>
+
+    
+    var API_PATH = "../../../../../api/restful-api";
+    var aciveMenu = "KPI";
+    
     var boxDatatable;
     var datatableDrop;
     var datatableOperationKPI;
@@ -35,6 +42,7 @@
     
         // Launch Functions
         Launch: function () {
+            fn.MenuGenerator();
             fn.Apps();
             fn.DateRangePicker();
             fn.IonRangeSlider();
@@ -47,6 +55,9 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowJobNoDetail" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_GetArrDates" %>
+        // Menu Generator
+        <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
+        <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilter" %>
         // sparkline
