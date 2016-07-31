@@ -1,5 +1,5 @@
     function datatableOperationKPIRender(result) {
-        // console.log(result);
+        console.log(result);
 
         // valJSONColTable = [];
 
@@ -68,9 +68,14 @@
                 dataCollectionsObj_inner['departure_time'] = result.rows[i].details[j].departure_time;
                 dataCollectionsObj_inner['first_delivery_place_time'] = result.rows[i].details[j].first_delivery_place_time;
                 dataCollectionsObj_inner['final_destination_time'] = result.rows[i].details[j].final_destination_time;
-                dataCollectionsObj_inner['size_A'] = result.rows[i].details[j].size_A;
-                dataCollectionsObj_inner['size_B'] = result.rows[i].details[j].size_B;
-                dataCollectionsObj_inner['size_C'] = result.rows[i].details[j].size_C;
+                // dataCollectionsObj_inner['size_A'] = result.rows[i].details[j].size_A;
+                // dataCollectionsObj_inner['size_B'] = result.rows[i].details[j].size_B;
+                // dataCollectionsObj_inner['size_C'] = result.rows[i].details[j].size_C;
+                // dataCollectionsObj_inner['size_Other'] = result.rows[i].details[j].size_Other;
+                dataCollectionsObj_inner['size_S'] = result.rows[i].details[j].size_s;
+                dataCollectionsObj_inner['size_A'] = result.rows[i].details[j].size_a;
+                dataCollectionsObj_inner['size_B'] = result.rows[i].details[j].size_b;
+                dataCollectionsObj_inner['size_C'] = result.rows[i].details[j].size_c;
                 dataCollectionsObj_inner['size_Other'] = result.rows[i].details[j].size_Other;
                 dataCollectionsObj_inner['driver_wages'] = result.rows[i].details[j].driver_wages;
                 dataCollectionsObj_inner['remark'] = result.rows[i].details[j].remark;
@@ -107,8 +112,8 @@
         }
 
 
-        // console.log('DataSet');
-        // console.log(dataSet);
+        console.log('DataSet');
+        console.log(dataSet);
 
 
         // $('#datatableOperationKPI').dataTable(dataSet);
@@ -118,3 +123,4 @@
         $('.dataTables_processing', $('#datatableOperationKPI').closest('.dataTables_wrapper')).hide();
 
     }
+

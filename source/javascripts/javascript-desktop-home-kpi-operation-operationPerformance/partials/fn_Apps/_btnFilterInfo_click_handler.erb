@@ -1,6 +1,16 @@
   $('#btnFilterInfo').on('click', function() {
-        console.log('btnFilterInfo');
+        // console.log('btnFilterInfo');
         // alert('btnFilterInfo');
+
+        if (datatableOperationKPI != null) {
+            // datatableOperationKPI.Reset();
+          // $('#datatableOperationKPI').DataTable().fnClearTable();
+            //bDestroy = true; // trying out with bDestroy
+            datatableOperationKPI.clear().draw();
+            // datatableOperationKPI.Reset();
+            $('#datatableOperationKPI').html();
+            // datatableOperationKPI.ajax.reload();
+        }
 
 
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_Apps/btnFilterInfo_click_handler/_prepare_ajax_param" %>
@@ -29,13 +39,21 @@
                 var resultDataTableHeaderTemplate = Handlebars.compile($("#dataTable-header-Template").html());
                 
 
-                    // console.log(result.startDate);
-                    // console.log(result.endDate);
 
-                var arrDates = fn.GetArrDates(new Date(result.startDate), new Date(result.endDate));
+
+                    // var resultStartDate = new Date(result.startDate).format('YYYY-MM-DD') ;
+                    // var resultEndDate = new Date(result.endDate).format('YYYY-MM-DD') ;
+
+                    var resultStartDate = moment(result.startDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                    var resultEndDate = moment(result.endDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+
+                    // console.log(resultStartDate);
+                    // console.log(resultEndDate);
+
+                var arrDates = fn.GetArrDates(new Date(resultStartDate), new Date(resultEndDate));
                     // console.log("arrDates");
                     // console.log(arrDates);
-                var context = fn.ConvertToContext(arrDates);
+                var context = fn.DatatableOperationKPI_ConvertToContext(arrDates);
                     // console.log('context');
                     // console.log(context);
 
@@ -43,36 +61,13 @@
                   //     headers: [ 
                   //     { dateHeader: 'ลำดับ' },
                   //     { dateHeader: 'ทะเบียนรถ' },
-                  //     { dateHeader: '01/06/2016' },
-                  //     { dateHeader: '02/06/2016' },
-                  //     { dateHeader: '03/06/2016' },
-                  //     { dateHeader: '04/06/2016' },
-                  //     { dateHeader: '05/06/2016' },
-                  //     { dateHeader: '06/06/2016' },
-                  //     { dateHeader: '07/06/2016' },
-                  //     { dateHeader: '08/06/2016' },
-                  //     { dateHeader: '09/06/2016' },
-                  //     { dateHeader: '10/06/2016' },
-                  //     { dateHeader: '11/06/2016' },
-                  //     { dateHeader: '12/06/2016' },
-                  //     { dateHeader: '13/06/2016' },
-                  //     { dateHeader: '14/06/2016' },
-                  //     { dateHeader: '15/06/2016' },
-                  //     { dateHeader: '16/06/2016' },
-                  //     { dateHeader: '17/06/2016' },
-                  //     { dateHeader: '18/06/2016' },
-                  //     { dateHeader: '19/06/2016' },
-                  //     { dateHeader: '20/06/2016' },
-                  //     { dateHeader: '21/06/2016' },
-                  //     { dateHeader: '22/06/2016' },
-                  //     { dateHeader: '23/06/2016' },
-                  //     { dateHeader: '24/06/2016' },
-                  //     { dateHeader: '25/06/2016' },
-                  //     { dateHeader: '26/06/2016' },
-                  //     { dateHeader: '27/06/2016' },
-                  //     { dateHeader: '28/06/2016' },
-                  //     { dateHeader: '29/06/2016' },
-                  //     { dateHeader: '30/06/2016' },
+                  //     { dateHeader: '23/07/2016' },
+                  //     { dateHeader: '24/07/2016' },
+                  //     { dateHeader: '25/07/2016' },
+                  //     { dateHeader: '26/07/2016' },
+                  //     { dateHeader: '27/07/2016' },
+                  //     { dateHeader: '28/07/2016' },
+                  //     { dateHeader: '29/07/2016' },
                   //     { dateHeader: 'Average' }
                   //     ]
                   // };
@@ -119,7 +114,7 @@
                 var returnedData_delivery_type_epod = $.grep(result.rows[0].details, function (element, index) {
                   return element.delivery_type == 'EPOD';
                 });
-                console.log(returnedData_delivery_type_epod);
+                // console.log(returnedData_delivery_type_epod);
 
                 var returnedData_delivery_type_non_epod = $.grep(result.rows, function (element, index) {
                   return element.delivery_type == 'Non-EPOD';

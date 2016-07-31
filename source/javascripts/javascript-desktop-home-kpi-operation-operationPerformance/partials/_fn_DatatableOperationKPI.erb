@@ -20,22 +20,79 @@ DatatableOperationKPI: function () {
 
     <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_prepare_ajax_param" %>
 
+        // $.ajax({
+        //     "url": "../../../../../api/restful-api/kpiManager/getOperationKpiSummary/", 
+        //     "type": "POST",
+        //     "dataType": "json",
+        //     "contentType": "application/json",
+        //     "data": JSON.stringify(tmpData),
+        //     "success": function(result){
+        //         console.log(result);
+        //     },
+        //     "error": function(jqXHR, textStatus, errorThrown){
+        //       console.log('textStatus: ' + textStatus);
+        //     }
+        // });
+
+
+
+
     //------------------------ datatableOperationKPI -----------------------//
     if (jQuery().dataTable) {
+
+
+        // $.ajax({
+        //     "url": "../../../../../api/restful-api/kpiManager/getOperationKpiSummary/", 
+        //     "type": "POST",
+        //     "dataType": "json",
+        //     "contentType": "application/json",
+        //     "data": JSON.stringify(tmpData),
+        //     "success": function(result){
+        //         console.log(result);
+        //     }
+        // });
+
  
         datatableOperationKPI = $('#datatableOperationKPI').DataTable( {
             "processing": true,
-            "destroy": true,
+            "bDestroy": true,
             "ajax": {
                 "url": "../../../../../api/restful-api/kpiManager/getOperationKpiSummary/",
                 "type": "POST",
-                "data": JSON.stringify(tmpData),
+                "data": function ( d ) {
+
+                        if (fn.paramStartDate) {
+                          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+                          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+                        } else {
+                          console.log('fn.paramStartDate is ' + fn.paramStartDate);
+                        }
+
+                        if (fn.paramEndDate) {
+                          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+                          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+                        } else {
+                          console.log('fn.paramEndDate is ' + fn.paramEndDate);
+                        }
+                        
+
+                        d.startDate = paramStartDate;
+                        d.endDate = paramEndDate;
+                        d.siteName = fn.paramSiteName;
+                        return d;
+                },
                 "dataSrc": "rows",
                 "success": function(data) {
+                        // alert(data);
+                        console.log('success');
+                        console.log(data);
                         datatableOperationKPIRender(data);
                 },
                 "error": function(jqXHR, textStatus, errorThrown){
-                    alert('init error: ' + textStatus);
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    console.log('init error: ' + textStatus);
                 }
             },
             "deferRender":    true,
@@ -47,6 +104,13 @@ DatatableOperationKPI: function () {
             "aaData": dataSet,
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_aoColumnDefs" %>
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_footerCallback" %>
+            // "aoColumnDefs": [
+            //     {
+            //         'bSortable': true,
+            //         "bAutoWidth": true,
+            //         'aTargets': [0]
+            //     }
+            // ],
             "order" : [] //disable default sorting, eg sorting on 1st column
             // "order" : [[ 0, "desc" ]]
             // "aaSorting": [[ 0, "asc"]]

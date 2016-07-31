@@ -1,15 +1,15 @@
     /**
      *
-     * @apiName GetOperationKpiSummary
+     * @apiName GetOperationKpiSummaryInfo
      * @apiGroup KPI Manager
      * @apiVersion 0.1.0
      *
-     * @api {post} /kpiManager/getOperationKpiSummary/ Get Operation KPI Summary
+     * @api {post} /kpiManager/getOperationKpiSummaryInfo/ Post Operation KPI Summary
      * @apiDescription คำอธิบาย : ในส่วนนี้ทำหน้าที่เรียกข้อมูลสรุปเกี่ยวกับ Operation KPI มาใช้งาน ตามศูนย์และช่วงเวลาที่กำหนด
      *
      */
 
-    function getOperationKpiSummary($app, $client) {
+    function getOperationKpiSummaryInfo($app, $client) {
 
 
         /* ************************* */
@@ -18,13 +18,17 @@
         $headers = $app->request->headers;
         $ContetnType = $app->request->headers->get('Content-Type');
 
+        <% if config[:phase_environment] == "Development" %>
+        $app->log->debug(date("Y-m-d H:i:s")." : "."ContetnType : ".$ContetnType);
+        <% end %>
+
         /**
         * apidoc @apiSampleRequest, iOS RESTKit use content-type is "application/json"
         * Web Form, Advance REST Client App use content-type is "application/x-www-form-urlencoded"
         */
 
         if (($ContetnType == "application/json") || ($ContetnType == "application/json; charset=utf-8") ) {
-
+                      
             $request = $app->request();
             $result = json_decode($request->getBody());
 
@@ -40,7 +44,7 @@
             <% end %>
 
         } else if (($ContetnType == "application/x-www-form-urlencoded") || ($ContetnType == "application/x-www-form-urlencoded; charset=UTF-8")){
-
+            
             /* receive request */                                                                                 
             $postStartDate = $app->request()->post('startDate');    /* รูปแบบ เดือน/วัน/ปี */
             $postEndDate = $app->request()->post('endDate');        /* รูปแบบ เดือน/วัน/ปี */
@@ -55,27 +59,6 @@
 
 
 
-        // $postStartDate = "2016-07-24";    /* รูปแบบ เดือน/วัน/ปี */
-        // $postEndDate = "2016-07-30";        /* รูปแบบ เดือน/วัน/ปี */
-        // $postSiteName = "29";
-
-
-        <% if config[:phase_environment] == "Development" %>
-
-            /*  Partial : Localhost */
-            <%= partial "/KpiManager/getOperationKpiSummary/_development" %>
-
-        <% elsif config[:phase_environment] == "Test" %>
-
-            /*  Partial : Localhost */
-            <%= partial "/KpiManager/getOperationKpiSummary/_development" %>
-
-        <% elsif config[:phase_environment] == "Production" %>
-
-            /*  Partial : Production */
-            <%= partial "/KpiManager/getOperationKpiSummary/_production" %>
-
-        <% end %>
 
 
 
@@ -83,7 +66,7 @@
         /* ************************* */
         /* เริ่มกระบวนการส่งค่ากลับ */
         /* ************************* */
-        // $reportResult = array("msg" => "สวัสดี");
+        $reportResult = array("msg" => "สวัสดี");
 
  
         $app->response()->header("Content-Type", "application/json");

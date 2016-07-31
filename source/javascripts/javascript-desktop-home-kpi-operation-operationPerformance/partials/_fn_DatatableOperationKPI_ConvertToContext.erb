@@ -1,5 +1,5 @@
-ConvertToContext: function (arrDates) {
-	// console.log("ConvertToContext");
+DatatableOperationKPI_ConvertToContext: function (arrDates) {
+	// console.log("DatatableOperationKPI_ConvertToContext");
 
     // var context = {
     //       headers: [ 
@@ -54,6 +54,8 @@ ConvertToContext: function (arrDates) {
     objDateHeader["dateHeader"] = 'ทะเบียนรถ';
     headers.push(objDateHeader);
 
+    // console.log(headers);
+
 
 
 	$.each( arrDates, function( i, val ) {
@@ -72,6 +74,9 @@ ConvertToContext: function (arrDates) {
 	// headers.push(objDateHeader);
 
     context["headers"] = headers;
+
+    // console.log(headers);
+    // console.log(context);
 
     return context;
   

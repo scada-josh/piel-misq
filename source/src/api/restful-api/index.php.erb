@@ -44,6 +44,10 @@ layout: "layout-api"
     $client = new nusoap_client("http://58.137.5.126/epodws/service.asmx?wsdl", true);
     // $client->soap_defencoding = 'UTF-8';
 
+    $client_mis = new nusoap_client("http://58.137.5.126/iTMS_MIS_Portal/Service.asmx?wsdl", true);
+    // $client_mis->soap_defencoding = 'UTF-8';
+
+
 <% if config[:phase_environment] == "Development" %>
 
     /* forceEndpoint Partial : Localhost (Internet) */
@@ -66,6 +70,9 @@ layout: "layout-api"
     $client->encode_utf8 = true;
 
 
+    $client_mis->soap_defencoding = 'UTF-8';
+    $client_mis->decode_utf8 = false; // แก้ปัญหาตัวอักษรภาษาไทยแสดง ???????? (web service unicode characters dispaly as question marks)
+    $client_mis->encode_utf8 = true;
 
     /* PHP Excel : Create new PHPExcel object : http://phpexcel.codeplex.com */
     $objPHPExcel = new \PHPExcel();
@@ -95,7 +102,8 @@ layout: "layout-api"
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
     $app->post('/kpiManager/exportOperationKPI/',function() use ($app, $client, $objPHPExcel) { exportOperationKPI($app, $client, $objPHPExcel); });
     $app->post('/kpiManager/boxOperationKPI/',function() use ($app, $client, $objPHPExcel) { boxOperationKPI($app, $client, $objPHPExcel); });
-    $app->post('/kpiManager/getOperationKpiSummary/',function() use ($app, $client) { getOperationKpiSummary($app, $client); });
+    $app->post('/kpiManager/getOperationKpiSummary/',function() use ($app, $client_mis) { getOperationKpiSummary($app, $client_mis); });
+    $app->post('/kpiManager/getOperationKpiSummaryInfo/',function() use ($app, $client_mis) { getOperationKpiSummaryInfo($app, $client_mis); });
 
     /* Menu Manager */
     $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
@@ -114,6 +122,7 @@ layout: "layout-api"
     <%= partial "/KpiManager/_exportOperationKPI" %>
     <%= partial "/KpiManager/_boxOperationKPI" %>
     <%= partial "/KpiManager/_getOperationKpiSummary" %>
+    <%= partial "/KpiManager/_getOperationKpiSummaryInfo" %>
 
     /* Menu Manager Partial */
     <%= partial "/MenuManager/_listMenu" %>
