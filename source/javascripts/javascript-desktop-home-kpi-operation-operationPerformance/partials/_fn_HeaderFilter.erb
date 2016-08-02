@@ -10,11 +10,15 @@ HeaderFilter: function (paramSiteName, paramStartDate, paramEndDate) {
 	}
 	
 	if (paramSiteName) {
-		$("#header_filter > h3").html("ประสิทธิภาพ : " + paramSiteName);
-	  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+		// $("#header_filter > h3").html("ประสิทธิภาพ : " + paramSiteName);
+	 //  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+	  	$("#site-name-label").html(paramSiteName);
+	  	$("#date-range-selected-label").html(paramStartDate + " - " + paramEndDate);
 	} else {
-		$("#header_filter > h3").html("ประสิทธิภาพ : -");
-	  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+		// $("#header_filter > h3").html("ประสิทธิภาพ : -");
+	 //  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
+		$("#site-name-label").html("-");
+	  	$("#date-range-selected-label").html(paramStartDate + " - " + paramEndDate);
 	}
 
   

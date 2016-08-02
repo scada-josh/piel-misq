@@ -2,15 +2,20 @@
         // console.log('btnFilterInfo');
         // alert('btnFilterInfo');
 
-        if (datatableOperationKPI != null) {
-            // datatableOperationKPI.Reset();
-          // $('#datatableOperationKPI').DataTable().fnClearTable();
-            //bDestroy = true; // trying out with bDestroy
-            datatableOperationKPI.clear().draw();
-            // datatableOperationKPI.Reset();
-            $('#datatableOperationKPI').html();
-            // datatableOperationKPI.ajax.reload();
-        }
+
+          // if ($.fn.DataTable.isDataTable('#datatableOperationKPI') ) {
+          //     $('#datatableOperationKPI').empty();
+          //     $('#datatableOperationKPI').dataTable().fnDestroy();
+          //     $('#datatableOperationKPI > thead > tr').remove();
+          // }
+
+          if ($.fn.DataTable.isDataTable('#datatableOperationKPI') ) {
+              $('#datatableOperationKPI').empty();
+              $('#datatableOperationKPI').dataTable().fnDestroy();
+              $('#datatableOperationKPI > thead > tr').remove();
+              $('#datatableOperationKPI > tfoot > tr').remove();
+              // $('#datatableOperationKPI').deleteTFoot();
+          }
 
 
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_Apps/btnFilterInfo_click_handler/_prepare_ajax_param" %>
@@ -202,11 +207,11 @@
 
 
 
-                  fn.SparklineBarAverageBoxEpod(arrAverageBox_EPOD);
-                  fn.SparklineBarAverageDropEpod(arrAverageDrop_EPOD);
+                  // fn.SparklineBarAverageBoxEpod(arrAverageBox_EPOD);
+                  // fn.SparklineBarAverageDropEpod(arrAverageDrop_EPOD);
 
-                  fn.SparklineBarAverageBoxNonEpod(arrAverageBox_NonEPOD);
-                  fn.SparklineBarAverageDropNonEpod(arrAverageDrop_NonEPOD);
+                  // fn.SparklineBarAverageBoxNonEpod(arrAverageBox_NonEPOD);
+                  // fn.SparklineBarAverageDropNonEpod(arrAverageDrop_NonEPOD);
 
 
 

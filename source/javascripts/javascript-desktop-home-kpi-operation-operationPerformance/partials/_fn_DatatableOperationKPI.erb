@@ -7,6 +7,8 @@ DatatableOperationKPI: function () {
     //     $('#datatableOperationKPI').empty();
     //     $('#datatableOperationKPI').dataTable().fnDestroy();
     //     $('#datatableOperationKPI > thead > tr').remove();
+    //     $('#datatableOperationKPI > tfoot > tr').remove();
+    //     $('#datatableOperationKPI').deleteTFoot();
     // }
 
 
@@ -56,6 +58,7 @@ DatatableOperationKPI: function () {
         datatableOperationKPI = $('#datatableOperationKPI').DataTable( {
             "processing": true,
             "bDestroy": true,
+            "bAutoWidth": false,
             "ajax": {
                 "url": "../../../../../api/restful-api/kpiManager/getOperationKpiSummary/",
                 "type": "POST",
@@ -78,7 +81,7 @@ DatatableOperationKPI: function () {
 
                         d.startDate = paramStartDate;
                         d.endDate = paramEndDate;
-                        d.siteName = fn.paramSiteName;
+                        d.siteName = fn.paramSiteID;
                         return d;
                 },
                 "dataSrc": "rows",
@@ -104,6 +107,7 @@ DatatableOperationKPI: function () {
             "aaData": dataSet,
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_aoColumnDefs" %>
             <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/fn_DatatableOperationKPI/_footerCallback" %>
+            
             // "aoColumnDefs": [
             //     {
             //         'bSortable': true,
@@ -117,7 +121,7 @@ DatatableOperationKPI: function () {
         });
 
 
-
+        datatableOperationKPI.columns.adjust().draw();
 
     }
     
