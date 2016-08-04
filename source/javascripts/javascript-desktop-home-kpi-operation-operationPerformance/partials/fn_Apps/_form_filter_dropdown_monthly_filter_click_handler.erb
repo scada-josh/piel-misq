@@ -1,6 +1,12 @@
 	$('#dropdown_monthly_filter_id').on('click', function() {
       	// console.log('dropdown_monthly_filter_id');
 
+		if (fn.strFilterType != "monthly") {
+			fn.Routers("monthly");
+			fn.strFilterType = "monthly";
+			fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+		}
+
 		$("#filter-type-label").html("Monthly");
 
       	$("#form_layout_year_select_id").show(1000);

@@ -1,7 +1,14 @@
 	$('#dropdown_weekly_filter_id').on('click', function() {
       	// console.log('dropdown_weekly_filter_id');
 
-      	$("#filter-type-label").html("Weekly");
+
+            if (fn.strFilterType != "weekly") {
+                  fn.Routers("weekly");
+                  fn.strFilterType = "weekly";
+                  fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+            }
+
+            $("#filter-type-label").html("Weekly");
 
       	$("#form_layout_year_select_id").show(1000);
       	$("#form_layout_week_select_id").show(1000);

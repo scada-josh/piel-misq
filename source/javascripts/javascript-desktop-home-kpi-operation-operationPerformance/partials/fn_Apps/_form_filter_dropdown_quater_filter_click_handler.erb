@@ -1,6 +1,14 @@
 	$('#dropdown_quater_filter_id').on('click', function() {
       // console.log('dropdown_quater_filter_id');
 
+
+            if (fn.strFilterType != "quater") {
+                  fn.Routers("quater");
+                  fn.strFilterType = "quater";
+                  fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+            }
+
+
       	$("#filter-type-label").html("Quater");
 
       	$("#form_layout_year_select_id").show(1000);

@@ -12,14 +12,23 @@ HeaderFilter: function (paramSiteName, paramStartDate, paramEndDate) {
 	if (paramSiteName) {
 		// $("#header_filter > h3").html("ประสิทธิภาพ : " + paramSiteName);
 	 //  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
-	  	$("#site-name-label").html(paramSiteName);
-	  	$("#date-range-selected-label").html(paramStartDate + " - " + paramEndDate);
+	  	$("#site-name-label-" + fn.strFilterType).html(paramSiteName);
 	} else {
 		// $("#header_filter > h3").html("ประสิทธิภาพ : -");
 	 //  	$("#header_filter > p").html(paramStartDate + " - " + paramEndDate);
-		$("#site-name-label").html("-");
-	  	$("#date-range-selected-label").html(paramStartDate + " - " + paramEndDate);
+		$("#site-name-label-" + fn.strFilterType).html("-");
 	}
 
+	if (fn.strFilterType == "daily") {
+		$("#date-range-selected-label-" + fn.strFilterType).html(paramStartDate + " - " + paramEndDate);
+	} else if(fn.strFilterType == "weekly") {
+		$("#date-range-selected-label-" + fn.strFilterType).html("Week#01/2016" + " - " + "Week#50/2016");
+	} else if(fn.strFilterType == "monthly") {
+		
+	} else if(fn.strFilterType == "quater") {
+		
+	} else if(fn.strFilterType == "half-year") {
+		
+	}
   
 },
