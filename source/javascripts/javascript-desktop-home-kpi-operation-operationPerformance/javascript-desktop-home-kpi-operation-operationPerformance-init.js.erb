@@ -42,7 +42,10 @@
     var fn = {
  
         strFilterType : "daily", /* daily, weekly, monthly, quater, half-year */
-        objIonRangeByWeek: {},
+        objIonRangeByWeekly: {},
+        objIonRangeByMonthly: {},
+        objIonRangeByQuater: {},
+        objIonRangeByHalfYear: {},
     
         // Launch Functions
         Launch: function () {
@@ -62,6 +65,9 @@
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilter" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilterWeekly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilterMonthly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilterQuater" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_HeaderFilterHalfYear" %>
         // Routers
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_Routers" %>
         // sparkline
@@ -85,6 +91,9 @@
         // Date Range Picker
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowRangeDate" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowRangeWeekly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowRangeMonthly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowRangeQuater" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowRangeHalfYear" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowRangeDate_Basic" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DateRangePicker" %>
  		// Apps

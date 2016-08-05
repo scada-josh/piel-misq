@@ -5,7 +5,16 @@
             if (fn.strFilterType != "quater") {
                   fn.Routers("quater");
                   fn.strFilterType = "quater";
-                  fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+                  // fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+
+                // console.log(fn.objIonRangeByMonthly);
+                // UPDATE - updates slider to any new values
+                fn.objIonRangeByQuater.update({
+                        from: 0,
+                        to: 3
+                });
+                // RESET - reset slider to it's first values
+                // fn.objIonRangeByMonthly.reset();
             }
 
 

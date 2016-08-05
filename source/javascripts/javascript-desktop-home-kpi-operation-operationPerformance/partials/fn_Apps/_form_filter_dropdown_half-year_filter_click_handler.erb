@@ -4,7 +4,16 @@
             if (fn.strFilterType != "half-year") {
                   fn.Routers("half-year");
                   fn.strFilterType = "half-year";
-                  fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+                  // fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+
+                  // console.log(fn.objIonRangeByHalfYear);
+                  // UPDATE - updates slider to any new values
+                  fn.objIonRangeByHalfYear.update({
+                        from: 0,
+                        to: 1
+                  });
+                  // RESET - reset slider to it's first values
+                  // fn.objIonRangeByHalfYear.reset();
             }
 
 
