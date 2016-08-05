@@ -104,6 +104,7 @@ layout: "layout-api"
     $app->post('/kpiManager/boxOperationKPI/',function() use ($app, $client, $objPHPExcel) { boxOperationKPI($app, $client, $objPHPExcel); });
     $app->post('/kpiManager/getOperationKpiSummary/',function() use ($app, $client_mis) { getOperationKpiSummary($app, $client_mis); });
     $app->post('/kpiManager/getOperationKpiSummaryInfo/',function() use ($app, $client_mis) { getOperationKpiSummaryInfo($app, $client_mis); });
+    $app->post('/kpiManager/getOperationKpiSummaryInfoByWeekly/',function() use ($app, $client_mis) { getOperationKpiSummaryInfoByWeekly($app, $client_mis); });
 
     /* Menu Manager */
     $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
@@ -123,6 +124,7 @@ layout: "layout-api"
     <%= partial "/KpiManager/_boxOperationKPI" %>
     <%= partial "/KpiManager/_getOperationKpiSummary" %>
     <%= partial "/KpiManager/_getOperationKpiSummaryInfo" %>
+    <%= partial "/KpiManager/_getOperationKpiSummaryInfoByWeekly" %>
 
     /* Menu Manager Partial */
     <%= partial "/MenuManager/_listMenu" %>

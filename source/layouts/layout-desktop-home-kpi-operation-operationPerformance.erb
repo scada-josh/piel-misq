@@ -37,69 +37,10 @@
     </body>
 
     <%= partial "layouts/common/_menu_template" %>
-
-        <script id="dataTable-header-Template" type="text/x-handlebars-template">
-            
-            
-
-            <thead>
-                
-                <tr>
-                    {{#each headers}}
-
-                    {{#if_eq dateHeader 'ลำดับ'}}
-                        <th class="" rowspan="2">{{dateHeader}}</th>
-                    {{else if_eq dateHeader 'รถ'}}
-                        <th class="DatatableOperationKPI-common" rowspan="2">{{dateHeader}}</th>
-                    {{else if_eq dateHeader 'ทะเบียนรถ'}}
-                        <th class="DatatableOperationKPI-common" rowspan="2">{{dateHeader}}</th>
-                    {{else}}
-                        <th class="DatatableOperationKPI-common" colspan="2">{{dateHeader}}</th>
-                    {{/if_eq}}
-                    
-                    {{/each}}
-                </tr>
-                <tr>
-                    {{#each headers}}
-
-                    {{#if_eq dateHeader 'ลำดับ'}}
-                       <!--  <th class="" ></th> -->
-                    {{else if_eq dateHeader 'รถ'}}
-                        <!-- <th class="" ></th> -->
-                    {{else if_eq dateHeader 'ทะเบียนรถ'}}
-                        <!-- <th class="" ></th> -->
-                    {{else}}
-                        <th>Box</th>
-                        <th>Drop</th>
-                    {{/if_eq}}
+    <%= partial "layouts/layout-desktop-home-kpi-operation-operationPerformance/_dataTable-header-Template" %>
+    <%= partial "layouts/layout-desktop-home-kpi-operation-operationPerformance/_datatable-weekly-header-template" %>
 
 
-                    {{/each}}
-                </tr>
-                
-            </thead>
-            <tbody>
-            </tbody>
-            <tfoot>
-                <tr>
-                    {{#each headers}}
-
-                    {{#if_eq dateHeader 'ลำดับ'}}
-                     <th class="" colspan="3">Average<br/><small>(total)</small></th>
-                    {{else if_eq dateHeader 'รถ'}}
-                    <!-- <th class="" ></th> -->
-                    {{else if_eq dateHeader 'ทะเบียนรถ'}}
-                    <!-- <th class="" ></th> -->
-                    {{else}}
-                    <th>-</th>
-                    <th>-</th>
-                    {{/if_eq}}
-
-                    {{/each}}
-                </tr>
-            </tfoot>
-        
-    </script>
 
 
 </html>
