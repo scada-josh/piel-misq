@@ -5,7 +5,16 @@
             if (fn.strFilterType != "weekly") {
                   fn.Routers("weekly");
                   fn.strFilterType = "weekly";
-                  fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+                  // fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+                  
+                  // console.log(fn.objIonRangeByWeek);
+                  // UPDATE - updates slider to any new values
+                  fn.objIonRangeByWeek.update({
+                          from: 1,
+                          to: 52
+                  });
+                  // RESET - reset slider to it's first values
+                  // fn.objIonRangeByWeek.reset();
             }
 
             $("#filter-type-label").html("Weekly");
