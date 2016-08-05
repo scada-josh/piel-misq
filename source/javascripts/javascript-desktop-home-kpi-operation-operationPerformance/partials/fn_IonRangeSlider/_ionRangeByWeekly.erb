@@ -36,7 +36,9 @@
         // console.log(data);
 
         var start_week_no = data.from;
+            fn.last_weekly_from = start_week_no;
         var end_week_no = data.to;
+            fn.last_weekly_to = end_week_no;
 
         var optionSelected = $('#year_selected_id').find("option:selected");
         var valueSelected  = optionSelected.val();
@@ -47,6 +49,7 @@
         // console.log(start_week.format('DD/MM/YYYY'));
         // console.log(end_week.format('DD/MM/YYYY'));
         // fn.ShowRangeDate(start_week, end_week);
+
         fn.ShowRangeWeekly(start_week, end_week, start_week_no, end_week_no, valueSelected);
     },
     onUpdate: function (data) {

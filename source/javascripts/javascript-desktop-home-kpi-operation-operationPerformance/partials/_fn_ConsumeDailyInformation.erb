@@ -1,6 +1,39 @@
 ConsumeDailyInformation: function () {
 	// console.log("ConsumeDailyInformation");
 
+          var myStartDate = moment(fn.paramStartDate);
+          var myEndDate = moment(fn.paramEndDate); 
+          var myDuration = moment.duration(myEndDate.diff(myStartDate));
+          var myDays = myDuration.asDays();
+          console.log(myDays)
+
+
+          if (myDays > 50) {
+
+              toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+
+              var tmpMsg = "ช่วงวันที่คุณเลือกเกิน 50 วัน ระบบไม่สามารถแสดงผลได้";
+              toastr["warning"](tmpMsg, "<h3>Warning</h3>");
+
+              return false;
+          } 
+
+
+
+
           if ($.fn.DataTable.isDataTable('#datatableOperationKPI') ) {
               $('#datatableOperationKPI').empty();
               $('#datatableOperationKPI').dataTable().fnDestroy();
@@ -29,22 +62,37 @@ ConsumeDailyInformation: function () {
 
           if (!fn.paramSiteName) {
 
+            // toastr.options = {
+            //   "closeButton": true,
+            //   "debug": false,
+            //   "newestOnTop": true,
+            //   "progressBar": true,
+            //   "positionClass": "toast-top-center",
+            //   "preventDuplicates": false,
+            //   "showDuration": "300",
+            //   "hideDuration": "1000",
+            //   "timeOut": "5000",
+            //   "extendedTimeOut": "1000",
+            //   "showEasing": "swing",
+            //   "hideEasing": "linear",
+            //   "showMethod": "fadeIn",
+            //   "hideMethod": "fadeOut"
+            // }
+
             toastr.options = {
-              "closeButton": true,
-              "debug": false,
-              "newestOnTop": true,
-              "progressBar": true,
-              "positionClass": "toast-top-center",
-              "preventDuplicates": false,
-              "showDuration": "300",
-              "hideDuration": "1000",
-              "timeOut": "5000",
-              "extendedTimeOut": "1000",
-              "showEasing": "swing",
-              "hideEasing": "linear",
-              "showMethod": "fadeIn",
-              "hideMethod": "fadeOut"
-            }
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
 
             var tmpMsg = "กรุณาเลือกศูนย์";
             toastr["warning"](tmpMsg, "<h3>Warning</h3>");

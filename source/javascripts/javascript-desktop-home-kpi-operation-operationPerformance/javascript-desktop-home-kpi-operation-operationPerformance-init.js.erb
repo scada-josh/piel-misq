@@ -14,6 +14,7 @@
     var boxDatatable;
     var datatableDrop;
     var datatableOperationKPI;
+    var datatableOperationKPI_Weekly;
     var datatableOperationKPI_FF;
 
     // RESTful Web Service - Parameter
@@ -43,6 +44,8 @@
  
         strFilterType : "daily", /* daily, weekly, monthly, quater, half-year */
         objIonRangeByWeekly: {},
+        last_weekly_from: 1,
+        last_weekly_to: 52,
         objIonRangeByMonthly: {},
         objIonRangeByQuater: {},
         objIonRangeByHalfYear: {},
@@ -81,6 +84,7 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableNonEPOD" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_Click_Handler" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_Weekly" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_ShowJobNoDetail" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-operation-operationPerformance/partials/_fn_DatatableOperationKPI_Weekly_ConvertToContext" %>

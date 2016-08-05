@@ -1,6 +1,41 @@
 ConsumeWeeklyInformation: function () {
 	// console.log("ConsumeWeeklyInformation");
 
+          if ((fn.last_weekly_to - fn.last_weekly_from) > 4) {
+
+              toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "positionClass": "toast-top-full-width",
+                "onclick": null,
+                "showDuration": "1000",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+              }
+
+              var tmpMsg = "ช่วงวันที่คุณเลือกเกิน 4 Weeks ระบบไม่สามารถแสดงผลได้";
+              toastr["warning"](tmpMsg, "<h3>Warning</h3>");
+
+              return false;
+          } 
+
+
+
+
+          if ($.fn.DataTable.isDataTable('#datatableOperationKPI_Weekly') ) {
+              $('#datatableOperationKPI_Weekly').empty();
+              $('#datatableOperationKPI_Weekly').dataTable().fnDestroy();
+              $('#datatableOperationKPI_Weekly > thead > tr').remove();
+              $('#datatableOperationKPI_Weekly > tfoot > tr').remove();
+              // $('#datatableOperationKPI_Weekly').deleteTFoot();
+          }
+
+          
 	        if (fn.paramStartDate) {
 	          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
 	          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
@@ -54,10 +89,10 @@ ConsumeWeeklyInformation: function () {
 
                 var resultDataTableWeeklyHeaderTemplate = Handlebars.compile($("#datatable-weekly-header-template").html());
                 var context_weekly = fn.DatatableOperationKPI_Weekly_ConvertToContext(result);
-                console.log(context_weekly);
+                // console.log(context_weekly);
 
                 $('#datatableOperationKPI_Weekly').html(resultDataTableWeeklyHeaderTemplate(context_weekly)).promise().done(function(){
-                  // fn.DatatableOperationKPI();
+                  fn.DatatableOperationKPI_Weekly();
                   // fn.DatatableOperationKPI_Click_Handler();
                 });
 
