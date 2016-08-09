@@ -45,26 +45,26 @@
         $id = 0;
 
 
-        $results = $db->menu_tb->select('DISTINCT main_menu_title');
+        $results = $db->menu_tb->select('DISTINCT main_menu_url');
 
         foreach ($results as $result) {
-            $result_main_menu_leaf = $db->menu_tb->where("main_menu_title = ?", $result["main_menu_title"])->fetch();
+            $result_main_menu_detail = $db->menu_tb->where("main_menu_url = ?", $result["main_menu_url"])->fetch();
 
             <%= partial "/MenuManager/partials/listMenu/_reports_sub_menu_01" %>
 
-            if ($result_main_menu_leaf["main_menu_leaf"] == "FALSE") {
+            if ($result_main_menu_detail["main_menu_leaf"] == "FALSE") {
                 $reports[] = array(
-                    "main_menu_active" => ($result["main_menu_title"] == $postActiveMenu)? "active" : "",
-                    "main_menu_title" => $result["main_menu_title"],
-                    "main_menu_url" => $result_main_menu_leaf["main_menu_url"],
-                    "main_menu_leaf" => $result_main_menu_leaf["main_menu_leaf"]
+                    "main_menu_active" => ($result_main_menu_detail["main_menu_title"] == $postActiveMenu)? "active" : "",
+                    "main_menu_title" => $result_main_menu_detail["main_menu_title"],
+                    "main_menu_url" => $result_main_menu_detail["main_menu_url"],
+                    "main_menu_leaf" => $result_main_menu_detail["main_menu_leaf"]
                     );
             } else {
                 $reports[] = array(
-                    "main_menu_active" => ($result["main_menu_title"] == $postActiveMenu)? "active" : "",
-                    "main_menu_title" => $result["main_menu_title"],
-                    "main_menu_url" => $result_main_menu_leaf["main_menu_url"],
-                    "main_menu_leaf" => $result_main_menu_leaf["main_menu_leaf"],
+                    "main_menu_active" => ($result_main_menu_detail["main_menu_title"] == $postActiveMenu)? "active" : "",
+                    "main_menu_title" => $result_main_menu_detail["main_menu_title"],
+                    "main_menu_url" => $result_main_menu_detail["main_menu_url"],
+                    "main_menu_leaf" => $result_main_menu_detail["main_menu_leaf"],
                     "sub_menu_level_01" => $reports_sub_menu_01
                     );
             }
