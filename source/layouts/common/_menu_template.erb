@@ -18,6 +18,7 @@
                         {{#if sub_menu_level_01_leaf}}
                         <span class="arrow"></span>
                         <ul class="dropdown-menu">
+
                             {{#each sub_menu_level_02}}
                             <li class=" {{#if_eq sub_menu_level_02_leaf 'TRUE'}}dropdown-submenu{{/if_eq}}">
                                 <a href="{{#if_eq sub_menu_level_02_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_02_url}}{{else}}#{{/if_eq}}" class=""> {{sub_menu_level_02_title}} </a>
@@ -39,12 +40,14 @@
                                             {{/each}}
                                         </ul>
                                         {{/if}}
+                                        
                                     </li>
                                     {{/each}}
                                 </ul>
                                 {{/if}}
                             </li>
                             {{/each}}
+
                         </ul>
                         {{/if}}
                     </li>

@@ -1,6 +1,6 @@
-    /* เชื่อมต่อ MySQL บนเครื่อง 172.16.194.210 (http://wlma-mt.wms.mwa/) */
+    /* เชื่อมต่อ MySQL บนเครื่อง 192.168.0.35/TestPHP/ */
     $dsn = "mysql:dbname=mis_web_db;host=localhost;charset=UTF8";
     $username = "root";
-    $password = "P@ssw0rd";
+    $password = "admiN";
     $pdo = new PDO($dsn, $username, $password);
     $db = new NotORM($pdo);
