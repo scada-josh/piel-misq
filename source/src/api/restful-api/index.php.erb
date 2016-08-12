@@ -108,6 +108,10 @@ layout: "layout-api"
 
     /* Menu Manager */
     $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
+
+    /* Permission manager */
+    $app->post('/permissionManager/login/',function() use ($app, $client_mis) { login($app, $client_mis); });
+    $app->post('/permissionManager/logout/',function() use ($app) { logout($app); });
  
     // Run app
     $app->run();
@@ -128,5 +132,9 @@ layout: "layout-api"
 
     /* Menu Manager Partial */
     <%= partial "/MenuManager/_listMenu" %>
+
+    /* Permission Manager Partial */
+    <%= partial "/PermissionManager/_login" %>
+    <%= partial "/PermissionManager/_logout" %>
  
 ?>

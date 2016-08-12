@@ -18,34 +18,20 @@ session_start(); //start session.
         <meta content="" name="author" />
         
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-
-        <%= stylesheet_link_tag "stylesheet-desktop-home-kpi-operation-operationPerformance" %>
+        <%= stylesheet_link_tag "stylesheet-desktop-home-dashboard-op000" %>
 
     <body class="page-container-bg-solid page-md page-header-top-fixed">
-
-   
-
-
+                 
 
         <%= yield %>
-
 
         <!--[if lt IE 9]>
         <%= javascript_include_tag  "javascript-if-it-IE-9" %>
         <![endif]-->
 
-        <%= javascript_include_tag  "javascript-desktop-home-kpi-operation-operationPerformance" %>
-
-        
+        <%= javascript_include_tag  "javascript-desktop-home-dashboard-op000" %>
 
     </body>
 
     <%= partial "layouts/common/_menu_template" %>
-    <%= partial "layouts/layout-desktop-home-kpi-operation-operationPerformance/_dataTable-header-Template" %>
-    <%= partial "layouts/layout-desktop-home-kpi-operation-operationPerformance/_datatable-weekly-header-template" %>
-
-
-
-
 </html>
-

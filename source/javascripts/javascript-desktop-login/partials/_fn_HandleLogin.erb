@@ -1,5 +1,5 @@
 HandleLogin: function () {
-	console.log('HandleLogin');
+	// console.log('HandleLogin');
 
         $('.login-form').validate({
             errorElement: 'span', //default input error message container
@@ -45,9 +45,46 @@ HandleLogin: function () {
             },
 
             submitHandler: function(form) {
-                form.submit(); // form validation success, call ajax form submit
+
+                // var $form = $(form);
+                // console.log($(form).serialize());
+                // console.log($(form).serializeArray());
+
+                var login_form_info = {};
+
+                $.each($(form).serializeArray(),function(index, value){
+                    // console.log('My array has at position ' + index + ', this name: ' + value.name + ', this value: ' + value.value);
+
+                    if (value.name == "username") {
+                        login_form_info["userName"] = value.value;
+                    }
+
+                    if (value.name == "password") {
+                        login_form_info["passWord"] = value.value;
+                    }
+                });
+
+
+                $.ajax({
+                    url: "../../api/restful-api/permissionManager/login/",
+                    type: "POST",
+                    contentType: 'application/x-www-form-urlencoded',
+                    dataType: 'json',
+                    data: login_form_info,
+                    success: function(response) {
+                       console.log(response);
+                   },
+                   error: function(jqXHR, textStatus, errorThrown){
+                    alert('init error: ' + textStatus);
+                   }            
+               });
+
+                return false;
+
             }
         });
+
+
 
         $('.login-form input').keypress(function(e) {
             if (e.which == 13) {
