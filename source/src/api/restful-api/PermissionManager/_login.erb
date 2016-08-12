@@ -9,7 +9,7 @@
      *
      */
 
-    function login($app, $client_mis) {
+    function login($app, $client_mis, $key) {
 
 
     /* ************************* */
@@ -64,9 +64,20 @@
     <% end %>
 
 
+    /*  Partial : about JWT */
+    <%= partial "/PermissionManager/login/_jwt" %>
 
 
-    $return_msg = array("result" => $result, "details" => $report_result_details);
+
+    /* ********************* */
+    /* เริ่มกระบวนการส่งค่ากลับ */
+    /* ********************* */
+    $tmpRedirectURL = "../home/";
+
+    $return_msg = array("result" => $result, 
+                        "details" => $report_result_details,
+                        "redirectURL" => $tmpRedirectURL,
+                        "token" => $jwt);
     
     $app->response()->header("Content-Type", "application/json");
     echo json_encode($return_msg);
