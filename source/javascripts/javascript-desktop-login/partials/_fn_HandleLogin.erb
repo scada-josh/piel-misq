@@ -72,7 +72,21 @@ HandleLogin: function () {
                     dataType: 'json',
                     data: login_form_info,
                     success: function(response) {
-                       console.log(response);
+                       // console.log(response);
+       
+
+                        if (response.result == 'success') {
+                          //sleep for 5 seconds
+                          // sleep(5);
+                          window.setTimeout(function() {
+
+                            var url = response.redirectURL;
+                            $(location).attr('href',url);
+
+                          }, 500);
+                        }
+
+
                    },
                    error: function(jqXHR, textStatus, errorThrown){
                     alert('init error: ' + textStatus);

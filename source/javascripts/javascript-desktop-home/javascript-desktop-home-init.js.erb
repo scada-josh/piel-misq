@@ -3,41 +3,34 @@
  
     ///////////////////////////////////////////////////// Your
     // var venueAddress = "Grand Place, 1000, Brussels"; // Venue
-    var dailyKpiOperationDatatable;
 
-    var chartDropPerformance;
-    var chartDropPerformanceSeries;
+    // Common Partials : Global Constant
+    <%= partial js_dir + "/common-partials/_var_GlobalConstant" %>
 
-    var chartBoxSentPerformance;
-    var chartBoxSentPerformanceSeries;
+    
+    var API_PATH = "../../api/restful-api";
+    var aciveMenu = "";
 
-    var chartPercentEPOD;
-    var chartPercentEPODSeries;
 
     
     /////////////////////////////////////////////////// Adress
  
     var fn = {
- 
+
         // Launch Functions
         Launch: function () {
-            fn.DailyKpiOperationDatatable();
-            fn.ChartDropPerformance("05/30/2016", "05/30/2016", "bc");
-            fn.ChartBoxSentPerformance("05/30/2016", "05/30/2016", "bc");
-            fn.ChartPercentEPOD("05/30/2016", "05/30/2016", "bc");
+            fn.MenuGenerator();
             fn.Apps();
         },
         
-        // Highcharts
-        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_ChartDropPerformance" %>
-        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_ChartBoxSentPerformance" %>
-        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_ChartPercentEPOD" %>
-        
-        // Daily KPI Operation - Datatable
-        <%= partial js_dir + "/javascript-desktop-home/partials/_fn_DailyKpiOperationDatatable" %>
+        // Menu Generator
+        <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
+        <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>
         // Logout
         <%= partial js_dir + "/javascript-desktop-home/partials/_fn_Logout" %>
- 		// Apps
+        // Common Partials
+        <%= partial js_dir + "/common-partials/_fn_GetAbsolutePath" %>
+        // Apps
         <%= partial js_dir + "/javascript-desktop-home/partials/_fn_Apps" %>
 
     };

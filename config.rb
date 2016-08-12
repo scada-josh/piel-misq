@@ -62,6 +62,31 @@ configure :build do
   activate :relative_assets
 
   # Any files you want to ignore:
+  ignore '/src/desktop/home/index_2016-08-12.php.erb'
+  ignore '/src/desktop/home/partials_2016-08-12/*'
+  ignore '/javascripts/javascript-desktop-home_2016-08-12/*'
+  ignore '/javascripts/javascript-desktop-home_2016-08-12.js.erb'
+  ignore '/stylesheets/stylesheet-desktop-home_2016-08-12/*'
+  ignore '/stylesheets/stylesheet-desktop-home_2016-08-12.css.erb'
+
+  ignore '/javascripts/javascript-desktop-home/*'
+  ignore '/javascripts/javascript-desktop-home-dashboard-op000/*'
+  ignore '/javascripts/javascript-desktop-home-kpi-op001/*'
+  ignore '/javascripts/javascript-desktop-home-kpi-op002/*'
+  ignore '/javascripts/javascript-desktop-home-kpi-op003/*'
+  ignore '/javascripts/javascript-desktop-home-kpi-operation-operationPerformance/*'
+  ignore '/javascripts/javascript-desktop-login/*'
+  ignore '/javascripts/javascript-desktop-unitTest-defiantJS/*'
+
+  # ignore '/stylesheets/stylesheet-desktop-home/*'
+  # ignore '/stylesheets/stylesheet-desktop-home-dashboard-op000/*'
+  # ignore '/stylesheets/stylesheet-desktop-home-kpi-op001/*'
+  # ignore '/stylesheets/stylesheet-desktop-home-kpi-op002/*'
+  # ignore '/stylesheets/stylesheet-desktop-home-kpi-op003/*'
+  # ignore '/stylesheets/stylesheet-desktop-home-kpi-operation-operationPerformance/*'
+  # ignore '/stylesheets/stylesheet-desktop-login/*'
+  # ignore '/stylesheets/stylesheet-desktop-unitTest-defiantJS/*'
+
   ignore '/helper/*'
   ignore '/helper_metronic_v4.5.6/*'
 
