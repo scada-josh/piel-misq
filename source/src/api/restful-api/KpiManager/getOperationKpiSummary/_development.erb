@@ -13,10 +13,10 @@
         /* เริ่มกระบวนการเชื่อมต่อ Web Service */
         /* ************************* */
 
-        $result = $client->call('A_MISObj_R0001Presentation_Model3', array("dateStart" => $postStartDate,
+        $result = $client->call('MISObj_R0001Presentation_Model3', array("dateStart" => $postStartDate,
                                                          				   "dateEnd" => $postEndDate,
                                                          				   "intSite" => $postSiteName));
-        $reportResult = json_decode($result["A_MISObj_R0001Presentation_Model3Result"],true);
+        $reportResult = json_decode($result["MISObj_R0001Presentation_Model3Result"],true);
 
 
 
