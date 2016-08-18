@@ -7,6 +7,13 @@ Apps: function () {
     	fn.Logout();
     });
 
+    // $('#botKillLoading').bind('click', function(){
+    // 	fn.CloseLoadingMessageBox();
+    // });
 
+	$("#botKillLoading").on("tap",function(){
+	    $.metroLoadingKill();
+	    $("#botKillLoading").fadeOut();
+	})
 
 }

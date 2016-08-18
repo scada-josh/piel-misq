@@ -128,13 +128,27 @@ layout: "layout-api"
     $app->post('/testManager/exportExcelTemplate/',function() use ($app, $objPHPExcel) { exportExcelTemplate($app, $objPHPExcel); });
     $app->get('/testManager/memcachedTemplate/',function() use ($app, $memcachedClient) { memcachedTemplate($app, $memcachedClient); });
 
-    /* KPI manager */
+    /* KPI manager - Original */
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
     $app->post('/kpiManager/exportOperationKPI/',function() use ($app, $client, $objPHPExcel) { exportOperationKPI($app, $client, $objPHPExcel); });
     $app->post('/kpiManager/boxOperationKPI/',function() use ($app, $client, $objPHPExcel) { boxOperationKPI($app, $client, $objPHPExcel); });
     $app->post('/kpiManager/getOperationKpiSummary/',function() use ($app, $client_mis) { getOperationKpiSummary($app, $client_mis); });
     $app->post('/kpiManager/getOperationKpiSummaryInfo/',function() use ($app, $client_mis) { getOperationKpiSummaryInfo($app, $client_mis); });
     $app->post('/kpiManager/getOperationKpiSummaryInfoByWeekly/',function() use ($app, $client_mis) { getOperationKpiSummaryInfoByWeekly($app, $client_mis); });
+
+    /* Vehicle - KPI Manager Partial */
+    $app->post('/kpiManager/getVehicleKpiByDaily/',function() use ($app, $client_mis) { getVehicleKpiByDaily($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleKpiByWeekly/',function() use ($app, $client_mis) { getVehicleKpiByWeekly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleKpiByMonthly/',function() use ($app, $client_mis) { getVehicleKpiByMonthly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleKpiByQuarterly/',function() use ($app, $client_mis) { getVehicleKpiByQuarterly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleKpiByHalfYear/',function() use ($app, $client_mis) { getVehicleKpiByHalfYear($app, $client_mis); });
+
+    /* Vehicle Leader - KPI Manager Partial */
+    $app->post('/kpiManager/getVehicleLeaderKpiByDaily/',function() use ($app, $client_mis) { getVehicleLeaderKpiByDaily($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleLeaderKpiByWeekly/',function() use ($app, $client_mis) { getVehicleLeaderKpiByWeekly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleLeaderKpiByMonthly/',function() use ($app, $client_mis) { getVehicleLeaderKpiByMonthly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleLeaderKpiByQuarterly/',function() use ($app, $client_mis) { getVehicleLeaderKpiByQuarterly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleLeaderKpiByHalfYear/',function() use ($app, $client_mis) { getVehicleLeaderKpiByHalfYear($app, $client_mis); });
 
     /* Menu Manager */
     $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
@@ -161,6 +175,20 @@ layout: "layout-api"
     <%= partial "/KpiManager/_getOperationKpiSummary" %>
     <%= partial "/KpiManager/_getOperationKpiSummaryInfo" %>
     <%= partial "/KpiManager/_getOperationKpiSummaryInfoByWeekly" %>
+
+    /* Vehicle - KPI Manager Partial */
+    <%= partial "/KpiManager/_getVehicleKpiByDaily" %>
+    <%= partial "/KpiManager/_getVehicleKpiByWeekly" %>
+    <%= partial "/KpiManager/_getVehicleKpiByMonthly" %>
+    <%= partial "/KpiManager/_getVehicleKpiByQuarterly" %>
+    <%= partial "/KpiManager/_getVehicleKpiByHalfYear" %>
+
+    /* Vehicle Leader - KPI Manager Partial */
+    <%= partial "/KpiManager/_getVehicleLeaderKpiByDaily" %>
+    <%= partial "/KpiManager/_getVehicleLeaderKpiByWeekly" %>
+    <%= partial "/KpiManager/_getVehicleLeaderKpiByMonthly" %>
+    <%= partial "/KpiManager/_getVehicleLeaderKpiByQuarterly" %>
+    <%= partial "/KpiManager/_getVehicleLeaderKpiByHalfYear" %>
 
     /* Menu Manager Partial */
     <%= partial "/MenuManager/_listMenu" %>

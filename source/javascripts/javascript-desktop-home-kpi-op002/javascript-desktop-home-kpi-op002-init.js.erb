@@ -19,10 +19,14 @@
 
         // Launch Functions
         Launch: function () {
+            fn.ShowLoadingMessageBox();
             fn.MenuGenerator();
             fn.Apps();
         },
-        
+        // metro-notifications
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowLoadingMessageBox" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_CloseLoadingMessageBox" %>
+
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>
