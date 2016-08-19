@@ -1,0 +1,19 @@
+// Apps
+Apps: function () {
+	// console.log('Apps');
+
+
+    $('#button-logout').bind('click', function(){
+    	fn.Logout();
+    });
+
+    // $('#botKillLoading').bind('click', function(){
+    // 	fn.CloseLoadingMessageBox();
+    // });
+
+	$("#botKillLoading").on("tap",function(){
+	    $.metroLoadingKill();
+	    $("#botKillLoading").fadeOut();
+	})
+
+}

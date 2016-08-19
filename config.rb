@@ -39,6 +39,9 @@ set :helper_dir, 'helper'
 set :partials_desktop_home, 'src/desktop/home'
 set :partials_desktop_home_kpi_operation_operationPerformance, 'src/desktop/home/menu-kpi/menu-operation/menu-operation-performance'
 
+set :kpi_op001_dir, '/src/desktop/home/kpi/op-001'
+set :kpi_op002_dir, '/src/desktop/home/kpi/op-002'
+set :kpi_op003_dir, '/src/desktop/home/kpi/op-003'
 
 
 # Reload the browser automatically whenever files change

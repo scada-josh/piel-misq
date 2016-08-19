@@ -16,9 +16,19 @@
     /////////////////////////////////////////////////// Adress
  
     var fn = {
+        
+        strFilterType : "daily", /* daily, weekly, monthly, quater, half-year */
+        objIonRangeByWeekly: {},
+        last_weekly_from: 1,
+        last_weekly_to: 52,
+        objIonRangeByMonthly: {},
+        objIonRangeByQuater: {},
+        objIonRangeByHalfYear: {},
 
         // Launch Functions
         Launch: function () {
+            fn.DateRangePicker();
+            fn.IonRangeSlider();
             fn.ShowLoadingMessageBox();
             fn.MenuGenerator();
             fn.Apps();
@@ -26,6 +36,20 @@
         // metro-notifications
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowLoadingMessageBox" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_CloseLoadingMessageBox" %>
+
+        // Header Filter
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilter" %>
+
+        // Routers
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_Routers" %>
+
+        // Date Range Picker
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DateRangePicker" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeDate" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeDate_Basic" %>
+
+        // IonRangeSlider
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_IonRangeSlider" %>
 
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>

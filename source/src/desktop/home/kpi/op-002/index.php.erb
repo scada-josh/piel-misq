@@ -56,7 +56,20 @@ pageSubTitle: "Operation Performance"
                             <!-- BEGIN PAGE CONTENT INNER -->
                             <div class="page-content-inner">
 
-                                <%= partial partials_desktop_home + "/kpi/op-002/partials/_prototype_cover" %>
+                                <div class="row">
+                                        <div class="col-md-4 ">
+                                        <%= partial kpi_op002_dir + "/partials/_form_filter" %>
+                                        </div>
+                                        <div class="col-md-8 " id="infomation-portlet">
+
+                                            <%= partial kpi_op002_dir + "/partials/_portlet_datatable_operation_kpi_daily" %>
+                                            <%= partial kpi_op002_dir + "/partials/_portlet_datatable_operation_kpi_weekly" %>
+                                            <%= partial kpi_op002_dir + "/partials/_portlet_datatable_operation_kpi_monthly" %>
+                                            <%= partial kpi_op002_dir + "/partials/_portlet_datatable_operation_kpi_quater" %>
+                                            <%= partial kpi_op002_dir + "/partials/_portlet_datatable_operation_kpi_half-year" %>
+                                            
+                                        </div>
+                                </div>
 
                                 <button id="botKillLoading" class="btn btn-danger" style="display: none;"><i class="fa fa-trash-o"></i> Stop Loading... </button>
                                 
