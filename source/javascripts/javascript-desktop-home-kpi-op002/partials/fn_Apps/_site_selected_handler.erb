@@ -17,12 +17,18 @@
         //   fn.paramEndDate = fn.paramEndDate.format('MM/DD/YYYY');
         // }
         
-        if (fn.paramStartDate && fn.paramEndDate) {
-          fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
-          // fn.DatatableOperationKPI_FF();
-        }
+        // if (fn.paramStartDate && fn.paramEndDate) {
+        //   fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+        //   // fn.DatatableOperationKPI_FF();
+        // }
         
 
+        if (fn.paramSiteName) {
+            $("#site-name-label-" + fn.strFilterType).html(fn.paramSiteName);
+        } else {
+            $("#site-name-label-" + fn.strFilterType).html("-");
+        }
+    
         // console.log('Dropdown selected');
         // console.log("site name : " + fn.paramSiteName);
         // console.log("start date : " + fn.paramStartDate);

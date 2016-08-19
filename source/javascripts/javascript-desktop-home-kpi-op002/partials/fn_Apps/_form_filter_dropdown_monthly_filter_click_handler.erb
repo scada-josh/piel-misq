@@ -4,7 +4,7 @@
 		if (fn.strFilterType != "monthly") {
 			fn.Routers("monthly");
 			fn.strFilterType = "monthly";
-			// fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+			fn.HeaderFilterMonthly(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
 
 	          // UPDATE - updates slider to any new values
 	          fn.objIonRangeByMonthly.update({

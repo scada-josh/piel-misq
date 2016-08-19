@@ -4,7 +4,7 @@
             if (fn.strFilterType != "half-year") {
                   fn.Routers("half-year");
                   fn.strFilterType = "half-year";
-                  // fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+                  fn.HeaderFilterHalfYear(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
 
                   // UPDATE - updates slider to any new values
                   fn.objIonRangeByHalfYear.update({

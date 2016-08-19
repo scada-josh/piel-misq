@@ -15,8 +15,11 @@
     
     /////////////////////////////////////////////////// Adress
  
+    // ********************************** //
+    // ******** Global Object ********* //
+    // ********************************** //
     var fn = {
-        
+
         strFilterType : "daily", /* daily, weekly, monthly, quater, half-year */
         objIonRangeByWeekly: {},
         last_weekly_from: 1,
@@ -27,18 +30,19 @@
 
         // Launch Functions
         Launch: function () {
-            fn.DateRangePicker();
             fn.IonRangeSlider();
-            fn.ShowLoadingMessageBox();
+            fn.DateRangePicker();
+            
             fn.MenuGenerator();
             fn.Apps();
         },
-        // metro-notifications
-        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowLoadingMessageBox" %>
-        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_CloseLoadingMessageBox" %>
-
+        
         // Header Filter
-        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilter" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilterDaily" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilterWeekly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilterMonthly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilterQuater" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_HeaderFilterHalfYear" %>
 
         // Routers
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_Routers" %>
@@ -47,10 +51,13 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DateRangePicker" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeDate" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeDate_Basic" %>
-
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeWeekly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeMonthly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeQuater" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ShowRangeHalfYear" %>
+        
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_IonRangeSlider" %>
-
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>
@@ -58,7 +65,7 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_Logout" %>
         // Common Partials
         <%= partial js_dir + "/common-partials/_fn_GetAbsolutePath" %>
- 		// Apps
+        // Apps
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_Apps" %>
 
     };

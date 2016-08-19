@@ -1,7 +1,7 @@
 DateRangePicker: function () {
 	// console.log('DateRangePicker');
     
-    fn.ShowRangeDate(moment().subtract(0, 'days'), moment());
+
 
     $('#reportrange').daterangepicker({
         "showISOWeekNumbers": true,
@@ -20,4 +20,6 @@ DateRangePicker: function () {
         }
     }, fn.ShowRangeDate_Basic);
     
+
+    fn.ShowRangeDate(moment().subtract(1, 'days'), moment());
 },

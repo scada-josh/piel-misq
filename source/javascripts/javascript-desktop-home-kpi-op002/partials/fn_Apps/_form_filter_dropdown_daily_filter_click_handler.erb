@@ -4,7 +4,7 @@
             if (fn.strFilterType != "daily") {
             	fn.Routers("daily");
                   fn.strFilterType = "daily";
-                  // fn.HeaderFilter(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
+                  fn.HeaderFilterDaily(fn.paramSiteName, fn.paramStartDate, fn.paramEndDate);
             }
 
       	$("#filter-type-label").html("Daily");
