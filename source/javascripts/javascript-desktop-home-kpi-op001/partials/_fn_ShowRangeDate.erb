@@ -6,6 +6,9 @@ ShowRangeDate: function (start, end) {
 	
 	fn.paramStartDate =  start;
 	fn.paramEndDate = end;
+
+	// console.log("paramStartDate");
+	// console.log(fn.paramStartDate);
 	
   	$('#reportrange span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
 

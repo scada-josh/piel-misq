@@ -1,0 +1,25 @@
+ShowLoadingMessageBox: function () {
+  // console.log('ShowLoadingMessageBox');
+
+
+  $.metroLoading({
+    title: "Loading Things...",
+    content:"Please wait until process finish",
+    buttons:["Accept","Cancel"],
+    icons:["fa-check-square-o"],
+    fa: "fa-refresh",
+    backgroundcolor: "#00ab4e",
+    backgroundcontent: "#",
+    opacity:0.6,
+    colortime:3500,
+    colors:["#0072BC"],
+  });
+
+
+    setTimeout(function() {
+        $("#botKillLoading").fadeIn();
+    }, 1000);
+
+  
+
+},

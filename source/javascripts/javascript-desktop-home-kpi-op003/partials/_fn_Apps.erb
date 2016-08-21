@@ -23,5 +23,11 @@ Apps: function () {
     	fn.Logout();
     });
 
+    $("#botKillLoading").on("tap",function(){
+        $.metroLoadingKill();
+        $("#botKillLoading").fadeOut();
+    });
 
+    fn.ShowLoadingMessageBox();
+    
 }

@@ -1,0 +1,13 @@
+CloseLoadingMessageBox: function () {
+	// console.log('CloseLoadingMessageBox');
+
+  $.xhrPool.abortAll();
+  
+  $.metroLoadingKill();
+
+  $("#botKillLoading").fadeOut();
+
+    
+},
+
+

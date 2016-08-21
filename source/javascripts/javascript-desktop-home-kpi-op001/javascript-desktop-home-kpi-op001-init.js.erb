@@ -12,6 +12,27 @@
     var aciveMenu = "KPI";
 
 
+    $.xhrPool = []; // array of uncompleted requests
+    $.xhrPool.abortAll = function() { // our abort function
+        $(this).each(function(idx, jqXHR) { 
+              jqXHR.abort();
+        });
+        $.xhrPool.length = 0
+    };
+
+    var datatableVehicle_Daily;
+    var objDatatableVehicle_Daily_DataCollections = {}; /* Array 2 dimensions */
+
+
+
+    var fAverageBox_EPOD;
+    var fAverageDrop_EPOD;
+    var arrAverageBox_EPOD = [];
+    var arrAverageDrop_EPOD = [];
+    var fAverageBox_NonEPOD;
+    var fAverageDrop_NonEPOD;
+    var arrAverageBox_NonEPOD = [];
+    var arrAverageDrop_NonEPOD = [];
 
     // ********************************** //
     // ******** Global Object ********* //
@@ -57,8 +78,19 @@
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_IonRangeSlider" %>
 
+        // Datatables
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeDailyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily" %>
+
+        // Helper Function
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrDates" %>
+
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_AlertMetro" %>
+        // MetroNotification 
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ShowLoadingMessageBox" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_CloseLoadingMessageBox" %>
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>
