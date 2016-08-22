@@ -63,6 +63,8 @@ ConsumeDailyInformation: function () {
 	        	"siteID" : fn.paramSiteID
 	        }
 
+          // console.log(tmpData);
+
           if (!fn.paramSiteID) {
 
             fn.AlertMetro("open", "กรุณาเลือกศูนย์", "warning");
@@ -97,7 +99,7 @@ ConsumeDailyInformation: function () {
                // console.log("success");
 
 
-               fn.CloseLoadingMessageBox();
+               
 
 
                // var index = $.xhrPool.indexOf(jqXHR);
@@ -205,7 +207,9 @@ ConsumeDailyInformation: function () {
 
                 $('#datatableVehicle_Daily').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
                   fn.DatatableVehicle_Daily();
-                  // fn.DatatableOperationKPI_Click_Handler();
+                  fn.DataTableVehicle_Daily_Click_Handler();
+
+                  
                 });
 
             },

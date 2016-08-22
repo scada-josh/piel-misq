@@ -1,0 +1,148 @@
+ConsumeDailyInformation: function () {
+	// console.log("ConsumeDailyInformation");
+
+          var myStartDate = moment(fn.paramStartDate);
+          var myEndDate = moment(fn.paramEndDate); 
+          var myDuration = moment.duration(myEndDate.diff(myStartDate));
+          var myDays = myDuration.asDays();
+          // console.log(myDays)
+
+          // console.log(myStartDate.format('dddd'));
+          // console.log(myEndDate.format('dddd'));
+
+
+          if (myStartDate.format('YYYY-MM-DD') == myEndDate.format('YYYY-MM-DD')) {
+              // var dt = moment(myStartDate, "YYYY-MM-DD HH:mm:ss")
+              // dt.format('dddd');
+              // console.log(dt.format('dddd'));
+
+              if (myStartDate.format('dddd') == "Sunday") {
+                fn.AlertMetro("open", "วันที่คุณเลือกคือวันอาทิตย์ ไม่มีการส่งของ, กรุณาเลือกช่วงวันอีกครั้ง", "danger");
+
+                return false;
+              }
+              
+          }
+
+          if (myDays > 50) {
+
+              fn.AlertMetro("open", "ช่วงวันที่คุณเลือกเกิน 50 วัน ระบบไม่สามารถแสดงผลได้, กรุณาเลือกช่วงวันอีกครั้ง", "warning");
+
+              return false;
+          } 
+
+
+
+
+          if ($.fn.DataTable.isDataTable('#datatableVehicleLeader_Daily') ) {
+              $('#datatableVehicleLeader_Daily').empty();
+              $('#datatableVehicleLeader_Daily').dataTable().fnDestroy();
+              $('#datatableVehicleLeader_Daily > thead > tr').remove();
+              $('#datatableVehicleLeader_Daily > tfoot > tr').remove();
+              // $('#datatableVehicleLeader_Daily').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+	        if (fn.paramStartDate) {
+	          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+	          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+	        }
+
+	        if (fn.paramEndDate) {
+	          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+	          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+	        }
+	        
+
+	        var tmpData = {
+	        	"startDate" : paramStartDate, 
+	        	"endDate" : paramEndDate, 
+	        	"siteID" : fn.paramSiteID
+	        }
+
+          // console.log("tmpData");
+          // console.log(tmpData);
+
+          if (!fn.paramSiteID) {
+
+            fn.AlertMetro("open", "กรุณาเลือกศูนย์", "warning");
+
+            return false;
+          } 
+
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getVehicleLeaderKpiByDaily/", 
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+               // console.log("success");
+
+
+
+               // console.log(result);
+
+               
+
+                // arrAverageBox_EPOD = [];
+                // arrAverageDrop_EPOD = [];
+                // arrAverageBox_NonEPOD = [];
+                // arrAverageDrop_NonEPOD = [];
+
+                // $("#epod-average-box-id").html(numeral(result.epod_average_box).format('0,0.00'));
+                // $("#epod-average-drop-id").html(numeral(result.epod_average_drop).format('0,0.00'));
+                // $("#non-epod-average-box-id").html(numeral(result.non_epod_average_box).format('0,0.00'));
+                // $("#non-epod-average-drop-id").html(numeral(result.non_epod_average_drop).format('0,0.00'));
+
+                var resultDataTableDailyHeaderTemplate = Handlebars.compile($("#datatable-daily-header-template").html());
+                
+                // var resultStartDate = moment(result.startDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                // var resultEndDate = moment(result.endDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                var arrDates = fn.GetArrDates(result);
+
+                var context = fn.DatatableVehicleLeader_Daily_ConvertToContext(arrDates);
+
+                
+
+
+                $('#datatableVehicleLeader_Daily').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                  fn.DatatableVehicleLeader_Daily();
+                  // fn.DatatableVehicleLeader_Daily_Click_Handler();
+
+
+                  
+                });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

@@ -2,7 +2,13 @@ CloseLoadingMessageBox: function () {
 	// console.log('CloseLoadingMessageBox');
 
 
+  // $.metroLoadingKill();
+
+  $.xhrPool.abortAll();
+  
   $.metroLoadingKill();
+
+  $("#botKillLoading").fadeOut();
 
     
 },

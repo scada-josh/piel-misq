@@ -12,6 +12,19 @@
     var aciveMenu = "KPI";
 
 
+    $.xhrPool = []; // array of uncompleted requests
+    $.xhrPool.abortAll = function() { // our abort function
+        $(this).each(function(idx, jqXHR) { 
+              jqXHR.abort();
+        });
+        $.xhrPool.length = 0
+    };
+
+    var datatableVehicleLeader_Daily;
+    var objDatatableVehicleLeader_Daily_DataCollections = {}; /* Array 2 dimensions */
+
+
+    
     
     /////////////////////////////////////////////////// Adress
  
@@ -60,6 +73,12 @@
         
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_IonRangeSlider" %>
+
+        // Datatables
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ConsumeDailyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DataTableVehicleLeader_Daily_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_GetArrDates" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DatatableVehicleLeader_Daily" %>
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_AlertMetro" %>

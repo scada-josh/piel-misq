@@ -1,0 +1,26 @@
+GetArrDates: function (data) {
+	// console.log("GetArrDates");
+
+	// console.log(data);
+	// console.log(data.rows);
+	// console.log(data.rows[0]);
+	// console.log(data.rows[0].details);
+
+	var dateArray = [];
+
+    $.each( data.rows[0].details, function( i, val ) {
+   		
+   		// $( "#" + val ).text( "Mine is " + val + "." );
+   		// console.log(val.date_name);
+   		dateArray.push(val.date_name.substring(4));
+
+
+
+	});
+
+	console.log(dateArray);
+	
+	return dateArray;
+	
+  
+},

@@ -43,7 +43,7 @@ DatatableVehicle_Daily: function () {
             objDeliveryType[result.rows[i].vehicle_licence] = result.rows[i].delivery_type;
 
             var k = 0;
-            var count_date_except_sunday = 0;
+            var count_date_empty_job_no = 0;
             for (var j=0; j < result.rows[i].details.length; j++ ) {
 
 
@@ -123,8 +123,11 @@ DatatableVehicle_Daily: function () {
 
                 var checkDayName = moment(result.rows[i].details[j].job_date, "DD/MM/YYYY").format('dddd');
                     // console.log(checkDayName);
-                if (checkDayName != "Sunday") {
-                    count_date_except_sunday++;
+                // if ((checkDayName == "Sunday") || (result.rows[i].details[j].job_no == "-")) {
+                //     count_date_empty_job_no++;
+                // }
+                if (result.rows[i].details[j].job_no == "-") {
+                    count_date_empty_job_no++;
                 }
             }
 
@@ -133,8 +136,15 @@ DatatableVehicle_Daily: function () {
             
             // tmpDataSet.push(numeral(tmpBoxCount/j).format('0.00'));
             // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
-            tmpDataSet.push(numeral(tmpBoxCount/count_date_except_sunday).format('0.00'));
-            tmpDataSet.push(numeral(tmpDropCount/count_date_except_sunday).format('0.00'));
+
+            if (j != count_date_empty_job_no) {
+                tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0.00'));
+                tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0.00'));
+            } else {
+                tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
+                tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
+            }
+            
 
             // Average column
             // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
@@ -159,6 +169,8 @@ DatatableVehicle_Daily: function () {
         datatableVehicle_Daily.rows.add(dataSet); // Add new data
         datatableVehicle_Daily.columns.adjust().draw(); // Redraw the DataTable
         $('.dataTables_processing', $('#datatableVehicle_Daily').closest('.dataTables_wrapper')).hide();
+
+        fn.CloseLoadingMessageBox();
 
     }
 
