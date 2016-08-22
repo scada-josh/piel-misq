@@ -117,9 +117,12 @@ ConsumeDailyInformation: function () {
 
                 var resultDataTableDailyHeaderTemplate = Handlebars.compile($("#datatable-daily-header-template").html());
                 
-                // var resultStartDate = moment(result.startDate, "DD/MM/YYYY").format('YYYY-MM-DD');
-                // var resultEndDate = moment(result.endDate, "DD/MM/YYYY").format('YYYY-MM-DD');
-                var arrDates = fn.GetArrDates(result);
+            
+                // var arrDates = fn.GetArrDates(result);
+
+                var resultStartDate = moment(result.startDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                var resultEndDate = moment(result.endDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                var arrDates = fn.GetArrDates(new Date(resultStartDate), new Date(resultEndDate));
 
                 var context = fn.DatatableVehicleLeader_Daily_ConvertToContext(arrDates);
 
