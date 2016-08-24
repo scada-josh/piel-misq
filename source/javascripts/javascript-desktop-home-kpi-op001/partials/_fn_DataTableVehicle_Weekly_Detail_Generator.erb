@@ -1,0 +1,119 @@
+DataTableVehicle_Weekly_Detail_Generator: function (mSiteID, mVehicleLicense, myYearNo, myWeekNo) { 
+	// console.log('DataTableVehicle_Weekly_Detail_Generator');
+
+    var dataSet = [];
+
+
+    function DataTableVehicle_Weekly_Detail_Render(result) {
+        // console.log(result);
+
+        // var i = 0;
+        // var j = 0;
+
+        var tmpDataSet = [];
+
+        for (var i=1; i < result.rows.length; i++ ) {
+
+            // var tmpDataSet = [];
+
+            // var tmpDropCount = 0;
+            // var dropAverage = 0;
+
+            // var tmpBoxCount = 0;
+            // var boxAverage = 0;
+
+            // var k = 0;
+            // for (var j=0; j < result.rows[i].details.length; j++ ) {
+
+            //     console.log(result.rows[i].details[j]);
+                
+                // tmpDataSet.push(result.rows[i].details[j].box);
+                // tmpDataSet.push(result.rows[i].details[j].drop);
+            // }
+
+            tmpDataSet.push(result.rows[i].box_success_avg);
+            tmpDataSet.push(result.rows[i].drop_success_avg);
+
+            
+            // dataSet.push(tmpDataSetObj);
+
+        }
+
+        dataSet.push(tmpDataSet);
+
+        // console.log(dataSet);
+
+        // $('#datatableVehicle_Detail_Weekly').dataTable(dataSet);
+        datatableVehicle_Detail_Weekly.clear().draw();
+        datatableVehicle_Detail_Weekly.rows.add(dataSet); // Add new data
+        datatableVehicle_Detail_Weekly.columns.adjust().draw(); // Redraw the DataTable
+        $('.dataTables_processing', $('#datatableVehicle_Detail_Weekly').closest('.dataTables_wrapper')).hide();
+
+        fn.CloseLoadingMessageBox();
+
+    }
+
+
+        //------------------------ datatableVehicle Daily -----------------------//
+        if (jQuery().dataTable) {
+
+             datatableVehicle_Detail_Weekly = $('#datatableVehicle_Detail_Weekly').DataTable( {
+                "processing": true,
+                "bDestroy": true,
+                "bAutoWidth": false,
+                "bPaginate": false,
+                "bFilter": false,
+                "bInfo": false,
+                "ajax": {
+                    "url": "../../../../api/restful-api/kpiManager/getVehicleKpiDetailByWeekly/",
+                    "type": "POST",
+                    "data": function ( d ) {
+
+                            // var tmpData = {
+                            //   "site_id" : mSiteID,
+                            //   "vehicle_license" : mVehicleLicense,
+                            //   "year_no" : myYearNo,
+                            //   "week_no" : myWeekNo
+                            // }
+                            // console.log(tmpData);
+
+                            d.site_id = mSiteID;
+                            d.vehicle_license = mVehicleLicense;
+                            d.year_no = myYearNo;
+                            d.week_no = myWeekNo.replace("week#", "");
+
+                            return d;
+                    },
+                    "dataSrc": "rows",
+                    "success": function(data) {
+                            // alert(data);
+                            // console.log('success');
+                            // console.log(data);
+
+                            DataTableVehicle_Weekly_Detail_Render(data);
+                    },
+                    "error": function(jqXHR, textStatus, errorThrown){
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                        console.log('init error: ' + textStatus);
+                    }
+                },
+                "deferRender":    true,
+                "scrollX":        true,
+                "scrollY":        '40vh',
+                "scrollCollapse": true,
+                "paging":         false,
+                // "data": dataSet,
+                "aaData": dataSet,
+
+                "order" : [] //disable default sorting, eg sorting on 1st column
+
+                
+            });
+
+              datatableVehicle_Detail_Weekly.columns.adjust().draw();
+
+        }
+    
+},

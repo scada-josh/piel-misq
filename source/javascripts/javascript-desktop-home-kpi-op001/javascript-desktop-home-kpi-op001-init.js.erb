@@ -23,6 +23,8 @@
     var datatableVehicle_Daily;
     var objDatatableVehicle_Daily_DataCollections = {}; /* Array 2 dimensions */
     var datatableVehicle_Weekly;
+    var objDatatableVehicle_Weekly_DataCollections = {}; /* Array 2 dimensions */
+    var datatableVehicle_Detail_Weekly;
 
 
 
@@ -93,11 +95,16 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_Click_Handler" %>
-
+        // Datatables : Weekly
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeWeeklyInformation" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrWeeks" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Generator" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Click_Handler" %>
+        // Datatables : Weekly Detail
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeWeeklyDetailInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Detail_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Detail_Generator" %>
 
         
 

@@ -16,7 +16,7 @@ DataTableVehicle_Weekly_Generator: function () {
 
         // valJSONColTable = [];
 
-        // objDatatableVehicle_Daily_DataCollections = {};
+        // objDatatableVehicle_Weekly_DataCollections = {};
 
         var i = 0;
         var j = 0;
@@ -42,14 +42,21 @@ DataTableVehicle_Weekly_Generator: function () {
             for (var j=0; j < result.rows[i].details.length; j++ ) {
 
 
-                // tmpDataSetObj[strDate + '_drop'] = result.rows[i].details[j].drop_success;
-                // tmpDataSetObj[strDate + '_box'] = result.rows[i].details[j].box_success;
+                var dataCollectionsObj_inner = {};
 
-                
-                // objDatatableVehicle_Daily_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
-                // k++;
-                // objDatatableVehicle_Daily_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
-                // k++;
+                dataCollectionsObj_inner['id'] = result.rows[i].details[j].id;
+                dataCollectionsObj_inner['year_no'] = result.rows[i].details[j].year_no;
+                dataCollectionsObj_inner['week_no'] = result.rows[i].details[j].week_no;
+                dataCollectionsObj_inner['drop'] = result.rows[i].details[j].drop;
+                dataCollectionsObj_inner['box'] = result.rows[i].details[j].box;
+                dataCollectionsObj_inner['cpb'] = result.rows[i].details[j].cpb;
+
+                // console.log(dataCollectionsObj_inner);
+
+                objDatatableVehicle_Weekly_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
+                k++;
+                objDatatableVehicle_Weekly_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
+                k++;
 
                 // console.log(result.rows[i].details[j]);
 
@@ -92,6 +99,7 @@ DataTableVehicle_Weekly_Generator: function () {
             "processing": true,
             "bDestroy": true,
             "bAutoWidth": false,
+            "dom": '<"top"fi>rt<"bottom"lp><"clear">',
             "ajax": {
                 "url": "../../../../api/restful-api/kpiManager/getVehicleKpiByWeekly/",
                 "type": "POST",
@@ -142,6 +150,9 @@ DataTableVehicle_Weekly_Generator: function () {
             "paging":         false,
             // "data": dataSet,
             "aaData": dataSet,
+
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DatatableVehicle_Weekly_Generator/_aoColumnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DatatableVehicle_Weekly_Generator/_footerCallback" %>
 
             
 

@@ -1,0 +1,37 @@
+ConsumeWeeklyDetailInformation: function (mSiteID, mVehicleLicense, myYearNo, myWeekNo) {
+	// console.log("ConsumeWeeklyDetailInformation");
+
+
+          fn.ShowLoadingMessageBox();  
+
+          if ($.fn.DataTable.isDataTable('#datatableVehicle_Detail_Weekly') ) {
+              $('#datatableVehicle_Detail_Weekly').empty();
+              $('#datatableVehicle_Detail_Weekly').dataTable().fnDestroy();
+              $('#datatableVehicle_Detail_Weekly > thead > tr').remove();
+              $('#datatableVehicle_Detail_Weekly > tfoot > tr').remove();
+              // $('#datatableVehicle_Detail_Weekly').deleteTFoot();
+          }
+	        
+
+
+          var resultDataTableWeeklyDetailHeaderTemplate = Handlebars.compile($("#datatable-weekly-detail-header-template").html());
+          var context = fn.DataTableVehicle_Weekly_Detail_ConvertToContext();
+
+          $('#datatableVehicle_Detail_Weekly').html(resultDataTableWeeklyDetailHeaderTemplate(context)).promise().done(function(){
+                  // fn.DataTableVehicle_Weekly_Generator();
+                  // fn.DataTableVehicle_Weekly_Click_Handler();
+
+                  fn.DataTableVehicle_Weekly_Detail_Generator(mSiteID, mVehicleLicense, myYearNo, myWeekNo);
+
+                  // fn.CloseLoadingMessageBox();
+
+          });
+
+
+
+
+  
+    return false;
+
+  
+},

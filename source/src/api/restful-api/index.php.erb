@@ -139,6 +139,7 @@ layout: "layout-api"
     /* Vehicle - KPI Manager Partial */
     $app->post('/kpiManager/getVehicleKpiByDaily/',function() use ($app, $client_mis) { getVehicleKpiByDaily($app, $client_mis); });
     $app->post('/kpiManager/getVehicleKpiByWeekly/',function() use ($app, $client_mis) { getVehicleKpiByWeekly($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleKpiDetailByWeekly/',function() use ($app, $client_mis) { getVehicleKpiDetailByWeekly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleKpiByMonthly/',function() use ($app, $client_mis) { getVehicleKpiByMonthly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleKpiByQuarterly/',function() use ($app, $client_mis) { getVehicleKpiByQuarterly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleKpiByHalfYear/',function() use ($app, $client_mis) { getVehicleKpiByHalfYear($app, $client_mis); });
@@ -179,6 +180,7 @@ layout: "layout-api"
     /* Vehicle - KPI Manager Partial */
     <%= partial "/KpiManager/_getVehicleKpiByDaily" %>
     <%= partial "/KpiManager/_getVehicleKpiByWeekly" %>
+    <%= partial "/KpiManager/_getVehicleKpiDetailByWeekly" %>
     <%= partial "/KpiManager/_getVehicleKpiByMonthly" %>
     <%= partial "/KpiManager/_getVehicleKpiByQuarterly" %>
     <%= partial "/KpiManager/_getVehicleKpiByHalfYear" %>

@@ -5,6 +5,7 @@ FullscreenToggle_DataTableVehicle_Weekly: function () {
         
         if ($.fn.DataTable.isDataTable('#datatableVehicle_Weekly') ) { 
             datatableVehicle_Weekly.columns.adjust().draw();
+            datatableVehicle_Detail_Weekly.columns.adjust().draw();
         }
 
         if($(this).attr('data-click-state') == 1) {
