@@ -44,7 +44,9 @@
 
                 for (var i=2; i < (objSize(dataSet[0])); i++ ) {
                     
+                    var countSeparateSign = 0;
 
+                    
                     // Total over all pages
                     total = api.column(i).data().reduce( function (a, b) {
 
@@ -67,6 +69,7 @@
                             _b = b;
                         } else {
                             _b = 0;
+                            countSeparateSign++;
                         }
 
                         return intVal(a) + intVal(_b);
@@ -76,10 +79,13 @@
 
                     var pageAverage;
                     var displayResult = "";
-                        
+                    
+                    if (rowCount != countSeparateSign) {
                         pageAverage = pageTotal/(rowCount);
                         displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
-
+                    } else {
+                        displayResult = "-";
+                    }
 
                     //     // Update footer
                     $( api.column( i ).footer() ).html(

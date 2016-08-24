@@ -1,4 +1,4 @@
-    <script id="datatable-daily-header-template" type="text/x-handlebars-template">
+    <script id="datatable-weekly-header-template" type="text/x-handlebars-template">
 
         <thead>
             
@@ -7,8 +7,10 @@
 
                 {{#if_eq dateHeader 'ลำดับ'}}
                     <th class="" rowspan="2">{{dateHeader}}</th>
-                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
-                    <th class="" rowspan="2">{{dateHeader}}</th>
+                {{else if_eq dateHeader 'รถ'}}
+                    <th class="DatatableVehicle-common" rowspan="2">{{dateHeader}}</th>
+                {{else if_eq dateHeader 'ทะเบียนรถ'}}
+                    <th class="DatatableVehicle-common" rowspan="2">{{dateHeader}}</th>
                 {{else}}
                     <th class="DatatableVehicle-common" colspan="2">{{dateHeader}}</th>
                 {{/if_eq}}
@@ -20,7 +22,9 @@
 
                 {{#if_eq dateHeader 'ลำดับ'}}
                    <!--  <th class="" ></th> -->
-                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq dateHeader 'รถ'}}
+                    <!-- <th class="" ></th> -->
+                {{else if_eq dateHeader 'ทะเบียนรถ'}}
                     <!-- <th class="" ></th> -->
                 {{else}}
                     <th>Box</th>
@@ -39,8 +43,10 @@
                 {{#each headers}}
 
                 {{#if_eq dateHeader 'ลำดับ'}}
-                 <th class="" colspan="2">Average<br/><small>(total)</small></th>
-                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                 <th class="" colspan="3">Average<br/><small>(total)</small></th>
+                {{else if_eq dateHeader 'รถ'}}
+                <!-- <th class="" ></th> -->
+                {{else if_eq dateHeader 'ทะเบียนรถ'}}
                 <!-- <th class="" ></th> -->
                 {{else}}
                 <th>-</th>

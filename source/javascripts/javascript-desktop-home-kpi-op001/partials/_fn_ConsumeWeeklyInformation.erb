@@ -1,0 +1,112 @@
+ConsumeWeeklyInformation: function () {
+	// console.log("ConsumeWeeklyInformation");
+
+
+          if ($.fn.DataTable.isDataTable('#datatableVehicle_Weekly') ) {
+              $('#datatableVehicle_Weekly').empty();
+              $('#datatableVehicle_Weekly').dataTable().fnDestroy();
+              $('#datatableVehicle_Weekly > thead > tr').remove();
+              $('#datatableVehicle_Weekly > tfoot > tr').remove();
+              // $('#datatableVehicle_Weekly').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+	        if (fn.paramStartDate) {
+	          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+	          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+	        }
+
+	        if (fn.paramEndDate) {
+	          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+	          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+	        }
+	        
+
+	        var tmpData = {
+	        	"startDate" : paramStartDate, 
+	        	"endDate" : paramEndDate, 
+	        	"siteID" : fn.paramSiteID
+	        }
+
+          // console.log(tmpData);
+
+          if (!fn.paramSiteID) {
+
+            fn.AlertMetro("open", "กรุณาเลือกศูนย์", "warning");
+
+            return false;
+          } 
+
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getVehicleKpiByWeekly/", 
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+
+
+               // console.log(result);
+
+                // arrAverageBox_EPOD = [];
+                // arrAverageDrop_EPOD = [];
+                // arrAverageBox_NonEPOD = [];
+                // arrAverageDrop_NonEPOD = [];
+
+                
+
+                var resultDataTableWeeklyHeaderTemplate = Handlebars.compile($("#datatable-weekly-header-template").html());
+                
+                // var resultStartDate = moment(result.startDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                // var resultEndDate = moment(result.endDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                // var arrDates = fn.GetArrDates(new Date(resultStartDate), new Date(resultEndDate));
+
+                var arrWeeks = fn.GetArrWeeks(result);
+                // console.log(arrWeeks);
+
+                var context = fn.DataTableVehicle_Weekly_ConvertToContext(arrWeeks);
+
+                
+
+
+
+                $('#datatableVehicle_Weekly').html(resultDataTableWeeklyHeaderTemplate(context)).promise().done(function(){
+                  fn.DataTableVehicle_Weekly_Generator();
+                  // fn.DataTableVehicle_Daily_Click_Handler();
+
+                  // fn.CloseLoadingMessageBox();
+                  
+                });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

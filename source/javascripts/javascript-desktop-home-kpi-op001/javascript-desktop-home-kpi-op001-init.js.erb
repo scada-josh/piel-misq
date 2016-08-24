@@ -22,6 +22,7 @@
 
     var datatableVehicle_Daily;
     var objDatatableVehicle_Daily_DataCollections = {}; /* Array 2 dimensions */
+    var datatableVehicle_Weekly;
 
 
 
@@ -52,12 +53,18 @@
             fn.IonRangeSlider();
             fn.DateRangePicker();
 
-            
+            fn.FullscreenToggle_DataTableVehicle_Daily();
+            fn.FullscreenToggle_DataTableVehicle_Weekly();
             
             fn.MenuGenerator();
             fn.Apps();
         },
         
+        // Full Screen Button
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Daily" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Weekly" %>
+
+
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_HeaderFilterDaily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_HeaderFilterWeekly" %>
@@ -82,12 +89,17 @@
 
         // Datatables
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeDailyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrDates" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_Click_Handler" %>
 
-        // Helper Function
-        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrDates" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeWeeklyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrWeeks" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Generator" %>
+
+        
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_AlertMetro" %>

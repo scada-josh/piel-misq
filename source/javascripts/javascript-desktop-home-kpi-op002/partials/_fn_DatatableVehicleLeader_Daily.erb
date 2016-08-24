@@ -53,8 +53,8 @@ DatatableVehicleLeader_Daily: function () {
                         tmpDataSet.push(result.rows[i].details[j].box_success_avg);
                         tmpDataSet.push(result.rows[i].details[j].drop_success_avg);
 
-                        tmpBoxCount = tmpBoxCount + parseInt(result.rows[i].details[j].box_success_avg);
-                        tmpDropCount = tmpDropCount + parseInt(result.rows[i].details[j].drop_success_avg);
+                        tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success_avg);
+                        tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop_success_avg);
                 } else {
                         console.log(checkDayName);
                         
@@ -162,6 +162,8 @@ DatatableVehicleLeader_Daily: function () {
 
             
         });
+
+          datatableVehicleLeader_Daily.columns.adjust().draw();
 
     }
     

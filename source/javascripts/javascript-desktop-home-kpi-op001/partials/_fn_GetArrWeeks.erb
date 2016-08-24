@@ -1,0 +1,22 @@
+GetArrWeeks: function (data) {
+	// console.log("GetArrWeeks");
+
+    // console.log(data);
+    // console.log(data.rows);
+    // console.log(data.rows[0]);
+    // console.log(data.rows[0].details);
+
+    var weekArray = [];
+
+    // console.log(data.rows[0]);
+    // console.log(data.rows[0].details.length);
+
+    $.each( data.rows[0].details, function( i, val ) {
+             weekArray.push(val.week_no + "/" + val.year_no);
+    });
+
+    return weekArray;
+
+  
+},
+

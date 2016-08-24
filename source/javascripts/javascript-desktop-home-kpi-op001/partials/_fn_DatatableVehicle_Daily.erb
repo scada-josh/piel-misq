@@ -114,8 +114,8 @@ DatatableVehicle_Daily: function () {
                 // tmpDataSet.push(result.rows[i].details[j].drop_success);
                 // tmpDataSet.push(result.rows[i].details[j].box_success);
 
-                tmpDropCount = tmpDropCount + parseInt(result.rows[i].details[j].drop_success);
-                tmpBoxCount = tmpBoxCount + parseInt(result.rows[i].details[j].box_success);
+                tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop_success);
+                tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success);
 
 // var dt = moment(myStartDate, "YYYY-MM-DD HH:mm:ss")
               // dt.format('dddd');
@@ -241,6 +241,8 @@ DatatableVehicle_Daily: function () {
 
             
         });
+
+          datatableVehicle_Daily.columns.adjust().draw();
 
     }
     

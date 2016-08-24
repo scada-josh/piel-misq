@@ -1,0 +1,22 @@
+FullscreenToggle_DataTableVehicle_Daily: function () {
+	// console.log("FullscreenToggle_DataTableVehicle_Daily");
+
+    $('body').on('click', '#btn-fullscreen-datatable-daily', function () {
+        
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily') ) {
+            datatableVehicle_Daily.columns.adjust().draw();
+        }
+
+        if($(this).attr('data-click-state') == 1) {
+            $(this).attr('data-click-state', 0);
+            // console.log("btn-fullscreen-datatable-daily, state-00, exit fullscreen");
+
+        } else {
+            $(this).attr('data-click-state', 1)
+            // console.log("btn-fullscreen-datatable-daily, state-01, goto fullscreen");
+        }
+     
+    });
+
+  
+},
