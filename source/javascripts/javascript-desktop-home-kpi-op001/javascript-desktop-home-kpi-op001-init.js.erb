@@ -57,6 +57,7 @@
 
             fn.FullscreenToggle_DataTableVehicle_Daily();
             fn.FullscreenToggle_DataTableVehicle_Weekly();
+            fn.FullscreenToggle_DataTableVehicle_Monthly();
             
             fn.MenuGenerator();
             fn.Apps();
@@ -65,6 +66,7 @@
         // Full Screen Button
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Weekly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Monthly" %>
 
 
         // Header Filter
@@ -105,7 +107,11 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeWeeklyDetailInformation" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Detail_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Weekly_Detail_Generator" %>
-
+        // Datatables : Monthly
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeMonthlyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrMonth" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Monthly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Monthly_Generator" %>
         
 
         // MetroBanner - Alert

@@ -1,0 +1,58 @@
+DataTableVehicle_Monthly_ConvertToContext: function (arrMonth) {
+	// console.log("DataTableVehicle_Monthly_ConvertToContext");
+
+
+
+    // var context = {
+    //       headers: [ 
+    //         { dateHeader: 'ลำดับ' },
+    //         { dateHeader: 'รถ' },
+    //         { dateHeader: 'ทะเบียนรถ' },
+    //         { dateHeader: 'JUN/2016' },
+    //         { dateHeader: 'JUN/2016' },
+    //         { dateHeader: 'AUG/2016' },
+    //         { dateHeader: 'Average' }
+    //       ]
+    //     };
+
+
+
+    var context = {};
+    var headers = [];
+    var objDateHeader = {};
+
+    objDateHeader["dateHeader"] = 'ลำดับ';
+    headers.push(objDateHeader);
+    
+    objDateHeader = {};
+    objDateHeader["dateHeader"] = 'รถ';
+    headers.push(objDateHeader);
+
+    objDateHeader = {};
+    objDateHeader["dateHeader"] = 'ทะเบียนรถ';
+    headers.push(objDateHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrMonth, function( i, val ) {
+        objDateHeader = {};
+        objDateHeader["dateHeader"] = val;
+        headers.push(objDateHeader);
+
+        if (i == arrMonth.length -1) {
+            objDateHeader = {};
+            objDateHeader["dateHeader"] = 'Average';
+            headers.push(objDateHeader);
+        }
+    });
+
+    // objDateHeader["dateHeader"] = 'Average';
+    // headers.push(objDateHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},

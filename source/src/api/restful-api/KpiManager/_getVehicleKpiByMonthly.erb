@@ -31,12 +31,12 @@
             /* receive request */
             $postStartDate = $result->startDate;              /* รูปแบบ เดือน/วัน/ปี */
             $postEndDate = $result->endDate;               /* รูปแบบ เดือน/วัน/ปี */
-            $postSiteName = $result->siteName;
+            $postSiteID = $result->siteID;
 
             <% if config[:phase_environment] == "Development" %>
             $app->log->debug(date("Y-m-d H:i:s")." : "."startDate : ".$postStartDate);
             $app->log->debug(date("Y-m-d H:i:s")." : "."endDate : ".$postEndDate);
-            $app->log->debug(date("Y-m-d H:i:s")." : "."siteName : ".$postSiteName);
+            $app->log->debug(date("Y-m-d H:i:s")." : "."siteID : ".$postSiteID);
             <% end %>
 
         } else if (($ContetnType == "application/x-www-form-urlencoded") || ($ContetnType == "application/x-www-form-urlencoded; charset=UTF-8")){
@@ -44,12 +44,12 @@
             /* receive request */                                                                                 
             $postStartDate = $app->request()->post('startDate');    /* รูปแบบ เดือน/วัน/ปี */
             $postEndDate = $app->request()->post('endDate');        /* รูปแบบ เดือน/วัน/ปี */
-            $postSiteName = $app->request()->post('siteName');
+            $postSiteID = $app->request()->post('siteID');
 
             <% if config[:phase_environment] == "Development" %>
             $app->log->debug(date("Y-m-d H:i:s")." : "."startDate : ".$postStartDate);
             $app->log->debug(date("Y-m-d H:i:s")." : "."endDate : ".$postEndDate);
-            $app->log->debug(date("Y-m-d H:i:s")." : "."siteName : ".$postSiteName);
+            $app->log->debug(date("Y-m-d H:i:s")." : "."siteID : ".$postSiteID);
             <% end %>
         } 
 
@@ -57,7 +57,7 @@
 
         // $postStartDate = "2016-07-24";    /* รูปแบบ เดือน/วัน/ปี */
         // $postEndDate = "2016-07-30";        /* รูปแบบ เดือน/วัน/ปี */
-        // $postSiteName = "29";
+        // $postSiteID = "29";
 
 
         <% if config[:phase_environment] == "Development" %>
