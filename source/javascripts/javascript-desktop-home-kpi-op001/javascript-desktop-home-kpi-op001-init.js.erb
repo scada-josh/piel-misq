@@ -25,6 +25,9 @@
     var datatableVehicle_Weekly;
     var objDatatableVehicle_Weekly_DataCollections = {}; /* Array 2 dimensions */
     var datatableVehicle_Detail_Weekly;
+    var datatableVehicle_Monthly;
+    var datatableVehicle_Quaterly;
+    var datatableVehicle_HalfYear;
 
 
 
@@ -58,6 +61,8 @@
             fn.FullscreenToggle_DataTableVehicle_Daily();
             fn.FullscreenToggle_DataTableVehicle_Weekly();
             fn.FullscreenToggle_DataTableVehicle_Monthly();
+            fn.FullscreenToggle_DataTableVehicle_Quaterly();
+            fn.FullscreenToggle_DataTableVehicle_Halfyear();
             
             fn.MenuGenerator();
             fn.Apps();
@@ -67,6 +72,8 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Weekly" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Monthly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Quaterly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Halfyear" %>
 
 
         // Header Filter
@@ -112,13 +119,24 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrMonth" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Monthly_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Monthly_Generator" %>
-        
+        // Datatables : Quaterly
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeQuaterlyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrQuater" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Quaterly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Quaterly_Generator" %>
+        // Datatables : HalfYear
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeHalfYearInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrHalfYear" %>
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_AlertMetro" %>
         // MetroNotification 
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ShowLoadingMessageBox" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_CloseLoadingMessageBox" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Halfyear_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Halfyear_Generator" %>
+
+
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>

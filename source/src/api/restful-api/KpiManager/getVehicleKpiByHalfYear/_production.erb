@@ -15,7 +15,7 @@
 
         $result = $client_mis->call('MISObj_HalfYearOperationPerformanceKPIReport', array("dateStart" => $postStartDate,
                                                                                                "dateEnd" => $postEndDate,
-                                                                                               "intSite" => $postSiteName));
+                                                                                               "intSite" => $postSiteID));
         $reportResult = json_decode($result["MISObj_HalfYearOperationPerformanceKPIReportResult"],true);
 
 

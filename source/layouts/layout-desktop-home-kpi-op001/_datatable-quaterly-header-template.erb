@@ -1,0 +1,60 @@
+    <script id="datatable-quaterly-header-template" type="text/x-handlebars-template">
+
+        <thead>
+            
+            <tr>
+                {{#each headers}}
+
+                {{#if_eq quaterHeader 'ลำดับ'}}
+                    <th class="" rowspan="2">{{quaterHeader}}</th>
+                {{else if_eq quaterHeader 'รถ'}}
+                    <th class="DatatableVehicle-common" rowspan="2">{{quaterHeader}}</th>
+                {{else if_eq quaterHeader 'ทะเบียนรถ'}}
+                    <th class="DatatableVehicle-common" rowspan="2">{{quaterHeader}}</th>
+                {{else}}
+                    <th class="DatatableVehicle-common" colspan="2">{{quaterHeader}}</th>
+                {{/if_eq}}
+                
+                {{/each}}
+            </tr>
+            <tr>
+                {{#each headers}}
+
+                {{#if_eq quaterHeader 'ลำดับ'}}
+                   <!--  <th class="" ></th> -->
+                {{else if_eq quaterHeader 'รถ'}}
+                    <!-- <th class="" ></th> -->
+                {{else if_eq quaterHeader 'ทะเบียนรถ'}}
+                    <!-- <th class="" ></th> -->
+                {{else}}
+                    <th>Box</th>
+                    <th>Drop</th>
+                {{/if_eq}}
+
+
+                {{/each}}
+            </tr>
+            
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                {{#each headers}}
+
+                {{#if_eq quaterHeader 'ลำดับ'}}
+                 <th class="" colspan="3">Average<br/><small>(total)</small></th>
+                {{else if_eq quaterHeader 'รถ'}}
+                <!-- <th class="" ></th> -->
+                {{else if_eq quaterHeader 'ทะเบียนรถ'}}
+                <!-- <th class="" ></th> -->
+                {{else}}
+                <th>-</th>
+                <th>-</th>
+                {{/if_eq}}
+
+                {{/each}}
+            </tr>
+        </tfoot>
+
+    </script>

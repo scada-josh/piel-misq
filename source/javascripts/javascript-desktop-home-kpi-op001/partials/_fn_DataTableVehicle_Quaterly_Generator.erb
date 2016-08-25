@@ -1,0 +1,141 @@
+DataTableVehicle_Quaterly_Generator: function () { 
+	// console.log('DataTableVehicle_Quaterly_Generator');
+
+    var dataSet = [];
+
+    function DataTableVehicle_Quaterly_Render(result) {
+        // console.log(result);
+
+
+        // objDatatableVehicle_Weekly_DataCollections = {};
+
+        var i = 0;
+        var j = 0;
+
+        for (var i=0; i < result.rows.length; i++ ) {
+
+            var tmpDataSet = [];
+
+            var tmpDropCount = 0;
+            var dropAverage = 0;
+
+            var tmpBoxCount = 0;
+            var boxAverage = 0;
+
+            // var tmpDataSetObj = {};
+
+            tmpDataSet.push(parseInt(result.rows[i].id));
+            tmpDataSet.push(result.rows[i].vehicle_type);
+            tmpDataSet.push(result.rows[i].vehicle_licence);
+
+
+            var k = 0;
+            for (var j=0; j < result.rows[i].details.length; j++ ) {
+
+                tmpDataSet.push(numeral(result.rows[i].details[j].box_success_avg).format('0.00'));
+                tmpDataSet.push(numeral(result.rows[i].details[j].drop_success_avg).format('0.00'));
+
+                tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success_avg);
+                tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop_success_avg);
+
+            }
+
+            tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
+            tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
+            
+
+            dataSet.push(tmpDataSet);
+            // dataSet.push(tmpDataSetObj);
+
+        }
+
+
+        // $('#datatableVehicle_Quaterly').dataTable(dataSet);
+        datatableVehicle_Quaterly.clear().draw();
+        datatableVehicle_Quaterly.rows.add(dataSet); // Add new data
+        datatableVehicle_Quaterly.columns.adjust().draw(); // Redraw the DataTable
+        $('.dataTables_processing', $('#datatableVehicle_Quaterly').closest('.dataTables_wrapper')).hide();
+
+        fn.CloseLoadingMessageBox();
+
+    }
+
+
+    //------------------------ datatableVehicle Daily -----------------------//
+    if (jQuery().dataTable) {
+
+         datatableVehicle_Quaterly = $('#datatableVehicle_Quaterly').DataTable( {
+            "processing": true,
+            "bDestroy": true,
+            "bAutoWidth": false,
+            "timeout": 180000,
+            // "dom": '<"top"fi>rt<"bottom"lp><"clear">',
+            "ajax": {
+                "url": "../../../../api/restful-api/kpiManager/getVehicleKpiByQuarterly/",
+                "type": "POST",
+                "data": function ( d ) {
+
+                        var paramStartDate;
+                        var paramEndDate;
+
+                        if (fn.paramStartDate) {
+                          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+                          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+                        } else {
+                          // console.log('fn.paramStartDate is ' + fn.paramStartDate);
+                        }
+
+                        if (fn.paramEndDate) {
+                          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+                          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+                        } else {
+                          // console.log('fn.paramEndDate is ' + fn.paramEndDate);
+                        }
+                        
+
+                        d.startDate = paramStartDate;
+                        d.endDate = paramEndDate;
+                        d.siteID = fn.paramSiteID;
+                        return d;
+                },
+                "dataSrc": "rows",
+                "success": function(data) {
+                        // alert(data);
+                        // console.log('success');
+                        // console.log(data);
+
+                        DataTableVehicle_Quaterly_Render(data);
+                },
+                "error": function(jqXHR, textStatus, errorThrown){
+                    if (textStatus == "timeout") {
+                        console.log("timeout");
+                    } else {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                        console.log('init error: ' + textStatus);
+                    }
+                }
+            },
+            "deferRender":    true,
+            "scrollX":        true,
+            "scrollY":        '40vh',
+            "scrollCollapse": true,
+            "paging":         false,
+            // "data": dataSet,
+            "aaData": dataSet,
+
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DatatableVehicle_Quaterly_Generator/_aoColumnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DatatableVehicle_Quaterly_Generator/_footerCallback" %>
+
+
+            "order" : [] //disable default sorting, eg sorting on 1st column
+
+            
+        });
+
+          datatableVehicle_Quaterly.columns.adjust().draw();
+
+    }
+    
+},

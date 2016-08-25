@@ -14,10 +14,21 @@
 
                             tmpRender = "<div style = 'width:40px'>"
 
-                            if (data == 'Motorcycle') {
+                            // Pick up เสริม
+                            // Pick up
+                            // -
+                            // 4 ล้อตู้
+                            // Motocycle
+                            // 6 ล้อตู้ใหญ่
+
+                            if ((data == 'Motorcycle') || (data == 'Motocycle')) {
                                     tmpRender = tmpRender + "<i class='fa fa-motorcycle'></i>&nbsp;" ;
                                 // tmpRender = "<i class='fa fa-motorcycle'> " + data + "</i>";
-                            } else if(data == 'Pick up') {
+                            } else if ((data == 'Pick up') || (data == 'Pick up') || (data == 'Pick up เสริม')){
+                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> " ;
+                            } else if (data == '4 ล้อตู้'){
+                                    tmpRender = tmpRender + "<i class='fa fa-truck'></i> " ;
+                            } else if (data == '6 ล้อตู้ใหญ่'){
                                     tmpRender = tmpRender + "<i class='fa fa-truck'></i> " ;
                             } else {
                                     tmpRender = tmpRender + "<i class='fa fa-bus'></i> " ;

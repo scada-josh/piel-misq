@@ -1,0 +1,58 @@
+DataTableVehicle_Quaterly_ConvertToContext: function (arrQuater) {
+	// console.log("DataTableVehicle_Quaterly_ConvertToContext");
+
+
+
+    // var context = {
+    //       headers: [ 
+    //         { quaterHeader: 'ลำดับ' },
+    //         { quaterHeader: 'รถ' },
+    //         { quaterHeader: 'ทะเบียนรถ' },
+    //         { quaterHeader: 'Q1/2016' },
+    //         { quaterHeader: 'Q2/2016' },
+    //         { quaterHeader: 'Q3/2016' },
+    //         { quaterHeader: 'Average' }
+    //       ]
+    //     };
+
+
+
+    var context = {};
+    var headers = [];
+    var objQuaterHeader = {};
+
+    objQuaterHeader["quaterHeader"] = 'ลำดับ';
+    headers.push(objQuaterHeader);
+    
+    objQuaterHeader = {};
+    objQuaterHeader["quaterHeader"] = 'รถ';
+    headers.push(objQuaterHeader);
+
+    objQuaterHeader = {};
+    objQuaterHeader["quaterHeader"] = 'ทะเบียนรถ';
+    headers.push(objQuaterHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrQuater, function( i, val ) {
+        objQuaterHeader = {};
+        objQuaterHeader["quaterHeader"] = val;
+        headers.push(objQuaterHeader);
+
+        if (i == arrQuater.length -1) {
+            objQuaterHeader = {};
+            objQuaterHeader["quaterHeader"] = 'Average';
+            headers.push(objQuaterHeader);
+        }
+    });
+
+    // objQuaterHeader["quaterHeader"] = 'Average';
+    // headers.push(objQuaterHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},
