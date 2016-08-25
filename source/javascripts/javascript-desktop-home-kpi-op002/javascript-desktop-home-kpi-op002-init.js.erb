@@ -22,6 +22,7 @@
 
     var datatableVehicleLeader_Daily;
     var objDatatableVehicleLeader_Daily_DataCollections = {}; /* Array 2 dimensions */
+    var datatableVehicleLeader_Weekly;
 
 
     
@@ -82,6 +83,12 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DataTableVehicleLeader_Daily_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_GetArrDates" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DatatableVehicleLeader_Daily" %>
+        // Datatables : Weekly
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_ConsumeWeeklyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_GetArrWeeks" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DataTableVehicleLeader_Weekly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_DataTableVehicleLeader_Weekly_Generator" %>
+                                                                          
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/_fn_AlertMetro" %>

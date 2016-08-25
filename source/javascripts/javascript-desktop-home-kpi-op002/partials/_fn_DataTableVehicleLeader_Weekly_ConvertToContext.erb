@@ -1,0 +1,56 @@
+DataTableVehicleLeader_Weekly_ConvertToContext: function (arrWeeks) {
+	// console.log("DataTableVehicleLeader_Weekly_ConvertToContext");
+
+
+
+
+    // var context = {
+    //       headers: [ 
+    //         { dateHeader: 'ลำดับ' },
+    //         { dateHeader: 'ชื่อหัวหน้าสาย' },
+    //         { dateHeader: 'week#5/2016' },
+    //         { dateHeader: 'week#6/2016' },
+    //         { dateHeader: 'week#7/2016' },
+    //         { dateHeader: 'week#8/2016' },
+    //         { dateHeader: 'week#9/2016' },
+    //         { dateHeader: 'Average' }
+    //       ]
+    //     };
+
+
+    var context = {};
+    var headers = [];
+    var objWeeklyHeader = {};
+
+    objWeeklyHeader["dateHeader"] = 'ลำดับ';
+    headers.push(objWeeklyHeader);
+    
+
+    objWeeklyHeader = {};
+    objWeeklyHeader["dateHeader"] = 'ชื่อหัวหน้าสาย';
+    headers.push(objWeeklyHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrWeeks, function( i, val ) {
+        objWeeklyHeader = {};
+        objWeeklyHeader["dateHeader"] = val;
+        headers.push(objWeeklyHeader);
+
+        if (i == arrWeeks.length -1) {
+            objWeeklyHeader = {};
+            objWeeklyHeader["dateHeader"] = 'Average';
+            headers.push(objWeeklyHeader);
+        }
+    });
+
+    // objWeeklyHeader["dateHeader"] = 'Average';
+    // headers.push(objWeeklyHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},

@@ -1,0 +1,72 @@
+            "aoColumnDefs": [
+                    {
+                        'bSortable': true,
+                        "sWidth": "40px",
+                        "render": function ( data, type, row ) {
+                            return data;
+                        },
+                        'aTargets': [0]
+                    },{
+                        // 'bSortable': true,
+                        "bAutoWidth": false,
+                        // "sWidth": "300px",
+                        "render": function ( data, type, row ) {
+                           
+
+                            return data;
+                        },
+                        "targets": [1]
+                    },{
+                        'bSortable': true,
+                        // "sWidth": "300px",
+                        "render": function ( data, type, row ) {
+ 
+                            var tmpRender;
+
+                            if (data < 2) {
+                                tmpRender = "<b>" + data + "</b>";
+                            } else {
+                                tmpRender = data;
+                            }
+
+                            return tmpRender;
+                        },
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            if (sData > 1000) { 
+                                $(nTd).css('background-color', '#00ab4e').css('color', '#000').css('font-weight', 'bold'); 
+                            } 
+                        },
+                        "targets": [-1, -2]
+                    },{
+                        'bSortable': false,
+                        // 'sType': 'numeric',
+                        "bAutoWidth": false,
+                        "mRender": function ( data, type, row ) {
+                            
+                            var tmpRender;
+
+                           
+                                tmpRender = "<button type='button' class='btn btn-link'>" + data + "</button>";
+                     
+                            
+
+                            return tmpRender;
+                        },
+
+                        "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                            // if (sData > 35) { 
+                            //     $(nTd).css('background-color', '#00ab4e').css('color', '#000').css('font-weight', 'bold'); 
+                            // } 
+                        },
+                        "aTargets": '_all'
+                    },{ 
+                        "sClass": "DatatableVehicleLeader-col-01", 
+                        "aTargets": [0] 
+                    },{ 
+                        "sClass": "", 
+                        "aTargets": [1] 
+                    },{ 
+                        "sClass": "DatatableVehicleLeader-common", 
+                        "aTargets": '_all'
+                    }
+            ],
