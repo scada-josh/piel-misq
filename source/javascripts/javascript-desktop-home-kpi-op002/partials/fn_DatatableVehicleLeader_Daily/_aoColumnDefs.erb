@@ -11,9 +11,15 @@
                         "bAutoWidth": false,
                         // "sWidth": "300px",
                         "render": function ( data, type, row ) {
-                           
+                           var tmpRender;
 
-                            return data;
+                           tmpRender = "<div style = 'width:300px; vertical-align: left'>"
+
+                            tmpRender = tmpRender + data;
+
+                            tmpRender = tmpRender + "</div>";
+
+                            return tmpRender;
                         },
                         "targets": [1]
                     },{
@@ -65,7 +71,7 @@
                         "sClass": "DatatableVehicleLeader-col-01", 
                         "aTargets": [0] 
                     },{ 
-                        "sClass": "", 
+                        "sClass": "DatatableVehicleLeader-col-02", 
                         "aTargets": [1] 
                     },{ 
                         "sClass": "DatatableVehicleLeader-common", 

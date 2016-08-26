@@ -1,0 +1,24 @@
+GetArrMonth: function (data) {
+	// console.log("GetArrMonth");
+
+
+
+    // console.log(data);
+    // console.log(data.rows);
+    // console.log(data.rows[0]);
+    // console.log(data.rows[0].details);
+
+    var monthArray = [];
+
+    // console.log(data.rows[0]);
+    // console.log(data.rows[0].details.length);
+
+    $.each( data.rows[0].details, function( i, val ) { 
+             monthArray.push(val.month_name + "/" + val.year_no);
+    });
+
+    return monthArray;
+
+  
+},
+

@@ -1,5 +1,5 @@
-DataTableVehicleLeader_Weekly_Generator: function () { 
-	// console.log('DatatableVehicleLeader_Weekly_Generator');
+DataTableVehicleLeader_Monthly_Generator: function () { 
+	// console.log('DataTableVehicleLeader_Monthly_Generator');
 
 
 
@@ -11,7 +11,7 @@ DataTableVehicleLeader_Weekly_Generator: function () {
 
 
 
-    function DatatableVehicleLeader_Weekly_Render(result) {
+    function DatatableVehicleLeader_Monthly_Render(result) {
         // console.log(result);
 
 
@@ -54,11 +54,11 @@ DataTableVehicleLeader_Weekly_Generator: function () {
         }
 
 
-        // $('#datatableVehicleLeader_Weekly').dataTable(dataSet);
-        datatableVehicleLeader_Weekly.clear().draw();
-        datatableVehicleLeader_Weekly.rows.add(dataSet); // Add new data
-        datatableVehicleLeader_Weekly.columns.adjust().draw(); // Redraw the DataTable
-        $('.dataTables_processing', $('#datatableVehicleLeader_Weekly').closest('.dataTables_wrapper')).hide();
+        // $('#datatableVehicleLeader_Monthly').dataTable(dataSet);
+        datatableVehicleLeader_Monthly.clear().draw();
+        datatableVehicleLeader_Monthly.rows.add(dataSet); // Add new data
+        datatableVehicleLeader_Monthly.columns.adjust().draw(); // Redraw the DataTable
+        $('.dataTables_processing', $('#datatableVehicleLeader_Monthly').closest('.dataTables_wrapper')).hide();
 
         fn.CloseLoadingMessageBox();
 
@@ -68,13 +68,13 @@ DataTableVehicleLeader_Weekly_Generator: function () {
     //------------------------ datatableVehicle Daily -----------------------//
     if (jQuery().dataTable) {
 
-         datatableVehicleLeader_Weekly = $('#datatableVehicleLeader_Weekly').DataTable( {
+         datatableVehicleLeader_Monthly = $('#datatableVehicleLeader_Monthly').DataTable( {
             "processing": true,
             "bDestroy": true,
             "bAutoWidth": false,
             // "dom": '<"top"fi>rt<"bottom"lp><"clear">',
             "ajax": {
-                "url": "../../../../api/restful-api/kpiManager/getVehicleLeaderKpiByWeekly/",
+                "url": "../../../../api/restful-api/kpiManager/getVehicleLeaderKpiByMonthly/",
                 "type": "POST",
                 "data": function ( d ) {
 
@@ -107,7 +107,7 @@ DataTableVehicleLeader_Weekly_Generator: function () {
                         // console.log('success');
                         // console.log(data);
 
-                        DatatableVehicleLeader_Weekly_Render(data);
+                        DatatableVehicleLeader_Monthly_Render(data);
                 },
                 "error": function(jqXHR, textStatus, errorThrown){
                     console.log(jqXHR);
@@ -124,8 +124,8 @@ DataTableVehicleLeader_Weekly_Generator: function () {
             // "data": dataSet,
             "aaData": dataSet,
 
-            <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/fn_DatatableVehicleLeader_Weekly/_aoColumnDefs" %>
-            <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/fn_DatatableVehicleLeader_Weekly/_footerCallback" %>
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/fn_DatatableVehicleLeader_Monthly/_aoColumnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op002/partials/fn_DatatableVehicleLeader_Monthly/_footerCallback" %>
 
             
 
@@ -134,7 +134,7 @@ DataTableVehicleLeader_Weekly_Generator: function () {
             
         });
 
-          datatableVehicleLeader_Weekly.columns.adjust().draw();
+          datatableVehicleLeader_Monthly.columns.adjust().draw();
 
     }
     

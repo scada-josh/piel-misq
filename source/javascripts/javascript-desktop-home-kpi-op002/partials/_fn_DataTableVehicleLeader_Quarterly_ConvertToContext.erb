@@ -1,0 +1,55 @@
+DataTableVehicleLeader_Quarterly_ConvertToContext: function (arrQuarter) {
+	// console.log("DataTableVehicleLeader_Quarterly_ConvertToContext");
+
+
+
+
+    // var context = {
+    //       headers: [ 
+    //         { quarterHeader: 'ลำดับ' },
+    //         { quarterHeader: 'ชื่อหัวหน้าสาย' },
+    //         { quarterHeader: 'Q1/2016' },
+    //         { quarterHeader: 'Q2/2016' },
+    //         { quarterHeader: 'Q3/2016' },
+    //         { quarterHeader: 'Q4/2016' },
+    //         { quarterHeader: 'Average' }
+    //       ]
+    //     };
+
+
+    var context = {};
+    var headers = [];
+    var objQuarterlyHeader = {};
+
+    objQuarterlyHeader["quarterHeader"] = 'ลำดับ';
+    headers.push(objQuarterlyHeader);
+    
+
+    objQuarterlyHeader = {};
+    objQuarterlyHeader["quarterHeader"] = 'ชื่อหัวหน้าสาย';
+    headers.push(objQuarterlyHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrQuarter, function( i, val ) {
+        objQuarterlyHeader = {};
+        objQuarterlyHeader["quarterHeader"] = val;
+        headers.push(objQuarterlyHeader);
+
+        if (i == arrQuarter.length -1) {
+            objQuarterlyHeader = {};
+            objQuarterlyHeader["quarterHeader"] = 'Average';
+            headers.push(objQuarterlyHeader);
+        }
+    });
+
+    // objQuarterlyHeader["quarterHeader"] = 'Average';
+    // headers.push(objQuarterlyHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},

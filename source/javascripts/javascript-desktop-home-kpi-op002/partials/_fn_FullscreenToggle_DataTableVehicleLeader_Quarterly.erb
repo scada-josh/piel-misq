@@ -1,0 +1,24 @@
+FullscreenToggle_DataTableVehicleLeader_Quarterly: function () {
+	// console.log("FullscreenToggle_DataTableVehicleLeader_Quarterly");
+
+    $('body').on('click', '#btn-fullscreen-datatable-quarterly', function () {
+        
+        if ($.fn.DataTable.isDataTable('#datatableVehicleLeader_Quarterly') ) {
+            datatableVehicleLeader_Quarterly.columns.adjust().draw();
+        }
+
+        if($(this).attr('data-click-state') == 1) {
+            $(this).attr('data-click-state', 0);
+            // console.log("btn-fullscreen-datatable-daily, state-00, exit fullscreen");
+
+        } else {
+            $(this).attr('data-click-state', 1)
+            // console.log("btn-fullscreen-datatable-daily, state-01, goto fullscreen");
+        }
+     
+    });
+
+  
+},
+
+

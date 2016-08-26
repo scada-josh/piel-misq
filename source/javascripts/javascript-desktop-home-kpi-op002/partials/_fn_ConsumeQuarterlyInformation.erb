@@ -1,0 +1,102 @@
+ConsumeQuarterlyInformation: function () {
+	// console.log("ConsumeQuarterlyInformation");
+
+
+
+
+          if ($.fn.DataTable.isDataTable('#datatableVehicleLeader_Quarterly') ) {
+              $('#datatableVehicleLeader_Quarterly').empty();
+              $('#datatableVehicleLeader_Quarterly').dataTable().fnDestroy();
+              $('#datatableVehicleLeader_Quarterly > thead > tr').remove();
+              $('#datatableVehicleLeader_Quarterly > tfoot > tr').remove();
+              // $('#datatableVehicleLeader_Quarterly').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+	        if (fn.paramStartDate) {
+	          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+	          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+	        }
+
+	        if (fn.paramEndDate) {
+	          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+	          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+	        }
+	        
+
+	        var tmpData = {
+	        	"startDate" : paramStartDate, 
+	        	"endDate" : paramEndDate, 
+	        	"siteID" : fn.paramSiteID
+	        }
+
+          // console.log(tmpData);
+
+          if (!fn.paramSiteID) {
+
+            fn.AlertMetro("open", "กรุณาเลือกศูนย์", "warning");
+
+            return false;
+          } 
+
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getVehicleLeaderKpiByQuarterly/", 
+            "type": "POST",
+            "dataType": "json",
+            "timeout": 180000,
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+
+
+               // console.log(result);
+
+
+                var resultDataTableQuarterHeaderTemplate = Handlebars.compile($("#datatable-quarterly-header-template").html());
+              
+
+                var arrQuarter = fn.GetArrQuarter(result);
+                // console.log(arrQuarter);
+
+                var context = fn.DataTableVehicleLeader_Quarterly_ConvertToContext(arrQuarter);
+                    // console.log(context);
+                
+
+
+
+                $('#datatableVehicleLeader_Quarterly').html(resultDataTableQuarterHeaderTemplate(context)).promise().done(function(){
+                  fn.DataTableVehicleLeader_Quarterly_Generator();
+                });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

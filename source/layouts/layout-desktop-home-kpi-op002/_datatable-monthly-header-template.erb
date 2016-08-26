@@ -1,0 +1,54 @@
+    <script id="datatable-monthly-header-template" type="text/x-handlebars-template">
+
+        <thead>
+            
+            <tr>
+                {{#each headers}}
+
+                {{#if_eq dateHeader 'ลำดับ'}}
+                    <th class="" rowspan="2">{{dateHeader}}</th>
+                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                    <th class="" rowspan="2">{{dateHeader}}</th>
+                {{else}}
+                    <th class="DatatableVehicle-common" colspan="2">{{dateHeader}}</th>
+                {{/if_eq}}
+                
+                {{/each}}
+            </tr>
+            <tr>
+                {{#each headers}}
+
+                {{#if_eq dateHeader 'ลำดับ'}}
+                   <!--  <th class="" ></th> -->
+                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                    <!-- <th class="" ></th> -->
+                {{else}}
+                    <th>Box</th>
+                    <th>Drop</th>
+                {{/if_eq}}
+
+
+                {{/each}}
+            </tr>
+            
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+                {{#each headers}}
+
+                {{#if_eq dateHeader 'ลำดับ'}}
+                 <th class="" colspan="2">Average<br/><small>(total)</small></th>
+                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                <!-- <th class="" ></th> -->
+                {{else}}
+                <th>-</th>
+                <th>-</th>
+                {{/if_eq}}
+
+                {{/each}}
+            </tr>
+        </tfoot>
+
+    </script>

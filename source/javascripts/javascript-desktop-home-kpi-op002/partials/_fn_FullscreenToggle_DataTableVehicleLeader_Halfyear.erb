@@ -1,0 +1,24 @@
+FullscreenToggle_DataTableVehicleLeader_Halfyear: function () {
+	// console.log("FullscreenToggle_DataTableVehicleLeader_Halfyear");
+
+    $('body').on('click', '#btn-fullscreen-datatable-halfyear', function () {
+        
+        if ($.fn.DataTable.isDataTable('#datatableVehicleLeader_HalfYear') ) {
+            datatableVehicleLeader_HalfYear.columns.adjust().draw();
+        }
+
+        if($(this).attr('data-click-state') == 1) {
+            $(this).attr('data-click-state', 0);
+            // console.log("btn-fullscreen-datatable-daily, state-00, exit fullscreen");
+
+        } else {
+            $(this).attr('data-click-state', 1)
+            // console.log("btn-fullscreen-datatable-daily, state-01, goto fullscreen");
+        }
+     
+    });
+
+  
+},
+
+
