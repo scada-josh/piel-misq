@@ -111,7 +111,7 @@
                             // //     arrSplitData = data.toString().split('#');
                             // // }
                             
-
+                            // Format : value#delivery_type#section#drop or box
                             var arrSplitData = data.toString().split('#');
                             var _val;
 
@@ -122,30 +122,115 @@
                             }
                             
                             var _deliveryType = arrSplitData[1];
+                            var _sectionName = arrSplitData[2];
+                            var _drop_or_box = arrSplitData[3];
 
                             // var _val = data;
                             // var _deliveryType = "-";
 
-
-                            var tmpDeliveryType;
                             var tmpRender;
 
-                            if (_val > 35) {
+                            if (_sectionName == "BC") {
 
-                                if (_deliveryType == 'EPOD') {
-                                    tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
-                                } else {
-                                    tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                if (_drop_or_box == "Drop") {
+                                    
+                                    if (_val >= 28) {
+
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+
+                                    } else {
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+
+                                    }
+
+                                } else if (_drop_or_box == "Box") {
+
+                                    if (_val >= 35) {
+
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+                                        
+                                    } else {
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+                                        
+                                    }
+
                                 }
                                 
                             } else {
-                                if (_deliveryType == 'EPOD') {
-                                    tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
-                                } else {
-                                    tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+
+                                if (_drop_or_box == "Drop") {
+                                    
+                                    if (_val >= 35) {
+
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+
+                                    } else {
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+
+                                    }
+
+                                } else if (_drop_or_box == "Box") {
+
+                                    if (_val >= 80) {
+
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+                                        
+                                    } else {
+                                        if (_deliveryType == 'EPOD') {
+                                            tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                                        } else {
+                                            tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                                        }
+                                        
+                                    }
+
                                 }
-                                
                             }
+
+                            // if (_val > 35) {
+
+                            //     if (_deliveryType == 'EPOD') {
+                            //         tmpRender = "<button type='button' class='btn green-haze'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                            //     } else {
+                            //         tmpRender = "<button type='button' class='btn green-haze'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                            //     }
+                                
+                            // } else {
+                            //     if (_deliveryType == 'EPOD') {
+                            //         tmpRender = "<button type='button' class='btn btn-link'>" + _val + "<i class='fa fa-wifi'></i></button>";
+                            //     } else {
+                            //         tmpRender = "<button type='button' class='btn btn-link'>&nbsp;&nbsp;" + _val + "&nbsp;&nbsp;</button>";
+                            //     }
+                                
+                            // }
 
                             return tmpRender;
                         },

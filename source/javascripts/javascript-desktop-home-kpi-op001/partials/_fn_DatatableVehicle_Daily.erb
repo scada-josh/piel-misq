@@ -55,16 +55,23 @@ DatatableVehicle_Daily: function () {
 
                 // console.log(result.rows[i].details[j].job_no);
 
+                // Format : value#delivery_type#section#drop or box
                 if ( result.rows[i].details[j].job_no == "-") {
                     // console.log(result.rows[i].details[j].job_no);
                     // console.log(result.rows[i].details[j].box_success);
                     // console.log(result.rows[i].details[j].drop_success);
 
-                    tmpDataSet.push("-" + "#" + "-");
-                    tmpDataSet.push("-" + "#" + "-");
+                    // tmpDataSet.push("-" + "#" + "-");
+                    // tmpDataSet.push("-" + "#" + "-");
+
+                    tmpDataSet.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Drop");
+                    tmpDataSet.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Box");
                 } else {
-                    tmpDataSet.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type);
-                    tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type);
+                    // tmpDataSet.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type);
+                    // tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type);
+
+                    tmpDataSet.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Drop");
+                    tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Box");
                 }
 
 
@@ -138,11 +145,17 @@ DatatableVehicle_Daily: function () {
             // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
 
             if (j != count_date_empty_job_no) {
-                tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0.00'));
-                tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0.00'));
+                // tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0.00'));
+                // tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0.00'));
+
+                tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0'));
+                tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0'));
             } else {
-                tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
-                tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
+                // tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
+                // tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
+
+                tmpDataSet.push(numeral(tmpDropCount/(j)).format('0'));
+                tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0'));
             }
             
 
