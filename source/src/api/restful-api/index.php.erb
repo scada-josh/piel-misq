@@ -74,6 +74,9 @@ layout: "layout-api"
     $client = new nusoap_client("http://58.137.5.126/epodws/service.asmx?wsdl", true);
     // $client->soap_defencoding = 'UTF-8';
 
+    $client_epod = new nusoap_client("http://58.137.5.126/epodws/service.asmx?wsdl", true);
+    // $client_epod->soap_defencoding = 'UTF-8';
+
     $client_mis = new nusoap_client("http://58.137.5.126/iTMS_MIS_Portal/Service.asmx?wsdl", true);
     // $client_mis->soap_defencoding = 'UTF-8';
 
@@ -99,6 +102,9 @@ layout: "layout-api"
     $client->decode_utf8 = false; // แก้ปัญหาตัวอักษรภาษาไทยแสดง ???????? (web service unicode characters dispaly as question marks)
     $client->encode_utf8 = true;
 
+    $client_epod->soap_defencoding = 'UTF-8';
+    $client_epod->decode_utf8 = false; // แก้ปัญหาตัวอักษรภาษาไทยแสดง ???????? (web service unicode characters dispaly as question marks)
+    $client_epod->encode_utf8 = true;
 
     $client_mis->soap_defencoding = 'UTF-8';
     $client_mis->decode_utf8 = false; // แก้ปัญหาตัวอักษรภาษาไทยแสดง ???????? (web service unicode characters dispaly as question marks)
@@ -138,6 +144,7 @@ layout: "layout-api"
 
     /* Vehicle - KPI Manager Partial */
     $app->post('/kpiManager/getVehicleKpiByDaily/',function() use ($app, $client_mis) { getVehicleKpiByDaily($app, $client_mis); });
+    $app->post('/kpiManager/getVehicleKpiDetailByJobNo/',function() use ($app, $client_epod) { getVehicleKpiDetailByJobNo($app, $client_epod); });
     $app->post('/kpiManager/getVehicleKpiByWeekly/',function() use ($app, $client_mis) { getVehicleKpiByWeekly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleKpiDetailByWeekly/',function() use ($app, $client_mis) { getVehicleKpiDetailByWeekly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleKpiByMonthly/',function() use ($app, $client_mis) { getVehicleKpiByMonthly($app, $client_mis); });
@@ -150,6 +157,13 @@ layout: "layout-api"
     $app->post('/kpiManager/getVehicleLeaderKpiByMonthly/',function() use ($app, $client_mis) { getVehicleLeaderKpiByMonthly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleLeaderKpiByQuarterly/',function() use ($app, $client_mis) { getVehicleLeaderKpiByQuarterly($app, $client_mis); });
     $app->post('/kpiManager/getVehicleLeaderKpiByHalfYear/',function() use ($app, $client_mis) { getVehicleLeaderKpiByHalfYear($app, $client_mis); });
+
+    /* Section - KPI Manager Partial */
+    $app->post('/kpiManager/getSectionKpiByDaily/',function() use ($app, $client_mis) { getSectionKpiByDaily($app, $client_mis); });
+    $app->post('/kpiManager/getSectionKpiByWeekly/',function() use ($app, $client_mis) { getSectionKpiByWeekly($app, $client_mis); });
+    $app->post('/kpiManager/getSectionKpiByMonthly/',function() use ($app, $client_mis) { getSectionKpiByMonthly($app, $client_mis); });
+    $app->post('/kpiManager/getSectionKpiByQuarterly/',function() use ($app, $client_mis) { getSectionKpiByQuarterly($app, $client_mis); });
+    $app->post('/kpiManager/getSectionKpiByHalfYear/',function() use ($app, $client_mis) { getSectionKpiByHalfYear($app, $client_mis); });
 
     /* Menu Manager */
     $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
@@ -177,8 +191,9 @@ layout: "layout-api"
     <%= partial "/KpiManager/_getOperationKpiSummaryInfo" %>
     <%= partial "/KpiManager/_getOperationKpiSummaryInfoByWeekly" %>
 
-    /* Vehicle - KPI Manager Partial */
+    /* Vehicle - KPI Manager Partial */ 
     <%= partial "/KpiManager/_getVehicleKpiByDaily" %>
+    <%= partial "/KpiManager/_getVehicleKpiDetailByJobNo" %>
     <%= partial "/KpiManager/_getVehicleKpiByWeekly" %>
     <%= partial "/KpiManager/_getVehicleKpiDetailByWeekly" %>
     <%= partial "/KpiManager/_getVehicleKpiByMonthly" %>
@@ -191,6 +206,13 @@ layout: "layout-api"
     <%= partial "/KpiManager/_getVehicleLeaderKpiByMonthly" %>
     <%= partial "/KpiManager/_getVehicleLeaderKpiByQuarterly" %>
     <%= partial "/KpiManager/_getVehicleLeaderKpiByHalfYear" %>
+
+    /* Section - KPI Manager Partial */
+    <%= partial "/KpiManager/_getSectionKpiByDaily" %>
+    <%= partial "/KpiManager/_getSectionKpiByWeekly" %>
+    <%= partial "/KpiManager/_getSectionKpiByMonthly" %>
+    <%= partial "/KpiManager/_getSectionKpiByQuarterly" %>
+    <%= partial "/KpiManager/_getSectionKpiByHalfYear" %>
 
     /* Menu Manager Partial */
     <%= partial "/MenuManager/_listMenu" %>

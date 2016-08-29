@@ -63,8 +63,8 @@ DatatableVehicle_Daily: function () {
                     tmpDataSet.push("-" + "#" + "-");
                     tmpDataSet.push("-" + "#" + "-");
                 } else {
-                    tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type);
                     tmpDataSet.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type);
+                    tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type);
                 }
 
 
@@ -138,11 +138,11 @@ DatatableVehicle_Daily: function () {
             // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
 
             if (j != count_date_empty_job_no) {
-                tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0.00'));
                 tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0.00'));
+                tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0.00'));
             } else {
-                tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
                 tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
+                tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
             }
             
 
@@ -182,6 +182,7 @@ DatatableVehicle_Daily: function () {
             "processing": true,
             "bDestroy": true,
             "bAutoWidth": false,
+            "dom": '<"top"fi>rt<"bottom"lp><"clear">',
             "ajax": {
                 "url": "../../../../api/restful-api/kpiManager/getVehicleKpiByDaily/",
                 "type": "POST",

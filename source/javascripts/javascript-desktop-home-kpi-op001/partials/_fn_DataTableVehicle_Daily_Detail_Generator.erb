@@ -1,0 +1,116 @@
+DataTableVehicle_Daily_Detail_Generator: function (param_job_no) { 
+	// console.log('DataTableVehicle_Daily_Detail_Generator');
+
+    var dataSet = [];
+
+    function DataTableVehicle_Daily_Detail_Render(result) {
+        // console.log(result);
+
+        var i = 0;
+        var j = 0;
+
+        for (var i=0; i < result.array.length; i++ ) {
+
+            var tmpDataSet = [];
+
+
+            // var tmpDataSetObj = {};
+            tmpDataSet.push(i + 1);
+            tmpDataSet.push(result.array[i].job_id);
+            tmpDataSet.push(result.array[i].doc_id);
+            tmpDataSet.push(result.array[i].invoice_no);
+            tmpDataSet.push(result.array[i].sender);
+            tmpDataSet.push(result.array[i].recipient_id);
+            tmpDataSet.push(result.array[i].recipient);
+            tmpDataSet.push(result.array[i].recipient_addres);
+            tmpDataSet.push(result.array[i].qty);
+
+            dataSet.push(tmpDataSet);
+            // dataSet.push(tmpDataSetObj);
+
+        }
+
+
+        // $('#datatableVehicle_Detail_Daily').dataTable(dataSet);
+        datatableVehicle_Detail_Daily.clear().draw();
+        datatableVehicle_Detail_Daily.rows.add(dataSet); // Add new data
+        datatableVehicle_Detail_Daily.columns.adjust().draw(); // Redraw the DataTable
+        $('.dataTables_processing', $('#datatableVehicle_Detail_Daily').closest('.dataTables_wrapper')).hide();
+
+        fn.CloseLoadingMessageBox();
+
+        $(".MetroDiv1").MetroModal({
+            backscreencolor: "#0072BC",
+            backcolor: "#0072BC",
+            width: "90vw",
+            controls: false,
+            height: "90vh",
+            backscreen: true,
+            backscreenopacity: 0.6,
+            animation: "bounceIn",
+            function(){
+                alert("Closed!");
+            }
+        });
+
+
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Detail_Daily') ) {
+            datatableVehicle_Detail_Daily.columns.adjust().draw();
+        }
+
+    }
+
+
+    //------------------------ datatableVehicle Daily -----------------------//
+    if (jQuery().dataTable) {
+
+         datatableVehicle_Detail_Daily = $('#datatableVehicle_Detail_Daily').DataTable( {
+            "processing": true,
+            "bDestroy": true,
+            "bAutoWidth": false,
+            // "dom": '<"top"fi>rt<"bottom"lp><"clear">',
+            "ajax": {
+                "url": "../../../../api/restful-api/kpiManager/getVehicleKpiDetailByJobNo/",
+                "type": "POST",
+                "data": function ( d ) {
+
+                        d.job_no = param_job_no;
+                        return d;
+                },
+                "dataSrc": "array",
+                "success": function(data) {
+                        // alert(data);
+                        // console.log('success');
+                        // console.log(data);
+
+                        // fn.DataTableVehicle_Daily_Render(data);
+                        DataTableVehicle_Daily_Detail_Render(data);
+                },
+                "error": function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    console.log('init error: ' + textStatus);
+                }
+            },
+            "deferRender":    true,
+            "scrollX":        true,
+            "scrollY":        '60vh',
+            "scrollCollapse": true,
+            "paging":         false,
+            // "data": dataSet,
+            "aaData": dataSet,
+
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DataTableVehicle_Daily_Detail_Generator/_aoColumnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DataTableVehicle_Daily_Detail_Generator/_footerCallback" %>
+                                                                                 
+            "order" : [] //disable default sorting, eg sorting on 1st column
+
+            
+        });
+
+          datatableVehicle_Detail_Daily.columns.adjust().draw();
+
+    }
+    
+},

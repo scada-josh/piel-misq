@@ -1,0 +1,39 @@
+            "aoColumnDefs": [
+                    {
+                        'bSortable': true,
+                        "sWidth": "40px",
+                        "render": function ( data, type, row ) {
+                            return data;
+                        },
+                        'aTargets': [0]
+                    },{
+                        'bSortable': true,
+                        "bAutoWidth": true,
+                        "render": function ( data, type, row ) {
+
+                            return data;
+                        },
+                        "targets": [-1, -2, -3]
+                    },{
+                        'bSortable': false,
+                        // 'sType': 'numeric',
+                        "bAutoWidth": false,
+                        "mRender": function ( data, type, row ) {
+
+                            return data;
+                        },
+                        "aTargets": '_all'
+                    },{ 
+                        "sClass": "DatatableVehicle-col-01", 
+                        "aTargets": [0] 
+                    },{ 
+                        "sClass": "DatatableVehicle-col-02", 
+                        "aTargets": [1] 
+                    },{ 
+                        "sClass": "DatatableVehicle-col-03", 
+                        "aTargets": [2] 
+                    },{ 
+                        "sClass": "DatatableVehicle-common", 
+                        "aTargets": '_all'
+                    }
+            ],

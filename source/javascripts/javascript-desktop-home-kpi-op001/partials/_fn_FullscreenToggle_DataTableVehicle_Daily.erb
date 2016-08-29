@@ -7,6 +7,10 @@ FullscreenToggle_DataTableVehicle_Daily: function () {
             datatableVehicle_Daily.columns.adjust().draw();
         }
 
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Detail_Daily') ) {
+            datatableVehicle_Detail_Daily.columns.adjust().draw();
+        }
+
         if($(this).attr('data-click-state') == 1) {
             $(this).attr('data-click-state', 0);
             // console.log("btn-fullscreen-datatable-daily, state-00, exit fullscreen");

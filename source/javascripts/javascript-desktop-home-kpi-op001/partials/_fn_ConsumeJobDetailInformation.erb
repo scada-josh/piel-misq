@@ -1,0 +1,78 @@
+ConsumeJobDetailInformation: function (param_job_no) {
+	// console.log("ConsumeJobDetailInformation");
+
+          if ($.fn.DataTable.isDataTable('#datatableVehicle_Detail_Daily') ) {
+              $('#datatableVehicle_Detail_Daily').empty();
+              $('#datatableVehicle_Detail_Daily').dataTable().fnDestroy();
+              $('#datatableVehicle_Detail_Daily > thead > tr').remove();
+              $('#datatableVehicle_Detail_Daily > tfoot > tr').remove();
+              // $('#datatableVehicle_Detail_Daily').deleteTFoot();
+          }
+	        
+
+	        var tmpData = {
+	        	"job_no" : param_job_no
+	        }
+
+          // console.log(tmpData);
+
+          if (!fn.paramSiteID) {
+
+            fn.AlertMetro("open", "กรุณาเลือกศูนย์", "warning");
+
+            return false;
+          } 
+
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getVehicleKpiDetailByJobNo/", 
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+
+               // console.log(result);
+
+
+
+
+                var resultDataTableDailyDetailHeaderTemplate = Handlebars.compile($("#datatable-daily-detail-header-template").html());
+                var context = fn.DataTableVehicle_Daily_Detail_ConvertToContext();
+                // console.log(context);
+
+                
+
+
+                $('#datatableVehicle_Detail_Daily').html(resultDataTableDailyDetailHeaderTemplate(context)).promise().done(function(){
+                  fn.DataTableVehicle_Daily_Detail_Generator(param_job_no);
+                });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

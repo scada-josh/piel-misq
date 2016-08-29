@@ -22,12 +22,14 @@
 
     var datatableVehicle_Daily;
     var objDatatableVehicle_Daily_DataCollections = {}; /* Array 2 dimensions */
+    var datatableVehicle_Detail_Daily;
     var datatableVehicle_Weekly;
     var objDatatableVehicle_Weekly_DataCollections = {}; /* Array 2 dimensions */
     var datatableVehicle_Detail_Weekly;
     var datatableVehicle_Monthly;
     var datatableVehicle_Quaterly;
     var datatableVehicle_HalfYear;
+
 
 
 
@@ -98,12 +100,17 @@
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_IonRangeSlider" %>
 
-        // Datatables
+        // Datatables : Daily
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeDailyInformation" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrDates" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_Click_Handler" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ShowJobNoDetail" %>
+        // Datatables : Daily - Job Detail
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeJobDetailInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_Detail_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_DataTableVehicle_Daily_Detail_Generator" %>
         // Datatables : Weekly
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_ConsumeWeeklyInformation" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_GetArrWeeks" %>

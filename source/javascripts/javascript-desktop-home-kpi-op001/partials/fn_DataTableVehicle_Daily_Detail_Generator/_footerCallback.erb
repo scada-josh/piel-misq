@@ -1,0 +1,85 @@
+            "footerCallback": function ( row, data, start, end, display ) {
+
+                var api = this.api(), data, total, pageTotal;
+                
+
+                    // Remove the formatting to get integer data for summation
+                var intVal = function ( i ) {
+                    return typeof i === 'string' ?
+                    i.replace(/[\$,]/g, '')*1 :
+                    typeof i === 'number' ?
+                    i : 0;
+                };
+
+                // console.log(data.length);
+                var rowCount;
+                if (end) {
+                    rowCount = end;
+                } else {
+                    rowCount = 1;
+                }
+
+
+                var objSize = function(obj) {
+                    var count = 0;
+                    
+                    if (typeof obj == "object") {
+                    
+                        if (Object.keys) {
+                            count = Object.keys(obj).length;
+                        } else if (window._) {
+                            count = _.keys(obj).length;
+                        } else if (window.$) {
+                            count = $.map(obj, function() { return 1; }).length;
+                        } else {
+                            for (var key in obj) if (obj.hasOwnProperty(key)) count++;
+                        }
+                        
+                    }
+                    
+                    return count;
+                };
+
+
+                for (var i=8; i < (objSize(dataSet[0])); i++ ) {
+
+                    // console.log(api.column(i));
+                    // console.log(objSize(dataSet[0]));
+
+
+                    // Total over all pages
+                    total = api.column(i).data().reduce( function (a, b) {
+                        // console.log(b);
+
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+
+                        // Total over this page
+                    pageTotal = api.column( i, { page: 'current'} ).data().reduce( function (a, b) {
+
+                        return intVal(a) + intVal(b);
+                    }, 0 );
+
+                    var pageAverage;
+                    var displayResult = "";
+
+                    // pageAverage = pageTotal/(rowCount);
+                    displayResult = pageTotal + '<br/><small>(' + total + ')</small>';
+
+                    // console.log(displayResult);
+
+
+                    //     // Update footer
+                    $( api.column( i ).footer() ).html(
+                        // '$'+pageTotal +' ( $'+ total +' total)'
+                        displayResult
+                    );
+
+                }
+
+        
+
+
+
+            },

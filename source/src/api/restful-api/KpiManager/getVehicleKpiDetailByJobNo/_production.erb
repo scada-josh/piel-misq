@@ -1,0 +1,18 @@
+        // // copy file content into a string var
+        // $json_file = file_get_contents('./KpiManager/getOperationKPI.json');
+        // // convert the string to a json object
+        // $reportResult = json_decode($json_file);
+
+
+        $error = $client_epod->getError();
+        if ($error) {
+            echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
+        }
+
+        /* ************************* */
+        /* เริ่มกระบวนการเชื่อมต่อ Web Service */
+        /* ************************* */
+
+        $result = $client_epod->call('getTruckManifestPOD', array("strJobNo" => $postJobNo));
+        $reportResult = json_decode($result["getTruckManifestPODResult"],true);
+

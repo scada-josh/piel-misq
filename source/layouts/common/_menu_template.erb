@@ -13,25 +13,38 @@
                 <ul class="dropdown-menu pull-left">
                     {{#each sub_menu_level_01}}
                     <li class=" {{#if_eq sub_menu_level_01_leaf 'TRUE'}}dropdown-submenu{{/if_eq}}">
-                        <a href="{{#if_eq sub_menu_level_01_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_01_url}}{{else}}#{{/if_eq}}" class="nav-link  "> {{sub_menu_level_01_title}} </a>
+                        <a href="{{#if_eq sub_menu_level_01_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_01_url}}{{else}}#{{/if_eq}}" class="nav-link  "> {{sub_menu_level_01_title}} 
                         
+                        {{#if_eq sub_menu_level_01_leaf 'FALSE'}}
+                        </a>
+                        {{/if_eq}}
+
+
                         {{#if sub_menu_level_01_leaf}}
-                        <span class="arrow"></span>
+                        <span class="arrow"></span></a>
                         <ul class="dropdown-menu">
 
                             {{#each sub_menu_level_02}}
                             <li class=" {{#if_eq sub_menu_level_02_leaf 'TRUE'}}dropdown-submenu{{/if_eq}}">
-                                <a href="{{#if_eq sub_menu_level_02_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_02_url}}{{else}}#{{/if_eq}}" class=""> {{sub_menu_level_02_title}} </a>
+                                <a href="{{#if_eq sub_menu_level_02_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_02_url}}{{else}}#{{/if_eq}}" class=""> {{sub_menu_level_02_title}} 
+
+                                {{#if_eq sub_menu_level_02_leaf 'FALSE'}}
+                                </a>
+                                {{/if_eq}}
 
                                 {{#if sub_menu_level_02_leaf}}
-                                <span class="arrow"></span>
+                                <span class="arrow"></span></a>
                                 <ul class="dropdown-menu">
                                     {{#each sub_menu_level_03}}
                                     <li class=" {{#if_eq sub_menu_level_03_leaf 'TRUE'}}dropdown-submenu{{/if_eq}}">
-                                        <a href="{{#if_eq sub_menu_level_03_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_03_url}}{{else}}#{{/if_eq}}"> {{sub_menu_level_03_title}} </a>
+                                        <a href="{{#if_eq sub_menu_level_03_leaf 'FALSE'}}{{@root.baseURL}}{{sub_menu_level_03_url}}{{else}}#{{/if_eq}}"> {{sub_menu_level_03_title}} 
+
+                                        {{#if_eq sub_menu_level_03_leaf 'FALSE'}}
+                                        </a>
+                                        {{/if_eq}}
 
                                         {{#if sub_menu_level_03_leaf}}
-                                        <span class="arrow"></span>
+                                        <span class="arrow"></span></a>
                                         <ul class="dropdown-menu">
                                             {{#each sub_menu_level_04}}
                                             <li class=" ">
