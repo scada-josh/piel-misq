@@ -60,19 +60,22 @@ DataTableVehicle_Weekly_Generator: function () {
 
                 // console.log(result.rows[i].details[j]);
 
-                tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box);
+                
                 tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop);
+                tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box);
                 
 
-                tmpDataSet.push(result.rows[i].details[j].box);
+                
                 tmpDataSet.push(result.rows[i].details[j].drop);
+                tmpDataSet.push(result.rows[i].details[j].box);
                 
 
 
             }
 
-            tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
-            tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
+            
+            tmpDataSet.push(numeral(tmpDropCount/(j)).format('0'));
+            tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0'));
             
 
             dataSet.push(tmpDataSet);

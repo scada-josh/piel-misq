@@ -31,8 +31,9 @@ DataTableVehicle_Weekly_Detail_Generator: function (mSiteID, mVehicleLicense, my
                 // tmpDataSet.push(result.rows[i].details[j].drop);
             // }
 
-            tmpDataSet.push(result.rows[i].box_success_avg);
+            
             tmpDataSet.push(result.rows[i].drop_success_avg);
+            tmpDataSet.push(result.rows[i].box_success_avg);
 
             
             // dataSet.push(tmpDataSetObj);

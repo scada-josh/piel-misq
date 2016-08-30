@@ -185,6 +185,32 @@ DatatableVehicle_Daily: function () {
 
         fn.CloseLoadingMessageBox();
 
+
+
+
+
+
+        if (fn.paramSiteName == "BC") {
+            $.smallBox({
+              // position:4,
+              title:"<b>KPI Target</b>",
+              content:"<b>Drop: 28<br>Box : 35</b>",
+              fa:"fa-tachometer",
+              timeout:5000,
+              colors:["#44b6ae"],
+            });
+
+        } else {
+            $.smallBox({
+              // position:4,
+              title:"<b>KPI Target</b>",
+              content:"<b>Drop: 35<br>Box : 80</b>",
+              fa:"fa-tachometer",
+              timeout:5000,
+              colors:["#44b6ae"],
+            });
+        }
+
     }
 
 

@@ -50,11 +50,13 @@ DatatableVehicleLeader_Daily: function () {
                 var checkDayName = moment(result.rows[i].details[j].date_name.substring(4), "DD/MM/YYYY").format('dddd');
                     
                 if (checkDayName != "Sunday") {
-                        tmpDataSet.push(result.rows[i].details[j].box_success_avg);
                         tmpDataSet.push(result.rows[i].details[j].drop_success_avg);
+                        tmpDataSet.push(result.rows[i].details[j].box_success_avg);
+                        
 
-                        tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success_avg);
                         tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop_success_avg);
+                        tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success_avg);
+                        
                 } else {
                         // console.log(checkDayName);
                         
@@ -68,8 +70,9 @@ DatatableVehicleLeader_Daily: function () {
             
 
             // Average column
-            tmpDataSet.push(numeral(tmpBoxCount/j).format('0.00'));
-            tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
+            tmpDataSet.push(numeral(tmpDropCount/j).format('0'));
+            tmpDataSet.push(numeral(tmpBoxCount/j).format('0'));
+            
             
 
 //             // var tmpDate = {};
