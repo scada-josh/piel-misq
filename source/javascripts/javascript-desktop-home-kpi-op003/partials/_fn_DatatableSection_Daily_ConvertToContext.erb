@@ -1,0 +1,61 @@
+DatatableSection_Daily_ConvertToContext: function (arrDates) {
+	// console.log("DatatableSection_Daily_ConvertToContext");
+
+    // var context = {
+    //       headers: [ 
+    //         { dateHeader: 'ลำดับ' },
+    //         { dateHeader: 'ศูนย์' },
+    //         { dateHeader: 'ผู้จัดการศูนย์' },
+    //         { dateHeader: '01/06/2016' },
+    //         { dateHeader: '02/06/2016' },
+    //         { dateHeader: '03/06/2016' },
+    //         { dateHeader: '04/06/2016' },
+    //         { dateHeader: '05/06/2016' },
+    //         { dateHeader: '06/06/2016' },
+    //         { dateHeader: '07/06/2016' },
+    //         { dateHeader: 'Average' }
+    //       ]
+    //     };
+
+
+
+
+    var context = {};
+    var headers = [];
+    var objDateHeader = {};
+
+    objDateHeader["dateHeader"] = 'ลำดับ';
+    headers.push(objDateHeader);
+    
+    objDateHeader = {};
+    objDateHeader["dateHeader"] = 'ศูนย์';
+    headers.push(objDateHeader);
+
+    objDateHeader = {};
+    objDateHeader["dateHeader"] = 'ผู้จัดการศูนย์';
+    headers.push(objDateHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrDates, function( i, val ) {
+        objDateHeader = {};
+        objDateHeader["dateHeader"] = val;
+        headers.push(objDateHeader);
+
+        if (i == arrDates.length -1) {
+            objDateHeader = {};
+            objDateHeader["dateHeader"] = 'Average';
+            headers.push(objDateHeader);
+        }
+    });
+
+    // objDateHeader["dateHeader"] = 'Average';
+    // headers.push(objDateHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},

@@ -1,0 +1,122 @@
+ConsumeDailyInformation: function () {
+	// console.log("ConsumeDailyInformation");
+
+          var myStartDate = moment(fn.paramStartDate);
+          var myEndDate = moment(fn.paramEndDate); 
+          var myDuration = moment.duration(myEndDate.diff(myStartDate));
+          var myDays = myDuration.asDays();
+          // console.log(myDays)
+
+          // console.log(myStartDate.format('dddd'));
+          // console.log(myEndDate.format('dddd'));
+
+
+          if (myStartDate.format('YYYY-MM-DD') == myEndDate.format('YYYY-MM-DD')) {
+              // var dt = moment(myStartDate, "YYYY-MM-DD HH:mm:ss")
+              // dt.format('dddd');
+              // console.log(dt.format('dddd'));
+
+              if (myStartDate.format('dddd') == "Sunday") {
+                fn.AlertMetro("open", "วันที่คุณเลือกคือวันอาทิตย์ ไม่มีการส่งของ, กรุณาเลือกช่วงวันอีกครั้ง", "danger");
+
+                return false;
+              }
+              
+          }
+
+          if (myDays > 50) {
+
+              fn.AlertMetro("open", "ช่วงวันที่คุณเลือกเกิน 50 วัน ระบบไม่สามารถแสดงผลได้, กรุณาเลือกช่วงวันอีกครั้ง", "warning");
+
+              return false;
+          } 
+
+
+
+
+          if ($.fn.DataTable.isDataTable('#datatableSection_Daily') ) {
+              $('#datatableSection_Daily').empty();
+              $('#datatableSection_Daily').dataTable().fnDestroy();
+              $('#datatableSection_Daily > thead > tr').remove();
+              $('#datatableSection_Daily > tfoot > tr').remove();
+              // $('#datatableSection_Daily').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+	        if (fn.paramStartDate) {
+	          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+	          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+	        }
+
+	        if (fn.paramEndDate) {
+	          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+	          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+	        }
+	        
+
+	        var tmpData = {
+	        	"startDate" : paramStartDate, 
+	        	"endDate" : paramEndDate
+	        }
+
+          // console.log("tmpData");
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getSectionKpiByDaily/", 
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+               // console.log("success");
+               // console.log(result);
+
+                var resultDataTableDailyHeaderTemplate = Handlebars.compile($("#datatable-daily-header-template").html());
+                
+                // var arrDates = fn.GetArrDates(result);
+
+                var resultStartDate = moment(result.Startdate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                var resultEndDate = moment(result.EndDate, "DD/MM/YYYY").format('YYYY-MM-DD');
+                var arrDates = fn.GetArrDates(new Date(resultStartDate), new Date(resultEndDate));
+                // console.log(arrDates);
+
+                var context = fn.DatatableSection_Daily_ConvertToContext(arrDates);
+                // console.log(context);
+                
+
+
+                $('#datatableSection_Daily').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                  // fn.DatatableVehicleLeader_Daily();
+                  fn.DataTableSection_Daily_Generator();
+                });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

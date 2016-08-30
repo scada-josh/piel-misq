@@ -1,0 +1,38 @@
+GetArrDates: function (startDate, stopDate) {
+	// // console.log("GetArrDates");
+
+	// // console.log(data);
+	// // console.log(data.rows);
+	// // console.log(data.rows[0]);
+	// // console.log(data.rows[0].details);
+
+	// var dateArray = [];
+
+	// // console.log(data.rows[0]);
+	// // console.log(data.rows[0].details.length);
+
+	//     $.each( data.rows[0].details, function( i, val ) {
+	   		
+	//    		// $( "#" + val ).text( "Mine is " + val + "." );
+	//    		// console.log(val.date_name);
+	//    		dateArray.push(val.date_name.substring(4));
+
+
+
+	// 	});
+
+	// return dateArray;
+	
+
+    var dateArray = [];
+    var currentDate = moment(startDate);
+    while (currentDate <= stopDate) {
+        // dateArray.push( moment(currentDate).format('YYYY-MM-DD') );
+        dateArray.push( moment(currentDate).format('DD/MM/YYYY') )
+        // dateArray.push( moment(currentDate));
+        currentDate = moment(currentDate).add(1, 'days');
+    }
+    return dateArray;
+
+  
+},

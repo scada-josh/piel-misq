@@ -12,6 +12,15 @@
     var aciveMenu = "KPI";
 
 
+    $.xhrPool = []; // array of uncompleted requests
+    $.xhrPool.abortAll = function() { // our abort function
+        $(this).each(function(idx, jqXHR) { 
+              jqXHR.abort();
+        });
+        $.xhrPool.length = 0
+    };
+
+    var datatableSection_Daily;
 
     // ********************************** //
     // ******** Global Object ********* //
@@ -30,10 +39,15 @@
         Launch: function () {
             fn.IonRangeSlider();
             fn.DateRangePicker();
+
+            fn.FullscreenToggle_DataTableSection_Daily();
             
             fn.MenuGenerator();
             fn.Apps();
         },
+
+        // Full Screen Button
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Daily" %>
         
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_HeaderFilterDaily" %>
@@ -56,6 +70,12 @@
         
         // IonRangeSlider
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_IonRangeSlider" %>
+
+        // Datatables : Daily
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeDailyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrDates" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DatatableSection_Daily_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Daily_Generator" %>
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_AlertMetro" %>
