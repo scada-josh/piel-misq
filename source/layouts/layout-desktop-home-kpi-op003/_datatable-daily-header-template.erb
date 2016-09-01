@@ -9,8 +9,6 @@
                     <th class="" rowspan="2">{{dateHeader}}</th>
                 {{else if_eq dateHeader 'ศูนย์'}}
                     <th class="" rowspan="2">{{dateHeader}}</th>
-                {{else if_eq dateHeader 'ผู้จัดการศูนย์'}}
-                    <th class="" rowspan="2">{{dateHeader}}</th>
                 {{else}}
                     <th class="DatatableVehicle-common" colspan="2">{{dateHeader}}</th>
                 {{/if_eq}}
@@ -23,8 +21,6 @@
                 {{#if_eq dateHeader 'ลำดับ'}}
                    <!--  <th class="" ></th> -->
                 {{else if_eq dateHeader 'ศูนย์'}}
-                    <!-- <th class="" ></th> -->
-                {{else if_eq dateHeader 'ผู้จัดการศูนย์'}}
                     <!-- <th class="" ></th> -->
                 {{else}}
                     <th>Drop</th>
@@ -43,10 +39,8 @@
                 {{#each headers}}
 
                 {{#if_eq dateHeader 'ลำดับ'}}
-                 <th class="" colspan="3">Average<br/><small>(total)</small></th>
+                 <th class="" colspan="2">Average<br/><small>(total)</small></th>
                 {{else if_eq dateHeader 'ศูนย์'}}
-                <!-- <th class="" ></th> -->
-                {{else if_eq dateHeader 'ผู้จัดการศูนย์'}}
                 <!-- <th class="" ></th> -->
                 {{else}}
                 <th>-</th>

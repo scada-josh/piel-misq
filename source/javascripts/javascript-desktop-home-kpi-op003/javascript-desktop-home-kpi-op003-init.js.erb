@@ -41,6 +41,7 @@
             fn.DateRangePicker();
 
             fn.FullscreenToggle_DataTableSection_Daily();
+            fn.FullscreenToggle_DataTableSection_Weekly();
             
             fn.MenuGenerator();
             fn.Apps();
@@ -48,6 +49,7 @@
 
         // Full Screen Button
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Daily" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Weekly" %>
         
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_HeaderFilterDaily" %>
@@ -76,6 +78,11 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrDates" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DatatableSection_Daily_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Daily_Generator" %>
+        // Datatables : Weekly
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeWeeklyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrWeeks" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Weekly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Weekly_Generator" %>
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_AlertMetro" %>

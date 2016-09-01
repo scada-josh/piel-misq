@@ -7,7 +7,7 @@
 
                 {{#if_eq dateHeader 'ลำดับ'}}
                     <th class="" rowspan="2">{{dateHeader}}</th>
-                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq dateHeader 'ศูนย์'}}
                     <th class="" rowspan="2">{{dateHeader}}</th>
                 {{else}}
                     <th class="DatatableVehicle-common" colspan="2">{{dateHeader}}</th>
@@ -20,7 +20,7 @@
 
                 {{#if_eq dateHeader 'ลำดับ'}}
                    <!--  <th class="" ></th> -->
-                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq dateHeader 'ศูนย์'}}
                     <!-- <th class="" ></th> -->
                 {{else}}
                     <th>Drop</th>
@@ -40,7 +40,7 @@
 
                 {{#if_eq dateHeader 'ลำดับ'}}
                  <th class="" colspan="2">Average<br/><small>(total)</small></th>
-                {{else if_eq dateHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq dateHeader 'ศูนย์'}}
                 <!-- <th class="" ></th> -->
                 {{else}}
                 <th>-</th>
