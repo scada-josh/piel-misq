@@ -1,0 +1,93 @@
+ConsumeQuaterlyInformation: function () {
+  // console.log("ConsumeQuaterlyInformation"); 
+
+
+          if ($.fn.DataTable.isDataTable('#datatableSection_Quarterly') ) {
+              $('#datatableSection_Quarterly').empty();
+              $('#datatableSection_Quarterly').dataTable().fnDestroy();
+              $('#datatableSection_Quarterly > thead > tr').remove();
+              $('#datatableSection_Quarterly > tfoot > tr').remove();
+              // $('#datatableSection_Quarterly').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+          if (fn.paramStartDate) {
+            // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+            paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+          }
+
+          if (fn.paramEndDate) {
+            // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+            paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+          }
+          
+
+          var tmpData = {
+            "startDate" : paramStartDate, 
+            "endDate" : paramEndDate
+          }
+
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getSectionKpiByQuarterly/", 
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+
+
+               // console.log(result);
+
+
+                
+
+                var resultDataTableQuarterlyHeaderTemplate = Handlebars.compile($("#datatable-quarterly-header-template").html());
+
+                var arrQuarter = fn.GetArrQuarter(result);
+                console.log(arrQuarter);
+
+                // var context = fn.DataTableSection_Monthly_ConvertToContext(arrMonth);
+                // // console.log(context);
+
+                
+
+
+
+                // $('#datatableSection_Quarterly').html(resultDataTableMonthlyHeaderTemplate(context)).promise().done(function(){
+                //     fn.DataTableSection_Monthly_Generator();
+  
+                  
+                // });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

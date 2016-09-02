@@ -50,19 +50,8 @@ DatatableVehicle_Daily: function () {
                 var dataCollectionsObj_inner = {};
                 var strDate = result.rows[i].details[j].job_date;
 
-                // tmpDataSetObj[strDate + '_drop'] = result.rows[i].details[j].drop_success;
-                // tmpDataSetObj[strDate + '_box'] = result.rows[i].details[j].box_success;
-
-                // console.log(result.rows[i].details[j].job_no);
-
                 // Format : value#delivery_type#section#drop or box
                 if ( result.rows[i].details[j].job_no == "-") {
-                    // console.log(result.rows[i].details[j].job_no);
-                    // console.log(result.rows[i].details[j].box_success);
-                    // console.log(result.rows[i].details[j].drop_success);
-
-                    // tmpDataSet.push("-" + "#" + "-");
-                    // tmpDataSet.push("-" + "#" + "-");
 
                     tmpDataSet.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Drop");
                     tmpDataSet.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Box");
@@ -74,19 +63,6 @@ DatatableVehicle_Daily: function () {
                     tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Box");
                 }
 
-
-                // tmpDataSetObj[strDate + '_job_no'] = result.rows[i].details[j].job_no;
-                // tmpDataSetObj[strDate + '_drop_all'] = result.rows[i].details[j].drop_all;
-                // tmpDataSetObj[strDate + '_box_all'] = result.rows[i].details[j].box_all;
-                // tmpDataSetObj[strDate + '_departure_time'] = result.rows[i].details[j].departure_time;
-                // tmpDataSetObj[strDate + '_first_delivery_place_time'] = result.rows[i].details[j].first_delivery_place_time;
-                // tmpDataSetObj[strDate + '_final_destination_time'] = result.rows[i].details[j].final_destination_time;
-                // tmpDataSetObj[strDate + '_size_A'] = result.rows[i].details[j].size_A;
-                // tmpDataSetObj[strDate + '_size_B'] = result.rows[i].details[j].size_B;
-                // tmpDataSetObj[strDate + '_size_C'] = result.rows[i].details[j].size_C;
-                // tmpDataSetObj[strDate + '_size_Other'] = result.rows[i].details[j].size_Other;
-                // tmpDataSetObj[strDate + '_driver_wages'] = result.rows[i].details[j].driver_wages;
-                // tmpDataSetObj[strDate + '_remark'] = result.rows[i].details[j].remark;
 
                 dataCollectionsObj_inner['id'] = result.rows[i].id;
                 dataCollectionsObj_inner['vehicle_licence'] = result.rows[i].vehicle_licence;
@@ -100,10 +76,6 @@ DatatableVehicle_Daily: function () {
                 dataCollectionsObj_inner['departure_time'] = result.rows[i].details[j].departure_time;
                 dataCollectionsObj_inner['first_delivery_place_time'] = result.rows[i].details[j].first_delivery_place_time;
                 dataCollectionsObj_inner['final_destination_time'] = result.rows[i].details[j].final_destination_time;
-                // dataCollectionsObj_inner['size_A'] = result.rows[i].details[j].size_A;
-                // dataCollectionsObj_inner['size_B'] = result.rows[i].details[j].size_B;
-                // dataCollectionsObj_inner['size_C'] = result.rows[i].details[j].size_C;
-                // dataCollectionsObj_inner['size_Other'] = result.rows[i].details[j].size_Other;
                 dataCollectionsObj_inner['size_S'] = result.rows[i].details[j].size_s;
                 dataCollectionsObj_inner['size_A'] = result.rows[i].details[j].size_a;
                 dataCollectionsObj_inner['size_B'] = result.rows[i].details[j].size_b;
@@ -112,60 +84,32 @@ DatatableVehicle_Daily: function () {
                 dataCollectionsObj_inner['driver_wages'] = result.rows[i].details[j].driver_wages;
                 dataCollectionsObj_inner['remark'] = result.rows[i].details[j].remark;
 
-                
                 objDatatableVehicle_Daily_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
                 k++;
                 objDatatableVehicle_Daily_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
                 k++;
-
-                // tmpDataSet.push(result.rows[i].details[j].drop_success);
-                // tmpDataSet.push(result.rows[i].details[j].box_success);
 
                 tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop_success);
                 tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success);
 
-// var dt = moment(myStartDate, "YYYY-MM-DD HH:mm:ss")
-              // dt.format('dddd');
-
-
                 var checkDayName = moment(result.rows[i].details[j].job_date, "DD/MM/YYYY").format('dddd');
-                    // console.log(checkDayName);
-                // if ((checkDayName == "Sunday") || (result.rows[i].details[j].job_no == "-")) {
-                //     count_date_empty_job_no++;
-                // }
+
                 if (result.rows[i].details[j].job_no == "-") {
                     count_date_empty_job_no++;
                 }
             }
 
-            // tmpDataSetObj['average_drop'] = numeral(tmpDropCount/j).format('0.00');
-            // tmpDataSetObj['average_box'] = numeral(tmpBoxCount/j).format('0.00');
             
-            // tmpDataSet.push(numeral(tmpBoxCount/j).format('0.00'));
-            // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
 
             if (j != count_date_empty_job_no) {
-                // tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0.00'));
-                // tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0.00'));
 
                 tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0'));
                 tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0'));
             } else {
-                // tmpDataSet.push(numeral(tmpDropCount/(j)).format('0.00'));
-                // tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0.00'));
 
                 tmpDataSet.push(numeral(tmpDropCount/(j)).format('0'));
                 tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0'));
             }
-            
-
-            // Average column
-            // tmpDataSet.push(numeral(tmpDropCount/j).format('0.00'));
-            // tmpDataSet.push(numeral(tmpBoxCount/j).format('0.00'));
-
-            // var tmpDate = {};
-            // tmpDate["mDate"] = "2016-06-01";
-            // tmpDataSet.push(tmpDate);
 
             dataSet.push(tmpDataSet);
             // dataSet.push(tmpDataSetObj);
@@ -173,8 +117,8 @@ DatatableVehicle_Daily: function () {
         }
 
 
-        // console.log('DataSet');
-        // console.log(dataSet);
+        console.log('DataSet');
+        console.log(dataSet);
 
 
         // $('#datatableVehicle_Daily').dataTable(dataSet);

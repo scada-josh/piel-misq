@@ -1,0 +1,120 @@
+ConsumeHalfYearInformation: function () {
+	// console.log("ConsumeHalfYearInformation");
+
+
+
+
+          if ($.fn.DataTable.isDataTable('#datatableSection_HalfYear') ) {
+              $('#datatableSection_HalfYear').empty();
+              $('#datatableSection_HalfYear').dataTable().fnDestroy();
+              $('#datatableSection_HalfYear > thead > tr').remove();
+              $('#datatableSection_HalfYear > tfoot > tr').remove();
+              // $('#datatableSection_HalfYear').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+	        if (fn.paramStartDate) {
+	          // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+	          paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+	        }
+
+	        if (fn.paramEndDate) {
+	          // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+	          paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+	        }
+	        
+
+	        var tmpData = {
+	        	"startDate" : paramStartDate, 
+	        	"endDate" : paramEndDate, 
+	        	"siteID" : fn.paramSiteID
+	        }
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getSectionKpiByHalfYear/", 
+            "type": "POST",
+            "dataType": "json",
+            "timeout": 180000,
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+
+
+               // console.log(result);
+
+               if (result) {
+                  if (result.status == "success") {
+
+                    var resultDataTableHalfYearHeaderTemplate = Handlebars.compile($("#datatable-halfyear-header-template").html());
+                  
+                    var arrHalfYear = fn.GetArrHalfYear(result);
+                        // console.log(arrHalfYear);
+
+                    var context = fn.DataTableSection_HalfYear_ConvertToContext(arrHalfYear);
+                        // console.log(context); 
+                  
+
+
+
+                  $('#datatableSection_HalfYear').html(resultDataTableHalfYearHeaderTemplate(context)).promise().done(function(){
+                    fn.DataTableSection_HalfYear_Generator();
+                  });
+
+
+                  } else if(result.status == "error") {
+                    fn.CloseLoadingMessageBox();
+
+                    setTimeout(function() {
+                        fn.AlertMetro("open", "ข้อมูลผิดพลาด (error), กรุณาเลือกช่วงวันที่คุณต้องการอีกครั้ง", "danger");
+                    }, 1000);
+
+                  } else {
+                    fn.CloseLoadingMessageBox();
+
+                    setTimeout(function() {
+                        fn.AlertMetro("open", "ข้อมูลผิดพลาด (other), กรุณาเลือกช่วงวันที่คุณต้องการอีกครั้ง", "danger");
+                    }, 1000);
+                    
+                  }
+
+               } else {
+                  fn.CloseLoadingMessageBox();
+
+                  setTimeout(function() {
+                      fn.AlertMetro("open", "ข้อมูลผิดพลาด (null), กรุณาเลือกช่วงวันที่คุณต้องการอีกครั้ง", "danger");
+                  }, 1000);
+                  
+               }
+
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},

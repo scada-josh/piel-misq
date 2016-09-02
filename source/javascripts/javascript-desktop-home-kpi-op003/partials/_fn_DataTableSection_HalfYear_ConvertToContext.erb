@@ -1,0 +1,54 @@
+DataTableSection_HalfYear_ConvertToContext: function (arrHalfYear) {
+	// console.log("DataTableSection_HalfYear_ConvertToContext");
+
+
+
+
+    // var context = {
+    //       headers: [ 
+    //         { halfyearHeader: 'ลำดับ' },
+    //         { halfyearHeader: 'ศูนย์' },
+    //         { halfyearHeader: '1st-half/2016' },
+    //         { halfyearHeader: '2nd-half/2016' },
+    //         { halfyearHeader: 'Average' }
+    //       ]
+    //     };
+
+
+
+    var context = {};
+    var headers = [];
+    var objHalfyearHeader = {};
+
+    objHalfyearHeader["halfyearHeader"] = 'ลำดับ';
+    headers.push(objHalfyearHeader);
+    
+
+    objHalfyearHeader = {};
+    objHalfyearHeader["halfyearHeader"] = 'ศูนย์';
+    headers.push(objHalfyearHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrHalfYear, function( i, val ) {
+        objHalfyearHeader = {};
+        objHalfyearHeader["halfyearHeader"] = val;
+        headers.push(objHalfyearHeader);
+
+        if (i == arrHalfYear.length -1) {
+            objHalfyearHeader = {};
+            objHalfyearHeader["halfyearHeader"] = 'Average';
+            headers.push(objHalfyearHeader);
+        }
+    });
+
+    // objHalfyearHeader["halfyearHeader"] = 'Average';
+    // headers.push(objHalfyearHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},

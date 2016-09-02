@@ -7,7 +7,7 @@
 
                 {{#if_eq quarterHeader 'ลำดับ'}}
                     <th class="" rowspan="2">{{quarterHeader}}</th>
-                {{else if_eq quarterHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq quarterHeader 'ศูนย์'}}
                     <th class="" rowspan="2">{{quarterHeader}}</th>
                 {{else}}
                     <th class="DatatableVehicle-common" colspan="2">{{quarterHeader}}</th>
@@ -20,7 +20,7 @@
 
                 {{#if_eq quarterHeader 'ลำดับ'}}
                    <!--  <th class="" ></th> -->
-                {{else if_eq quarterHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq quarterHeader 'ศูนย์'}}
                     <!-- <th class="" ></th> -->
                 {{else}}
                     <th>Drop</th>
@@ -41,7 +41,7 @@
 
                 {{#if_eq quarterHeader 'ลำดับ'}}
                  <th class="" colspan="2">Average<br/><small>(total)</small></th>
-                {{else if_eq quarterHeader 'ชื่อหัวหน้าสาย'}}
+                {{else if_eq quarterHeader 'ศูนย์'}}
                 <!-- <th class="" ></th> -->
                 {{else}}
                 <th>-</th>

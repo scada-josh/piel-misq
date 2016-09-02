@@ -42,6 +42,7 @@
 
             fn.FullscreenToggle_DataTableSection_Daily();
             fn.FullscreenToggle_DataTableSection_Weekly();
+            fn.FullscreenToggle_DataTableSection_Monthly();
             
             fn.MenuGenerator();
             fn.Apps();
@@ -50,6 +51,7 @@
         // Full Screen Button
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Weekly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Monthly" %>
         
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_HeaderFilterDaily" %>
@@ -83,6 +85,20 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrWeeks" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Weekly_ConvertToContext" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Weekly_Generator" %>
+        // Datatables : Monthly
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeMonthlyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrMonth" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Monthly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Monthly_Generator" %>
+        // Datatables : Quarterly
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeQuaterlyInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrQuarter" %>
+        // Datatables : HalfYear
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeHalfYearInformation" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrHalfYear" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_HalfYear_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_HalfYear_Generator" %>
+
 
         // MetroBanner - Alert
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_AlertMetro" %>

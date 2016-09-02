@@ -1,0 +1,54 @@
+DataTableSection_Monthly_ConvertToContext: function (arrMonths) {
+	// console.log("DataTableSection_Monthly_ConvertToContext");
+
+
+    // var context = {
+    //       headers: [ 
+    //         { monthHeader: 'ลำดับ' },
+    //         { monthHeader: 'ชื่อหัวหน้าสาย' },
+    //         { monthHeader: 'JUN/2016' },
+    //         { monthHeader: 'JUL/2016' },
+    //         { monthHeader: 'AUG/2016' },
+    //         { monthHeader: 'SEP/2016' },
+    //         { monthHeader: 'OCT/2016' },
+    //         { monthHeader: 'Average' }
+    //       ]
+    //     };
+
+
+    var context = {};
+    var headers = [];
+    var objMonthlyHeader = {};
+
+    objMonthlyHeader["monthHeader"] = 'ลำดับ';
+    headers.push(objMonthlyHeader);
+    
+
+    objMonthlyHeader = {};
+    objMonthlyHeader["monthHeader"] = 'ศูนย์';
+    headers.push(objMonthlyHeader);
+
+    // console.log(headers);
+
+
+
+    $.each( arrMonths, function( i, val ) {
+        objMonthlyHeader = {};
+        objMonthlyHeader["monthHeader"] = val;
+        headers.push(objMonthlyHeader);
+
+        if (i == arrMonths.length -1) {
+            objMonthlyHeader = {};
+            objMonthlyHeader["monthHeader"] = 'Average';
+            headers.push(objMonthlyHeader);
+        }
+    });
+
+    // objMonthlyHeader["monthHeader"] = 'Average';
+    // headers.push(objMonthlyHeader);
+
+    context["headers"] = headers;
+
+    return context;
+  
+},

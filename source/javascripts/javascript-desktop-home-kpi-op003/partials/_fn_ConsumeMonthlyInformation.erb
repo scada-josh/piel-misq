@@ -1,0 +1,93 @@
+ConsumeMonthlyInformation: function () {
+  // console.log("ConsumeMonthlyInformation"); 
+
+
+          if ($.fn.DataTable.isDataTable('#datatableSection_Monthly') ) {
+              $('#datatableSection_Monthly').empty();
+              $('#datatableSection_Monthly').dataTable().fnDestroy();
+              $('#datatableSection_Monthly > thead > tr').remove();
+              $('#datatableSection_Monthly > tfoot > tr').remove();
+              // $('#datatableSection_Monthly').deleteTFoot();
+          }
+
+
+          var paramStartDate;
+          var paramEndDate;
+
+          if (fn.paramStartDate) {
+            // paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+            paramStartDate = fn.paramStartDate.format('YYYY-MM-DD');
+          }
+
+          if (fn.paramEndDate) {
+            // paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+            paramEndDate = fn.paramEndDate.format('YYYY-MM-DD');
+          }
+          
+
+          var tmpData = {
+            "startDate" : paramStartDate, 
+            "endDate" : paramEndDate
+          }
+
+
+          // console.log(tmpData);
+
+          
+          $.ajax({
+            "url": "../../../../api/restful-api/kpiManager/getSectionKpiByMonthly/", 
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json",
+            "data": JSON.stringify(tmpData),
+            "beforeSend": function(jqXHR, settings) {
+               // setting a timeout
+               $.xhrPool.push(jqXHR);
+               fn.ShowLoadingMessageBox();  
+            },
+            "complete": function(jqXHR, textStatus) {
+               // console.log("complete");
+
+               var index = $.xhrPool.indexOf(jqXHR);
+               if (index > -1) {
+                  $.xhrPool.splice(index, 1);
+               }
+            },
+            "success": function(result, textStatus, jqXHR){
+
+
+               // console.log(result);
+
+
+                
+
+                var resultDataTableMonthlyHeaderTemplate = Handlebars.compile($("#datatable-monthly-header-template").html());
+
+                var arrMonth = fn.GetArrMonth(result);
+                // console.log(arrMonth);
+
+                var context = fn.DataTableSection_Monthly_ConvertToContext(arrMonth);
+                // console.log(context);
+
+                
+
+
+
+                $('#datatableSection_Monthly').html(resultDataTableMonthlyHeaderTemplate(context)).promise().done(function(){
+                    fn.DataTableSection_Monthly_Generator();
+  
+                  
+                });
+
+            },
+            "error": function(jqXHR, textStatus, errorThrown){
+              console.log('textStatus: ' + textStatus);
+            }
+
+          });
+
+  
+    return false;
+
+  
+},
