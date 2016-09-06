@@ -1,0 +1,22 @@
+FullscreenToggle_DataTableSection_HalfYear: function () {
+	// console.log("FullscreenToggle_DataTableSection_HalfYear");
+
+    $('body').on('click', '#btn-fullscreen-datatable-halfYear', function () {
+        
+        if ($.fn.DataTable.isDataTable('#datatableSection_HalfYear') ) {
+            datatableSection_HalfYear.columns.adjust().draw();
+        }
+
+        if($(this).attr('data-click-state') == 1) {
+            $(this).attr('data-click-state', 0);
+            // console.log("btn-fullscreen-datatable-weekly, state-00, exit fullscreen");
+
+        } else {
+            $(this).attr('data-click-state', 1)
+            // console.log("btn-fullscreen-datatable-weekly, state-01, goto fullscreen");
+        }
+     
+    });
+
+  
+},

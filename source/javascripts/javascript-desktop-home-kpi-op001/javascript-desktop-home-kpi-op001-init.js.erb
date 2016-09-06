@@ -65,11 +65,19 @@
             fn.FullscreenToggle_DataTableVehicle_Monthly();
             fn.FullscreenToggle_DataTableVehicle_Quaterly();
             fn.FullscreenToggle_DataTableVehicle_Halfyear();
+
+            fn.Easy_PieChart();
             
             fn.MenuGenerator();
             fn.Apps();
         },
         
+        // Tab Event
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_Tab_ClickHandler" %>
+
+        // Easy Pie Chart
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_Easy_PieChart" %>
+
         // Full Screen Button
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/_fn_FullscreenToggle_DataTableVehicle_Weekly" %>

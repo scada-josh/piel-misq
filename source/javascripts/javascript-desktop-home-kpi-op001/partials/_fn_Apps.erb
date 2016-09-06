@@ -25,17 +25,26 @@ Apps: function () {
 
 
 
-
-
-
-
-
     $("#botKillLoading").on("tap",function(){
         $.metroLoadingKill();
         $("#botKillLoading").fadeOut();
     });
 
     // fn.ShowLoadingMessageBox();
+
+
+
+
+    $('#op001-tab a').click(function (e) {
+
+        fn.Tab_ClickHandler();
+     // alert("hello");
+      e.preventDefault();
+      // $(this).tab('show');
+    })
+
+
+
 
 
 }

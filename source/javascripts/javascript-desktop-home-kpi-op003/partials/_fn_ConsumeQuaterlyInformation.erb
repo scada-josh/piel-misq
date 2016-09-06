@@ -39,6 +39,7 @@ ConsumeQuaterlyInformation: function () {
             "type": "POST",
             "dataType": "json",
             "contentType": "application/json",
+            "timeout": 60000,
             "data": JSON.stringify(tmpData),
             "beforeSend": function(jqXHR, settings) {
                // setting a timeout
@@ -58,26 +59,47 @@ ConsumeQuaterlyInformation: function () {
 
                // console.log(result);
 
+               if (result) {
+                  if (result.status == "success") {
 
-                
+                        var resultDataTableQuarterlyHeaderTemplate = Handlebars.compile($("#datatable-quarterly-header-template").html());
 
-                var resultDataTableQuarterlyHeaderTemplate = Handlebars.compile($("#datatable-quarterly-header-template").html());
+                        var arrQuarter = fn.GetArrQuarter(result);
+                        // console.log(arrQuarter);
 
-                var arrQuarter = fn.GetArrQuarter(result);
-                console.log(arrQuarter);
-
-                // var context = fn.DataTableSection_Monthly_ConvertToContext(arrMonth);
-                // // console.log(context);
-
-                
+                        var context = fn.DataTableSection_Quarterly_ConvertToContext(arrQuarter);
+                        console.log(context);
 
 
+                        $('#datatableSection_Quarterly').html(resultDataTableQuarterlyHeaderTemplate(context)).promise().done(function(){
+                            fn.DataTableSection_Quarterly_Generator();
+                        });
 
-                // $('#datatableSection_Quarterly').html(resultDataTableMonthlyHeaderTemplate(context)).promise().done(function(){
-                //     fn.DataTableSection_Monthly_Generator();
-  
+                  } else if(result.status == "error") {
+                    fn.CloseLoadingMessageBox();
+
+                    setTimeout(function() {
+                        fn.AlertMetro("open", "ข้อมูลผิดพลาด (error), กรุณาเลือกช่วงวันที่คุณต้องการอีกครั้ง", "danger");
+                    }, 1000);
+
+                  } else {
+                    fn.CloseLoadingMessageBox();
+
+                    setTimeout(function() {
+                        fn.AlertMetro("open", "ข้อมูลผิดพลาด (other), กรุณาเลือกช่วงวันที่คุณต้องการอีกครั้ง", "danger");
+                    }, 1000);
+                    
+                  }
+
+               } else {
+                  fn.CloseLoadingMessageBox();
+
+                  setTimeout(function() {
+                      fn.AlertMetro("open", "ข้อมูลผิดพลาด (null), กรุณาเลือกช่วงวันที่คุณต้องการอีกครั้ง", "danger");
+                  }, 1000);
                   
-                // });
+               }
+
 
             },
             "error": function(jqXHR, textStatus, errorThrown){

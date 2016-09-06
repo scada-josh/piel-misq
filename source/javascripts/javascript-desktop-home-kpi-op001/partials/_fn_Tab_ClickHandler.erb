@@ -1,0 +1,20 @@
+Tab_ClickHandler: function () {
+	// console.log('Tab_ClickHandler');
+
+    setTimeout(function() {
+
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily') ) {
+            datatableVehicle_Daily.columns.adjust().draw();
+            console.log('datatableVehicle_Daily refresh');
+        }
+
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Detail_Daily') ) {
+            datatableVehicle_Detail_Daily.columns.adjust().draw();
+        }
+
+    }, 500);
+
+
+
+    
+},

@@ -21,6 +21,7 @@
     };
 
     var datatableSection_Daily;
+    var datatableSection_Quarterly;
 
     // ********************************** //
     // ******** Global Object ********* //
@@ -43,6 +44,8 @@
             fn.FullscreenToggle_DataTableSection_Daily();
             fn.FullscreenToggle_DataTableSection_Weekly();
             fn.FullscreenToggle_DataTableSection_Monthly();
+            fn.FullscreenToggle_DataTableSection_Quarterly();
+            fn.FullscreenToggle_DataTableSection_HalfYear();
             
             fn.MenuGenerator();
             fn.Apps();
@@ -52,6 +55,8 @@
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Daily" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Weekly" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Monthly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_Quarterly" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_FullscreenToggle_DataTableSection_HalfYear" %>
         
         // Header Filter
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_HeaderFilterDaily" %>
@@ -93,6 +98,8 @@
         // Datatables : Quarterly
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeQuaterlyInformation" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrQuarter" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Quarterly_ConvertToContext" %>
+        <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_DataTableSection_Quarterly_Generator" %>
         // Datatables : HalfYear
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_ConsumeHalfYearInformation" %>
         <%= partial js_dir + "/javascript-desktop-home-kpi-op003/partials/_fn_GetArrHalfYear" %>

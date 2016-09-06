@@ -1,10 +1,13 @@
-                                    <div class="tabbable-custom nav-justified">
+                                    <div class="tabbable-custom nav-justified" id="op001-tab">
                                                 <ul class="nav nav-tabs nav-justified">
                                                     <li class="active">
                                                         <a href="#tab_average_epod" data-toggle="tab"> EPOD </a>
                                                     </li>
                                                     <li>
                                                         <a href="#tab_average_nonEpod" data-toggle="tab"> Non-EPOD </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tab_all" data-toggle="tab"> ALL </a>
                                                     </li>
                                                 </ul>
                                                 <div class="tab-content">
@@ -14,6 +17,11 @@
                                                     <div class="tab-pane" id="tab_average_nonEpod">
                                                         <!-- TAB - Average Non EPOD -->
                                                         <%= partial kpi_op001_dir + "/partials/_tab_average_nonEpod" %>
+
+                                                    </div>
+                                                    <div class="tab-pane" id="tab_all">
+                                                        <!-- TAB - Average Non EPOD -->
+                                                        <%= partial kpi_op001_dir + "/partials/_tab_all" %>
 
                                                     </div>
                                                 </div>
