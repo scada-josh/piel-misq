@@ -27,25 +27,29 @@ DataTableVehicle_Weekly_Click_Handler: function () {
                 if (columnIdx >= 3) {
 
 
-                  var tmpObj = objDatatableVehicle_Weekly_DataCollections['"' + rowIdx.toString() + (columnIdx - col_offset).toString() + '"'];
-                  var myWeek_no = tmpObj.week_no;
-                  var myYear_no = tmpObj.year_no;
+                    var tmpObj = objDatatableVehicle_Weekly_DataCollections['"' + rowIdx.toString() + (columnIdx - col_offset).toString() + '"'];
+
+                    if (tmpObj) {
+                        var myWeek_no = tmpObj.week_no;
+                        var myYear_no = tmpObj.year_no;
 
 
-                  // console.log(objDatatableVehicle_Weekly_DataCollections);
-                  // console.log(objDatatableVehicle_Weekly_DataCollections["00"]);
+                        // console.log(objDatatableVehicle_Weekly_DataCollections);
+                        // console.log(objDatatableVehicle_Weekly_DataCollections["00"]);
 
-                  var mySiteID = fn.paramSiteID;
-                  var myVehicleLicense = data[2];
-                  var myYearNo = myYear_no;
-                  var myWeekNo = myWeek_no;
+                        var mySiteID = fn.paramSiteID;
+                        var myVehicleLicense = data[2];
+                        var myYearNo = myYear_no;
+                        var myWeekNo = myWeek_no;
 
-                  // console.log('You clicked on Site ID : ' + fn.paramSiteID)
-                  // console.log('You clicked on Vehicle license : ' + data[2]);
-                  // console.log( 'You clicked on Year  :  ' + myYear_no );
-                  // console.log( 'You clicked on week  :  ' + myWeek_no );
+                        // console.log('You clicked on Site ID : ' + fn.paramSiteID)
+                        // console.log('You clicked on Vehicle license : ' + data[2]);
+                        // console.log( 'You clicked on Year  :  ' + myYear_no );
+                        // console.log( 'You clicked on week  :  ' + myWeek_no );
 
-                  fn.ConsumeWeeklyDetailInformation(fn.paramSiteID, myVehicleLicense, myYearNo, myWeekNo);
+                        fn.ConsumeWeeklyDetailInformation(fn.paramSiteID, myVehicleLicense, myYearNo, myWeekNo);
+                    }
+
 
                 }
 
