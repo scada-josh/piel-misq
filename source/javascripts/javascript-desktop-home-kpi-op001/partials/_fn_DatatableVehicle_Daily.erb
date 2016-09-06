@@ -3,6 +3,8 @@ DatatableVehicle_Daily: function () {
 
     // var dataSet = [];
     dataSet = [];
+    dataSet_Epod = [];
+    dataSet_NonEpod = [];
 
     var objVehicleType = {};
     var objDeliveryType = {};
@@ -22,19 +24,40 @@ DatatableVehicle_Daily: function () {
 
         for (var i=0; i < result.rows.length; i++ ) {
 
-            var tmpDataSet = [];
+            // variable for EPOD
+            var tmpDataSet_Epod = [];
+            var tmpDropCount_Epod = 0;
+            var dropAverage_Epod = 0;
+            var tmpBoxCount_Epod = 0;
+            var boxAverage_Epod = 0;
 
+            // variable for NonEPOD
+            var tmpDataSet_NonEpod = [];
+            var tmpDropCount_NonEpod = 0;
+            var dropAverage_NonEpod = 0;
+            var tmpBoxCount_NonEpod = 0;
+            var boxAverage_NonEpod = 0;
+
+            // variable for All
+            var tmpDataSet = [];
             var tmpDropCount = 0;
             var dropAverage = 0;
-
             var tmpBoxCount = 0;
             var boxAverage = 0;
 
-            var tmpDataSetObj = {};
+            // var tmpDataSetObj = {};
 
+            // tmpDataSet_Epod for EPOD
+            tmpDataSet_Epod.push(parseInt(result.rows[i].id));
+            tmpDataSet_Epod.push(result.rows[i].vehicle_type);
+            tmpDataSet_Epod.push(result.rows[i].vehicle_licence);
 
-            // tmpDataSetObj['id'] = result.rows[i].id;
-            // tmpDataSetObj['vehicle_licence'] = result.rows[i].vehicle_licence;
+            // tmpDataSet_Epod for NonEPOD
+            tmpDataSet_NonEpod.push(parseInt(result.rows[i].id));
+            tmpDataSet_NonEpod.push(result.rows[i].vehicle_type);
+            tmpDataSet_NonEpod.push(result.rows[i].vehicle_licence);
+
+            // tmpDataSet for All
             tmpDataSet.push(parseInt(result.rows[i].id));
             tmpDataSet.push(result.rows[i].vehicle_type);
             tmpDataSet.push(result.rows[i].vehicle_licence);
@@ -44,7 +67,14 @@ DatatableVehicle_Daily: function () {
             objDeliveryType[result.rows[i].vehicle_licence] = result.rows[i].delivery_type;
 
             var k = 0;
+
+            // EPOD
+            var count_date_empty_job_no_Epod = 0;
+            // NonEPOD
+            var count_date_empty_job_no_NonEpod = 0;
+            // All
             var count_date_empty_job_no = 0;
+
             for (var j=0; j < result.rows[i].details.length; j++ ) {
 
 
@@ -54,12 +84,28 @@ DatatableVehicle_Daily: function () {
                 // Format : value#delivery_type#section#drop or box
                 if ( result.rows[i].details[j].job_no == "-") {
 
+                    // tmpDataSet_Epod for EPOD
+                    tmpDataSet_Epod.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Drop");
+                    tmpDataSet_Epod.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Box");
+
+                    // tmpDataSet_Epod for NonEPOD
+                    tmpDataSet_NonEpod.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Drop");
+                    tmpDataSet_NonEpod.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Box");
+
+                    // tmpDataSet for All
                     tmpDataSet.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Drop");
                     tmpDataSet.push("-" + "#" + "-" + "#" + fn.paramSiteName + "#" + "Box");
                 } else {
-                    // tmpDataSet.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type);
-                    // tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type);
 
+                    // tmpDataSet_Epod for EPOD
+                    tmpDataSet_Epod.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Drop");
+                    tmpDataSet_Epod.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Box");
+
+                    // tmpDataSet_Epod for NonEPOD
+                    tmpDataSet_NonEpod.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Drop");
+                    tmpDataSet_NonEpod.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Box");
+
+                    // tmpDataSet for All
                     tmpDataSet.push(result.rows[i].details[j].drop_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Drop");
                     tmpDataSet.push(result.rows[i].details[j].box_success + "#" + result.rows[i].details[j].delivery_type + "#" + fn.paramSiteName + "#" + "Box");
                 }
@@ -90,30 +136,81 @@ DatatableVehicle_Daily: function () {
                 objDatatableVehicle_Daily_DataCollections['"' + i.toString() + k.toString() +'"'] = dataCollectionsObj_inner;
                 k++;
 
+                // EPOD
+                if (result.rows[i].details[j].delivery_type == "EPOD") {
+                    tmpDropCount_Epod = tmpDropCount_Epod + parseFloat(result.rows[i].details[j].drop_success);
+                    tmpBoxCount_Epod = tmpBoxCount_Epod + parseFloat(result.rows[i].details[j].box_success);
+                }
+
+                // NonEPOD
+                if (result.rows[i].details[j].delivery_type == "NON_EPOD") {
+                    tmpDropCount_NonEpod = tmpDropCount_NonEpod + parseFloat(result.rows[i].details[j].drop_success);
+                    tmpBoxCount_NonEpod = tmpBoxCount_NonEpod + parseFloat(result.rows[i].details[j].box_success);
+                }
+
+                // ALL (EPOD + NON_EPOD)
                 tmpDropCount = tmpDropCount + parseFloat(result.rows[i].details[j].drop_success);
                 tmpBoxCount = tmpBoxCount + parseFloat(result.rows[i].details[j].box_success);
 
                 var checkDayName = moment(result.rows[i].details[j].job_date, "DD/MM/YYYY").format('dddd');
 
+                // EPOD
+                if ((result.rows[i].details[j].job_no == "-")||(result.rows[i].details[j].delivery_type != "EPOD")) {
+                    count_date_empty_job_no_Epod++;
+                }
+
+                // NonEPOD
+                if ((result.rows[i].details[j].job_no == "-")||(result.rows[i].details[j].delivery_type != "NON_EPOD")) {
+                    count_date_empty_job_no_NonEpod++;
+                }
+
+                // ALL (EPOD + NON_EPOD)
                 if (result.rows[i].details[j].job_no == "-") {
                     count_date_empty_job_no++;
                 }
             }
 
-            
+            // EPOD
+            if (j != count_date_empty_job_no_Epod) {
+                tmpDataSet_Epod.push(numeral(tmpDropCount_Epod/(j - count_date_empty_job_no_Epod)).format('0'));
+                tmpDataSet_Epod.push(numeral(tmpBoxCount_Epod/(j - count_date_empty_job_no_Epod)).format('0'));
+            } else {
+                // tmpDataSet_Epod.push(numeral(tmpDropCount_Epod/(j)).format('0'));
+                // tmpDataSet_Epod.push(numeral(tmpBoxCount_Epod/(j)).format('0'));
+                tmpDataSet_Epod.push("-");
+                tmpDataSet_Epod.push("-");
+            }
 
+            // NonEPOD
+            if (j != count_date_empty_job_no_NonEpod) {
+                tmpDataSet_NonEpod.push(numeral(tmpDropCount_NonEpod/(j - count_date_empty_job_no_NonEpod)).format('0'));
+                tmpDataSet_NonEpod.push(numeral(tmpBoxCount_NonEpod/(j - count_date_empty_job_no_NonEpod)).format('0'));
+            } else {
+                // tmpDataSet_NonEpod.push(numeral(tmpDropCount_NonEpod/(j)).format('0'));
+                // tmpDataSet_NonEpod.push(numeral(tmpBoxCount_NonEpod/(j)).format('0'));
+                tmpDataSet_NonEpod.push("-");
+                tmpDataSet_NonEpod.push("-");
+            }
+
+            // ALL (EPOD + NON_EPOD)
             if (j != count_date_empty_job_no) {
-
                 tmpDataSet.push(numeral(tmpDropCount/(j - count_date_empty_job_no)).format('0'));
                 tmpDataSet.push(numeral(tmpBoxCount/(j - count_date_empty_job_no)).format('0'));
             } else {
-
                 tmpDataSet.push(numeral(tmpDropCount/(j)).format('0'));
                 tmpDataSet.push(numeral(tmpBoxCount/(j)).format('0'));
             }
 
+
+            // EPOD
+            dataSet_Epod.push(tmpDataSet_Epod);
+
+            // NonEPOD
+            dataSet_NonEpod.push(tmpDataSet_NonEpod);
+
+            // ALL (EPOD + NON_EPOD)
             dataSet.push(tmpDataSet);
-            // dataSet.push(tmpDataSetObj);
+            
 
         }
 
@@ -121,18 +218,19 @@ DatatableVehicle_Daily: function () {
         // console.log('DataSet');
         // console.log(dataSet);
 
-
+        // EPOD
         datatableVehicle_Daily_Epod.clear().draw();
-        datatableVehicle_Daily_Epod.rows.add(dataSet); // Add new data
+        datatableVehicle_Daily_Epod.rows.add(dataSet_Epod); // Add new data
         datatableVehicle_Daily_Epod.columns.adjust().draw(); // Redraw the DataTable
         $('.dataTables_processing', $('#datatableVehicle_Daily_Epod').closest('.dataTables_wrapper')).hide();
 
+        // NON_EPOD
         datatableVehicle_Daily_NonEpod.clear().draw();
-        datatableVehicle_Daily_NonEpod.rows.add(dataSet); // Add new data
+        datatableVehicle_Daily_NonEpod.rows.add(dataSet_NonEpod); // Add new data
         datatableVehicle_Daily_NonEpod.columns.adjust().draw(); // Redraw the DataTable
         $('.dataTables_processing', $('#datatableVehicle_Daily_NonEpod').closest('.dataTables_wrapper')).hide();
 
-        // $('#datatableVehicle_Daily').dataTable(dataSet);
+        // ALL (EPOD + NON_EPOD)
         datatableVehicle_Daily.clear().draw();
         datatableVehicle_Daily.rows.add(dataSet); // Add new data
         datatableVehicle_Daily.columns.adjust().draw(); // Redraw the DataTable
