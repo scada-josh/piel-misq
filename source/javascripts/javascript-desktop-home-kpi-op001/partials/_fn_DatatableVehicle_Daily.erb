@@ -1,7 +1,8 @@
 DatatableVehicle_Daily: function () { 
 	// console.log('DatatableVehicle_Daily');
 
-    var dataSet = [];
+    // var dataSet = [];
+    dataSet = [];
 
     var objVehicleType = {};
     var objDeliveryType = {};
@@ -117,9 +118,19 @@ DatatableVehicle_Daily: function () {
         }
 
 
-        console.log('DataSet');
-        console.log(dataSet);
+        // console.log('DataSet');
+        // console.log(dataSet);
 
+
+        datatableVehicle_Daily_Epod.clear().draw();
+        datatableVehicle_Daily_Epod.rows.add(dataSet); // Add new data
+        datatableVehicle_Daily_Epod.columns.adjust().draw(); // Redraw the DataTable
+        $('.dataTables_processing', $('#datatableVehicle_Daily_Epod').closest('.dataTables_wrapper')).hide();
+
+        datatableVehicle_Daily_NonEpod.clear().draw();
+        datatableVehicle_Daily_NonEpod.rows.add(dataSet); // Add new data
+        datatableVehicle_Daily_NonEpod.columns.adjust().draw(); // Redraw the DataTable
+        $('.dataTables_processing', $('#datatableVehicle_Daily_NonEpod').closest('.dataTables_wrapper')).hide();
 
         // $('#datatableVehicle_Daily').dataTable(dataSet);
         datatableVehicle_Daily.clear().draw();
@@ -128,10 +139,6 @@ DatatableVehicle_Daily: function () {
         $('.dataTables_processing', $('#datatableVehicle_Daily').closest('.dataTables_wrapper')).hide();
 
         fn.CloseLoadingMessageBox();
-
-
-
-
 
 
         if (fn.paramSiteName == "BC") {

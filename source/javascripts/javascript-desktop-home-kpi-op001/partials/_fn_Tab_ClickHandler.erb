@@ -3,6 +3,15 @@ Tab_ClickHandler: function () {
 
     setTimeout(function() {
 
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily_Epod') ) {
+            datatableVehicle_Daily_Epod.columns.adjust().draw();
+        }
+
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily_NonEpod') ) {
+            datatableVehicle_Daily_NonEpod.columns.adjust().draw();
+        }
+
+
         if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily') ) {
             datatableVehicle_Daily.columns.adjust().draw();
             console.log('datatableVehicle_Daily refresh');

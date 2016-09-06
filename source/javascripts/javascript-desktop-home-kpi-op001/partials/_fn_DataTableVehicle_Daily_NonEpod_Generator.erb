@@ -1,0 +1,34 @@
+DataTableVehicle_Daily_NonEpod_Generator: function () { 
+	// console.log('DataTableVehicle_Daily_NonEpod_Generator');
+
+
+    //------------------------ datatableVehicle Daily -----------------------//
+    if (jQuery().dataTable) {
+
+         datatableVehicle_Daily_NonEpod = $('#datatableVehicle_Daily_NonEpod').DataTable( {
+            "processing": true,
+            "bDestroy": true,
+            "bAutoWidth": false,
+            // "dom": '<"top"fi>rt<"bottom"lp><"clear">',
+            "deferRender":    true,
+            "scrollX":        true,
+            "scrollY":        '40vh',
+            "scrollCollapse": true,
+            "paging":         false,
+            // "data": dataSet,
+            // "aaData": dataSet,
+
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DatatableVehicle_Daily_NonEpod/_aoColumnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home-kpi-op001/partials/fn_DatatableVehicle_Daily_NonEpod/_footerCallback" %>
+            
+            "order" : [] //disable default sorting, eg sorting on 1st column
+
+
+            
+        });
+
+          datatableVehicle_Daily_NonEpod.columns.adjust().draw();
+
+    }
+    
+},

@@ -2,6 +2,14 @@ FullscreenToggle_DataTableVehicle_Daily: function () {
 	// console.log("FullscreenToggle_DataTableVehicle_Daily");
 
     $('body').on('click', '#btn-fullscreen-datatable-daily', function () {
+
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily_Epod') ) {
+            datatableVehicle_Daily_Epod.columns.adjust().draw();
+        }
+
+        if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily_NonEpod') ) {
+            datatableVehicle_Daily_NonEpod.columns.adjust().draw();
+        }
         
         if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily') ) {
             datatableVehicle_Daily.columns.adjust().draw();

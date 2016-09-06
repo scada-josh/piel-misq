@@ -33,6 +33,21 @@ ConsumeDailyInformation: function () {
 
 
 
+          if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily_Epod') ) {
+              $('#datatableVehicle_Daily_Epod').empty();
+              $('#datatableVehicle_Daily_Epod').dataTable().fnDestroy();
+              $('#datatableVehicle_Daily_Epod > thead > tr').remove();
+              $('#datatableVehicle_Daily_Epod > tfoot > tr').remove();
+              // $('#datatableVehicle_Daily_Epod').deleteTFoot();
+          }
+
+          if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily_NonEpod') ) {
+              $('#datatableVehicle_Daily_NonEpod').empty();
+              $('#datatableVehicle_Daily_NonEpod').dataTable().fnDestroy();
+              $('#datatableVehicle_Daily_NonEpod > thead > tr').remove();
+              $('#datatableVehicle_Daily_NonEpod > tfoot > tr').remove();
+              // $('#datatableVehicle_Daily_NonEpod').deleteTFoot();
+          }
 
           if ($.fn.DataTable.isDataTable('#datatableVehicle_Daily') ) {
               $('#datatableVehicle_Daily').empty();
@@ -97,17 +112,6 @@ ConsumeDailyInformation: function () {
             },
             "success": function(result, textStatus, jqXHR){
                // console.log("success");
-
-
-               
-
-
-               // var index = $.xhrPool.indexOf(jqXHR);
-               // if (index > -1) {
-               //    $.xhrPool.splice(index, 1);
-               // }
-
-
                // console.log(result);
 
                 arrAverageBox_EPOD = [];
@@ -128,89 +132,23 @@ ConsumeDailyInformation: function () {
 
                 var context = fn.DataTableVehicle_Daily_ConvertToContext(arrDates);
 
-                // console.log("context");
-                // console.log(context);
-                // console.log(context.length);
 
 
-                // var returnedData_delivery_type_epod = $.grep(result.rows[0].details, function (element, index) {
-                //   return element.delivery_type == 'EPOD';
-                // });
-                // console.log(returnedData_delivery_type_epod);
+                $('#datatableVehicle_Daily_Epod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                  fn.DataTableVehicle_Daily_Epod_Generator();
+                });
 
-                // var returnedData_delivery_type_non_epod = $.grep(result.rows, function (element, index) {
-                //   return element.delivery_type == 'Non-EPOD';
-                // });
-
-
-               // $.each(arrDates, function(_i, _val) {
-               //      // console.log(moment(_val, "DD/MM/YYYY").format('YYYY-MM-DD'));
-               //      var tmpDate = moment(_val, "DD/MM/YYYY").format('YYYY-MM-DD');
-
-               //      /***** EPOD Average *****/
-               //      var avgBoxEPOD = 0;
-               //      var avgDropEPOD = 0;
-               //      var countBoxEPOD = 0;
-               //      var countDropEPOD = 0;
-
-               //      $.each( returnedData_delivery_type_epod, function( i, val ) {
-               //           var details = val.details;
-               //           // console.log(details);
-
-               //           $.each( details, function( _i_details, _val_details ) {
-               //              // console.log(_val_details.job_date);
-               //              if (_val_details.job_date == tmpDate) {
-               //                  countBoxEPOD = countBoxEPOD + _val_details.box_success;
-               //                  countDropEPOD = countDropEPOD + _val_details.drop_success;
-               //                  return true;
-               //              }
-               //           });
-
-               //      });
-
-               //      avgBoxEPOD = countBoxEPOD/returnedData_delivery_type_epod.length;
-               //      avgDropEPOD = countDropEPOD/returnedData_delivery_type_epod.length;
-               //      // avgBoxEPOD = countBoxEPOD;
-               //      // avgDropEPOD = countDropEPOD;
-               //      arrAverageBox_EPOD.push(avgBoxEPOD);
-               //      arrAverageDrop_EPOD.push(avgDropEPOD);
-
-
-               //      /***** Non-EPOD Average *****/
-               //      var avgBoxNonEPOD = 0;
-               //      var avgDropNonEPOD = 0;
-               //      var countBoxNonEPOD = 0;
-               //      var countDropNonEPOD = 0;
-
-               //      $.each( returnedData_delivery_type_non_epod, function( i, val ) {
-               //           var details = val.details;
-
-               //           $.each( details, function( _i_details, _val_details ) {
-               //              // console.log(_val_details.job_date);
-               //              if (_val_details.job_date == tmpDate) {
-               //                  countBoxNonEPOD = countBoxNonEPOD + _val_details.box_success;
-               //                  countDropNonEPOD = countDropNonEPOD + _val_details.drop_success;
-               //                  return true;
-               //              }
-               //           });
-               //      });
-
-               //      avgBoxNonEPOD = countBoxNonEPOD/returnedData_delivery_type_non_epod.length;
-               //      avgDropNonEPOD = countDropNonEPOD/returnedData_delivery_type_non_epod.length;
-               //      // avgBoxNonEPOD = countBoxNonEPOD;
-               //      // avgDropNonEPOD = countDropNonEPOD;
-               //      arrAverageBox_NonEPOD.push(avgBoxNonEPOD);
-               //      arrAverageDrop_NonEPOD.push(avgDropNonEPOD);
-
-               // });
-
+                $('#datatableVehicle_Daily_NonEpod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                  fn.DataTableVehicle_Daily_NonEpod_Generator();
+                });
 
                 $('#datatableVehicle_Daily').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
                   fn.DatatableVehicle_Daily();
                   fn.DataTableVehicle_Daily_Click_Handler();
-
-                  
                 });
+
+
+
 
             },
             "error": function(jqXHR, textStatus, errorThrown){
