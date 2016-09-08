@@ -17,12 +17,30 @@
  
     var fn = {
 
+        paramCustomer: "",
+        paramGoodsType: 1,
+        paramStartDate: moment(),
+        paramEndDate: moment(),
+
         // Launch Functions
         Launch: function () {
+
+            fn.DateRangePicker();
+
             fn.MenuGenerator();
             fn.Apps();
+
         },
         
+        // Report - Date Range Picker
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_DateRangePicker" %>
+
+        // iCheck
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_Check_iCheck" %>
+
+        // Header Filter
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_HeaderFilter" %>
+
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>

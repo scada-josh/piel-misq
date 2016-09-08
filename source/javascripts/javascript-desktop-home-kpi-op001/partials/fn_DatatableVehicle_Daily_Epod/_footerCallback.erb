@@ -96,12 +96,23 @@
                         var arrB = b.toString().split('#');
                         // var _b = parseFloat(arrB[0]);
                         var _b; 
-                        if (arrB[0] != "-") {
-                            _b = parseFloat(arrB[0]);
+
+
+                        // if (arrB[0] != "-") {
+                        //     _b = parseFloat(arrB[0]);
+                        // } else {
+                        //     _b = 0;
+                        // }
+
+                        if ((arrB[1] != "NON_EPOD")) {
+                            if (arrB[0] != "-") {
+                                _b = parseFloat(arrB[0]);
+                            } else {
+                                _b = 0;
+                            }
                         } else {
                             _b = 0;
                         }
-
 
                         return intVal(a) + intVal(_b);
                     }, 0 );
@@ -127,18 +138,32 @@
                         var arrB = b.toString().split('#');
                         // var _b = parseFloat(arrB[0]);
                         var _b; 
-                        if (arrB[0] != "-") {
-                            _b = parseFloat(arrB[0]);
+
+                        if ((arrB[1] != "NON_EPOD") && (b != "-")) {
+                            if (arrB[0] != "-") {
+                                _b = parseFloat(arrB[0]);
+
+                                console.log("b");
+                                console.log(_b);
+                            } else {
+                                _b = 0;
+                                countSeparateSign++;
+                            }
+
+                            // console.log("EPOD");
                         } else {
                             _b = 0;
-                            countSeparateSign++;
+                            // console.log("NON_EPOD");
                         }
+
 
                         return intVal(a) + intVal(_b);
                     }, 0 );
 
                     var pageAverage;
                     var displayResult = "";
+
+                    // console.log(countSeparateSign);
 
                     if (rowCount != countSeparateSign) {
                         

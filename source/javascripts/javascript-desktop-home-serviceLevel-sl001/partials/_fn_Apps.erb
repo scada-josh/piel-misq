@@ -3,10 +3,15 @@ Apps: function () {
 	// console.log('Apps');
 
 
-
     $('#button-logout').bind('click', function(){
     	fn.Logout();
     });
 
+    // fn.paramGoodsType = 1;
+
+    // btnFilterInfo click handler
+    <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/fn_Apps/_btnFilterInfo_click_handler" %>
+
+    fn.Check_iCheck();
 
 }

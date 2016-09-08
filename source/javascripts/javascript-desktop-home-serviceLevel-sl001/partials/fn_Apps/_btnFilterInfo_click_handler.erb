@@ -1,0 +1,13 @@
+  $('#btnFilterInfo').on('click', function() {
+        // console.log('btnFilterInfo');
+
+        // fn.HeaderFilter(fn.paramCustomer, fn.paramGoodsType, fn.paramStartDate, fn.paramEndDate);
+
+        var myStartDate = moment(fn.paramStartDate);
+        var myEndDate = moment(fn.paramEndDate); 
+
+        console.log(myStartDate.format('YYYY-MM-DD'));
+        console.log(myEndDate.format('YYYY-MM-DD'));
+
+        return false;
+  });

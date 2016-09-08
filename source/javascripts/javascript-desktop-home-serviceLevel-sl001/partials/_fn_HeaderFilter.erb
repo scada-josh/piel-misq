@@ -1,0 +1,44 @@
+HeaderFilter: function (paramCustomer, paramGoodsType, paramStartDate, paramEndDate) {
+	// console.log('HeaderFilter');
+  
+  var customerID;
+
+  if (!paramCustomer) {
+    fn.paramCustomer = $("#customer-id").val();
+
+    if (!fn.paramCustomer) {
+      customerID = "-";
+    } else {
+      customerID = fn.paramCustomer;
+    }
+
+  } else {
+    customerID = paramCustomer;
+  }
+
+  // console.log(fn.paramCustomer);
+
+  var goodsType;
+
+  if (paramGoodsType == 1) {
+    goodsType = "ทั้งหมด";
+  } else if (paramGoodsType == 2) {
+    goodsType = "สินค้าด่วน";
+  } else if (paramGoodsType == 3) {
+    goodsType = "สินค้าทั่วไป";
+  } else {
+    goodsType = "";
+  }
+
+  if (fn.paramStartDate) {
+    paramStartDate = fn.paramStartDate.format('DD/MM/YYYY');
+  }
+  if (fn.paramEndDate) {
+    paramEndDate = fn.paramEndDate.format('DD/MM/YYYY');
+  }
+    
+  $("#customer-label").html(customerID);
+  $("#goods-type-label").html(goodsType);
+  $("#date-range-selected-label").html(paramStartDate + " - " + paramEndDate);
+    
+},

@@ -56,8 +56,14 @@ pageSubTitle: "Lead time"
                             <!-- BEGIN PAGE CONTENT INNER -->
                             <div class="page-content-inner">
 
-                                <%= partial partials_desktop_home + "/service-level/sl-001/partials/_prototype_cover" %>
-
+                                <div class="row">
+                                        <div class="col-md-4 ">
+                                            <%= partial partials_desktop_home + "/service-level/sl-001/partials/_form_filter" %>
+                                        </div>
+                                        <div class="col-md-8 " id="infomation-portlet">
+                                            <%= partial partials_desktop_home + "/service-level/sl-001/partials/_portlet_datatable_sl001" %>
+                                        </div>
+                                </div>
 
                             </div>
                             <!-- END PAGE CONTENT INNER -->

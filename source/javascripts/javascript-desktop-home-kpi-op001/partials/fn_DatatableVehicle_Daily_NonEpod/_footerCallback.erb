@@ -91,16 +91,23 @@
                         // } else {
                         //     _a = 0;
                         // }
-                        
 
                         var arrB = b.toString().split('#');
                         // var _b = parseFloat(arrB[0]);
                         var _b; 
-                        if (arrB[0] != "-") {
-                            _b = parseFloat(arrB[0]);
+                            
+                        if ((arrB[1] != "EPOD")) {
+
+                            if (arrB[0] != "-") {
+                                _b = parseFloat(arrB[0]);
+                            } else {
+                                _b = 0;
+                            }
                         } else {
-                            _b = 0;
+                             _b = 0;
                         }
+
+
 
 
                         return intVal(a) + intVal(_b);
@@ -127,12 +134,21 @@
                         var arrB = b.toString().split('#');
                         // var _b = parseFloat(arrB[0]);
                         var _b; 
-                        if (arrB[0] != "-") {
-                            _b = parseFloat(arrB[0]);
+
+                        if ((arrB[1] != "EPOD") && (b != "-")) {
+
+                            if (arrB[0] != "-") {
+                                _b = parseFloat(arrB[0]);
+                            } else {
+                                _b = 0;
+                                countSeparateSign++;
+                            }
+
                         } else {
                             _b = 0;
-                            countSeparateSign++;
+                            // console.log("NON_EPOD");
                         }
+
 
                         return intVal(a) + intVal(_b);
                     }, 0 );

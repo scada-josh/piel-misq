@@ -26,12 +26,24 @@ Easy_PieChart: function () {
                 barColor: App.getBrandColor('red')
             });
 
-            $('.easy-pie-chart-reload').click(function() {
+            $('#easy-pie-chart-reload').click(function() {
+
+                console.log("easy-pie-chart");
+
                 $('.easy-pie-chart .number').each(function() {
-                    var newValue = Math.floor(100 * Math.random());
+                    // var newValue = Math.floor(100 * Math.random());
+                    var newValue = 75;
                     $(this).data('easyPieChart').update(newValue);
                     $('span', this).text(newValue);
                 });
+
+                // $('.easy-pie-chart .number').each(function() {
+                //     var newValue = Math.floor(100 * Math.random());
+                //     $(this).data('easyPieChart').update(newValue);
+                //     $('span', this).text(newValue);
+                // });
+
+                return false;
             });
 
     
