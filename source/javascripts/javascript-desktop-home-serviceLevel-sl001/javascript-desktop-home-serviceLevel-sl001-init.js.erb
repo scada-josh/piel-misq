@@ -26,12 +26,16 @@
         Launch: function () {
 
             fn.DateRangePicker();
+            fn.DataTable_SL001_Generator();
 
             fn.MenuGenerator();
             fn.Apps();
 
         },
         
+        // DataTable_SL001_Generator
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_DataTable_SL001_Generator" %>
+
         // Report - Date Range Picker
         <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_DateRangePicker" %>
 

@@ -1,0 +1,60 @@
+DataTable_SL001_Generator: function () { 
+	// console.log('DataTable_SL001_Generator');
+
+
+
+
+    //------------------------ datatable_sl001 -----------------------//
+    if (jQuery().dataTable) {
+
+         datatable_sl001 = $('#datatable_sl001').DataTable( {
+            "processing": true,
+            "bDestroy": true,
+            "bAutoWidth": false,
+            // "dom": '<"top"fi>rt<"bottom"lp><"clear">',
+            "ajax": {
+                "url": "../../../../api/restful-api/serviceLevelManager/getLeadTime/",
+                "type": "POST",
+                "data": function ( d ) {
+
+                        d.startDate = "2016-08-01";
+                        d.endDate = "2016-08-03";
+                        d.customerID = "12315";
+                        d.goodsType = 1;
+                        
+                        return d;
+                },
+                "dataSrc": "array",
+                "success": function(data) {
+                        // alert(data);
+                        console.log('success');
+                        console.log(data);
+
+                        // fn.DataTableVehicle_Daily_Render(data);
+                        // DataTableVehicle_Daily_Detail_Render(data);
+                },
+                "error": function(jqXHR, textStatus, errorThrown){
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    console.log('init error: ' + textStatus);
+                }
+            },
+            "deferRender":    true,
+            "scrollX":        true,
+            "scrollY":        '60vh',
+            "scrollCollapse": true,
+            "paging":         false,
+            // "data": dataSet,
+            // "aaData": dataSet,
+                                                                                 
+            "order" : [] //disable default sorting, eg sorting on 1st column
+
+            
+        });
+
+          datatable_sl001.columns.adjust().draw();
+
+    }
+    
+},
