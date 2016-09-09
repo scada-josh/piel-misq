@@ -137,6 +137,9 @@ layout: "layout-api"
     $app->post('/testManager/exportExcelTemplate/',function() use ($app, $objPHPExcel) { exportExcelTemplate($app, $objPHPExcel); });
     $app->get('/testManager/memcachedTemplate/',function() use ($app, $memcachedClient) { memcachedTemplate($app, $memcachedClient); });
 
+    /*********************************/
+    /********** KPI Manager /*********/
+    /*********************************/
     /* KPI manager - Original */
     $app->post('/kpiManager/getOperationKPI/',function() use ($app, $client) { getOperationKPI($app, $client); });
     $app->post('/kpiManager/exportOperationKPI/',function() use ($app, $client, $objPHPExcel) { exportOperationKPI($app, $client, $objPHPExcel); });
@@ -168,7 +171,14 @@ layout: "layout-api"
     $app->post('/kpiManager/getSectionKpiByQuarterly/',function() use ($app, $client_mis) { getSectionKpiByQuarterly($app, $client_mis); });
     $app->post('/kpiManager/getSectionKpiByHalfYear/',function() use ($app, $client_mis) { getSectionKpiByHalfYear($app, $client_mis); });
 
-    /* Menu Manager */
+    /*******************************************/
+    /*********** Service Level Manager *********/
+    /*******************************************/
+    $app->post('/serviceLevelManager/getLeadTime/',function() use ($app, $client_mis) { getLeadTime($app, $client_mis); });
+
+    /*********************************/
+    /********* Menu Manager **********/
+    /*********************************/
     $app->post('/menuManager/listMenu/',function() use ($app, $pdo, $db) { listMenu($app, $pdo, $db); });
 
     /* Permission manager */
@@ -186,6 +196,9 @@ layout: "layout-api"
     <%= partial "/TestManager/_exportExcelTemplate" %>
     <%= partial "/TestManager/_memcachedTemplate" %>
 
+    /****************************************/
+    /********** KPI Manager Partial *********/
+    /****************************************/
     /* KPI Manager Partial */
     <%= partial "/KpiManager/_getOperationKPI" %>
     <%= partial "/KpiManager/_exportOperationKPI" %>
@@ -217,7 +230,17 @@ layout: "layout-api"
     <%= partial "/KpiManager/_getSectionKpiByQuarterly" %>
     <%= partial "/KpiManager/_getSectionKpiByHalfYear" %>
 
-    /* Menu Manager Partial */
+
+    /*******************************************/
+    /*********** Service Level Manager Partial *********/
+    /*******************************************/
+    <%= partial "/ServiceLevelManager/_getLeadTime" %>
+
+
+
+    /*****************************************/
+    /********** Menu Manager Partial *********/
+    /*****************************************/
     <%= partial "/MenuManager/_listMenu" %>
 
     /* Permission Manager Partial */
