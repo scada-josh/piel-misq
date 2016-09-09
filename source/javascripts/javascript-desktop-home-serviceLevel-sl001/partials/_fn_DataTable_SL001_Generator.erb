@@ -1,6 +1,100 @@
-DataTable_SL001_Generator: function () { 
+DataTable_SL001_Generator: function (paramCustomer, paramGoodsType, paramStartDate, paramEndDate) { 
 	// console.log('DataTable_SL001_Generator');
 
+
+
+
+    var total_percentage_dataSet = [];
+    var iel_percentage_dataSet = [];
+    var dc_percentage_dataSet = [];
+
+    function Datatable_sl001_dataSet(result) {
+        // console.log(result);
+
+        fn.leadTimeHighCharts.showLoading("Loading data...");
+
+        // Remove all the chart existing series
+        while(fn.leadTimeHighCharts.series.length) {
+          fn.leadTimeHighCharts.series[0].remove();
+        }
+
+        /***********************/
+        /******* % Total *******/
+        /***********************/
+        var tmpTotalPercentageSerie = [];
+        for (var i=0; i < result.rows.length; i++ ) {
+
+            // console.log(result.rows[i].section)
+            // var tmpVal = result.rows[i].total_percentage;
+            var tmpVal = numeral(result.rows[i].total_percentage).format('0,0.00');
+            tmpTotalPercentageSerie.push([result.rows[i].section, parseFloat(tmpVal)]);
+        }
+
+
+        var totalPercentageSeries = {
+              name: "% Total",
+              color: '#00AB4E',
+              type: 'line',
+              data: tmpTotalPercentageSerie
+        }
+
+        fn.leadTimeHighCharts.addSeries(totalPercentageSeries);
+
+
+
+        /***********************/
+        /******* % IEL *******/
+        /***********************/
+        var tmpIelPercentageSerie = [];
+        for (var i=0; i < result.rows.length; i++ ) {
+
+            // console.log(result.rows[i].section)
+            // var tmpVal = result.rows[i].iel_percentage;
+            var tmpVal = numeral(result.rows[i].iel_percentage).format('0,0.00');
+            tmpIelPercentageSerie.push([result.rows[i].section, parseFloat(tmpVal)]);
+        }
+
+
+        var ielPercentageSeries = {
+              name: "% IEL",
+              color: '#0072BC',
+              type: 'line',
+              data: tmpIelPercentageSerie
+        }
+
+        fn.leadTimeHighCharts.addSeries(ielPercentageSeries);
+
+
+        /***********************/
+        /******* % DC *******/
+        /***********************/
+        var tmpDcPercentageSerie = [];
+        for (var i=0; i < result.rows.length; i++ ) {
+
+            // console.log(result.rows[i].section)
+            // var tmpVal = result.rows[i].dc_percentage;
+            var tmpVal = numeral(result.rows[i].dc_percentage).format('0,0.00');
+            tmpDcPercentageSerie.push([result.rows[i].section, parseFloat(tmpVal)]);
+        }
+
+
+        var dcPercentageSeries = {
+              name: "% DC",
+              color: '#EC008C',
+              type: 'line',
+              data: tmpDcPercentageSerie
+        }
+
+        fn.leadTimeHighCharts.addSeries(dcPercentageSeries);
+
+
+        /******* leadTimeHighCharts config. *******/
+        fn.leadTimeHighCharts.setTitle(null, { text: moment(paramStartDate).format('DD/MM/YYYY') + " - " + moment(paramEndDate).format('DD/MM/YYYY') });
+        fn.leadTimeHighCharts.hideLoading();
+
+
+
+    }
 
 
 
@@ -17,21 +111,32 @@ DataTable_SL001_Generator: function () {
                 "type": "POST",
                 "data": function ( d ) {
 
-                        d.startDate = "2016-08-01";
-                        d.endDate = "2016-08-03";
-                        d.customerID = "12315";
-                        d.goodsType = 1;
-                        
+                        // d.startDate = "2016-08-01";
+                        // d.endDate = "2016-08-03";
+                        // d.customerID = "12315";
+                        // d.goodsType = 1;
+
+                        d.startDate = paramStartDate;
+                        d.endDate = paramEndDate;
+                        d.customerID = paramCustomer;
+                        d.goodsType = paramGoodsType;
+
                         return d;
                 },
-                "dataSrc": "array",
-                "success": function(data) {
-                        // alert(data);
-                        console.log('success');
-                        console.log(data);
+                "dataSrc": "rows",
+                // "success": function(data) {
+                //         // alert(data);
+                //         console.log('success');
+                //         console.log(data);
 
-                        // fn.DataTableVehicle_Daily_Render(data);
-                        // DataTableVehicle_Daily_Detail_Render(data);
+                //         // fn.DataTableVehicle_Daily_Render(data);
+                //         // DataTableVehicle_Daily_Detail_Render(data);
+                // },
+                "complete": function (data) {
+                    // console.log("complete");
+                    // console.log(data.responseJSON);
+                    Datatable_sl001_dataSet(data.responseJSON);
+
                 },
                 "error": function(jqXHR, textStatus, errorThrown){
                     console.log(jqXHR);
@@ -42,11 +147,67 @@ DataTable_SL001_Generator: function () {
             },
             "deferRender":    true,
             "scrollX":        true,
-            "scrollY":        '60vh',
+            "scrollY":        '50vh',
             "scrollCollapse": true,
             "paging":         false,
             // "data": dataSet,
             // "aaData": dataSet,
+            "aoColumnDefs": [
+                    {
+                        'bSortable': true,
+                        "bAutoWidth": true,
+                        'aTargets': [0]
+                    },{
+                        // The `data` parameter refers to the data for the cell (defined by the
+                        // `data` option, which defaults to the column being worked with, in
+                        // this case `data: 0`.
+                        "render": function ( data, type, row ) {
+                            // console.log(row);
+                            //return '<input type="checkbox" />';
+                            return row.section;
+                            // return '-';
+                        },
+                        "targets": 0
+                    },{
+                        "render": function ( data, type, row ) {
+                            return row.bill_all;
+                        },
+                        "targets": 1
+                    },{
+                        "render": function ( data, type, row ) {
+                            return row.bill_in_commitment;
+                        },
+                        "targets": 2
+                    },{
+                        "render": function ( data, type, row ) {
+                            // return row.total_percentage;
+                            return numeral(row.total_percentage).format('0,0.00') + " %";
+                        },
+                        "targets": 3
+                    },{
+                        "render": function ( data, type, row ) {
+                            return row.customer_error;
+                        },
+                        "targets": 4
+                    },{
+                        "render": function ( data, type, row ) {
+                            // return row.iel_percentage;
+                            return numeral(row.iel_percentage).format('0,0.00') + " %";
+                        },
+                        "targets": 5
+                    },{
+                        "render": function ( data, type, row ) {
+                            return row.non_branch_error;
+                        },
+                        "targets": 6
+                    },{
+                        "render": function ( data, type, row ) {
+                            // return row.dc_percentage;
+                            return numeral(row.dc_percentage).format('0,0.00') + " %";
+                        },
+                        "targets": 7
+                    }
+            ],
                                                                                  
             "order" : [] //disable default sorting, eg sorting on 1st column
 

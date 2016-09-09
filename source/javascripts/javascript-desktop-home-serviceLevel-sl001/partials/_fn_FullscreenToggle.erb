@@ -1,0 +1,29 @@
+FullscreenToggle: function () {
+	// console.log("FullscreenToggle");
+
+
+
+    $('body').on('click', '#btn-fullscreen-sl001', function () {
+
+        if ($.fn.DataTable.isDataTable('#datatable_sl001') ) {
+            datatable_sl001.columns.adjust().draw();
+        }
+
+        
+        fn.leadTimeHighCharts.redraw();
+        fn.leadTimeHighCharts.reflow();
+        
+
+        if($(this).attr('data-click-state') == 1) {
+            $(this).attr('data-click-state', 0);
+            // console.log("btn-fullscreen-datatable-daily, state-00, exit fullscreen");
+
+        } else {
+            $(this).attr('data-click-state', 1)
+            // console.log("btn-fullscreen-datatable-daily, state-01, goto fullscreen");
+        }
+     
+    });
+
+  
+},

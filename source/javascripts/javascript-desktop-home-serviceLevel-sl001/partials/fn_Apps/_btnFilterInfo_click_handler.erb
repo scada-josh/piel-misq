@@ -3,11 +3,43 @@
 
         // fn.HeaderFilter(fn.paramCustomer, fn.paramGoodsType, fn.paramStartDate, fn.paramEndDate);
 
+	    if ($.fn.DataTable.isDataTable('#datatable_sl001') ) {
+	        $('#datatable_sl001').empty();
+	        $('#datatable_sl001').dataTable().fnDestroy();
+	        $('#datatable_sl001 > thead > tr').remove();
+	        $('#datatable_sl001 > tfoot > tr').remove();
+	        // $('#datatable_sl001').deleteTFoot();
+	    }
+
+    
         var myStartDate = moment(fn.paramStartDate);
         var myEndDate = moment(fn.paramEndDate); 
 
-        console.log(myStartDate.format('YYYY-MM-DD'));
-        console.log(myEndDate.format('YYYY-MM-DD'));
+		 var customerID;
+
+		
+		fn.paramCustomer = $("#customer-id").val();
+		
+
+
+
+        // console.log("startDate" + myStartDate.format('YYYY-MM-DD'));
+        // console.log("endDate : " + myEndDate.format('YYYY-MM-DD'));
+        // console.log("customerID : " + fn.paramCustomer);
+        // console.log("goodsType : " + fn.paramGoodsType);
+
+        var resultDataTableSL001HeaderTemplate = Handlebars.compile($("#datatable-sl001-header-template").html());
+
+        $('#datatable_sl001').html(resultDataTableSL001HeaderTemplate()).promise().done(function(){
+            fn.HighCharts_Generator();
+        	fn.DataTable_SL001_Generator(fn.paramCustomer, fn.paramGoodsType, myStartDate.format('YYYY-MM-DD'), myEndDate.format('YYYY-MM-DD'));
+        	fn.HeaderFilter(fn.paramCustomer, fn.paramGoodsType, myStartDate.format('DD/MM/YYYY'), myEndDate.format('DD/MM/YYYY'));
+
+        });
+
+
+
+                 
 
         return false;
   });

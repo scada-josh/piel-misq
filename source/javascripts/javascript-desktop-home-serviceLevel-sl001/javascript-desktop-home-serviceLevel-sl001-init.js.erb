@@ -21,18 +21,26 @@
         paramGoodsType: 1,
         paramStartDate: moment(),
         paramEndDate: moment(),
+        leadTimeHighCharts: {},
 
         // Launch Functions
         Launch: function () {
 
             fn.DateRangePicker();
-            fn.DataTable_SL001_Generator();
+            fn.FullscreenToggle();
+            
 
             fn.MenuGenerator();
             fn.Apps();
 
         },
         
+        // Full Screen Button
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_FullscreenToggle" %>
+
+        // HighChart
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_HighCharts_Generator" %>
+
         // DataTable_SL001_Generator
         <%= partial js_dir + "/javascript-desktop-home-serviceLevel-sl001/partials/_fn_DataTable_SL001_Generator" %>
 
