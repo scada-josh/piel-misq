@@ -140,30 +140,35 @@
                         var _b; 
 
                         if ((arrB[1] != "NON_EPOD") && (b != "-")) {
+
                             if (arrB[0] != "-") {
                                 _b = parseFloat(arrB[0]);
 
-                                console.log("b");
-                                console.log(_b);
+                                // console.log("b");
+                                // console.log(_b);
                             } else {
                                 _b = 0;
-                                countSeparateSign++;
+                                // countSeparateSign++;
                             }
 
                             // console.log("EPOD");
                         } else {
                             _b = 0;
                             // console.log("NON_EPOD");
+                            countSeparateSign++;
                         }
 
 
                         return intVal(a) + intVal(_b);
                     }, 0 );
 
+
+
+
                     var pageAverage;
                     var displayResult = "";
 
-                    // console.log(countSeparateSign);
+                    // console.log("countSeparateSign : " + countSeparateSign);
 
                     if (rowCount != countSeparateSign) {
                         

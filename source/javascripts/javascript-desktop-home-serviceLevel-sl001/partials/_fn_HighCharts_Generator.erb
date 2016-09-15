@@ -2,13 +2,17 @@ HighCharts_Generator: function () {
 	// console.log('HighCharts_Generator');
 
 
+
+
     fn.leadTimeHighCharts = new Highcharts.Chart({
                 chart: {
                   renderTo: 'container-leadTime-highCharts',
                   //showAxes: true
                   // borderWidth:1,
                   // type: 'spline',
-                  zoomType: 'xy'
+                  zoomType: 'xy',
+                  // height: '400px'
+                  // height: $(document).height()/2
                 },
                 title: {
                   text: 'LEAD TIME '
@@ -39,10 +43,14 @@ HighCharts_Generator: function () {
                   },
                   min: 0, 
                   max: 100
+                },
+                credits: {
+                  enabled: false
                 }
 
     });
 
+    // fn.leadTimeHighCharts.setSize($(document).width(), $(document).height()/2, false);
 
     $( window ).resize(function() {
         fn.leadTimeHighCharts.redraw();
