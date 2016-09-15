@@ -54,7 +54,7 @@
 
                   
 
-                        var countSeparateSign = 0;
+                        var countSeparateSign_NonEpod = 0;
                         // var tmpApiColumnData = api.column(i).data();
                         // for (var j=0; j < tmpApiColumnData.length; j++ ) {
                         //     // console.log(tmpApiColumnData[j]);
@@ -62,12 +62,12 @@
                         //     // console.log(tmpApiColumnData[j].toString());
                         //     // var tmpInfo = tmpApiColumnData[j].toString().split('#');
                         //     // if (tmpInfo[0] == "-") {
-                        //     //     countSeparateSign++;
+                        //     //     countSeparateSign_NonEpod++;
                         //     // }  
 
                         //     var tmpInfo = tmpApiColumnData[j].substring(0, 1);
                         //     if (tmpInfo == "-") {
-                        //         countSeparateSign++;
+                        //         countSeparateSign_NonEpod++;
                         //     }  
                         // }
                     
@@ -75,8 +75,8 @@
                         // console.log("rowCount");
                         // console.log(rowCount);
 
-                        // console.log("countSeparateSign");
-                        // console.log(countSeparateSign);
+                        // console.log("countSeparateSign_NonEpod");
+                        // console.log(countSeparateSign_NonEpod);
 
 
                     
@@ -139,29 +139,40 @@
 
                             if (arrB[0] != "-") {
                                 _b = parseFloat(arrB[0]);
+                                countSeparateSign_NonEpod++;
                             } else {
                                 _b = 0;
-                                // countSeparateSign++;
+                                // countSeparateSign_NonEpod++;
                             }
 
                         } else {
                             _b = 0;
                             // console.log("NON_EPOD");
-                            countSeparateSign++;
+                            // countSeparateSign_NonEpod++;
                         }
 
 
                         return intVal(a) + intVal(_b);
                     }, 0 );
 
+
+
                     var pageAverage;
                     var displayResult = "";
 
-                    if (rowCount != countSeparateSign) {
+                    // if (rowCount != countSeparateSign_NonEpod) {
                         
-                        pageAverage = pageTotal/(rowCount - countSeparateSign);
-                        displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
+                    //     pageAverage = pageTotal/(rowCount - countSeparateSign_NonEpod);
+                    //     displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
 
+                    // } else {
+                    //     displayResult = "-";
+                    // }
+
+
+                    if (countSeparateSign_NonEpod != 0) {
+                        pageAverage = pageTotal/countSeparateSign_NonEpod;
+                        displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
                     } else {
                         displayResult = "-";
                     }
@@ -170,8 +181,13 @@
                         displayResult = "";
                     }
 
-                    
-                    // console.log(countSeparateSign);
+                    // if (i == 3) {
+                        console.log(i);
+                        console.log("countSeparateSign_NonEpod");
+                        console.log(countSeparateSign_NonEpod);
+                        console.log("===========================");
+                    // }
+
 
                     //     // Update footer
                     $( api.column( i ).footer() ).html(

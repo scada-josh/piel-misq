@@ -54,7 +54,7 @@
 
                   
 
-                        var countSeparateSign = 0;
+                        var countSeparateSign_Epod = 0;
                         // var tmpApiColumnData = api.column(i).data();
                         // for (var j=0; j < tmpApiColumnData.length; j++ ) {
                         //     // console.log(tmpApiColumnData[j]);
@@ -62,12 +62,12 @@
                         //     // console.log(tmpApiColumnData[j].toString());
                         //     // var tmpInfo = tmpApiColumnData[j].toString().split('#');
                         //     // if (tmpInfo[0] == "-") {
-                        //     //     countSeparateSign++;
+                        //     //     countSeparateSign_Epod++;
                         //     // }  
 
                         //     var tmpInfo = tmpApiColumnData[j].substring(0, 1);
                         //     if (tmpInfo == "-") {
-                        //         countSeparateSign++;
+                        //         countSeparateSign_Epod++;
                         //     }  
                         // }
                     
@@ -75,8 +75,8 @@
                         // console.log("rowCount");
                         // console.log(rowCount);
 
-                        // console.log("countSeparateSign");
-                        // console.log(countSeparateSign);
+                        // console.log("countSeparateSign_Epod");
+                        // console.log(countSeparateSign_Epod);
 
 
                     
@@ -143,19 +143,19 @@
 
                             if (arrB[0] != "-") {
                                 _b = parseFloat(arrB[0]);
-
+                                countSeparateSign_Epod++;
                                 // console.log("b");
                                 // console.log(_b);
                             } else {
                                 _b = 0;
-                                // countSeparateSign++;
+                                // countSeparateSign_Epod++;
                             }
 
                             // console.log("EPOD");
                         } else {
                             _b = 0;
                             // console.log("NON_EPOD");
-                            countSeparateSign++;
+                            // countSeparateSign_Epod++;
                         }
 
 
@@ -168,23 +168,32 @@
                     var pageAverage;
                     var displayResult = "";
 
-                    // console.log("countSeparateSign : " + countSeparateSign);
+                    // console.log("countSeparateSign_Epod : " + countSeparateSign_Epod);
 
-                    if (rowCount != countSeparateSign) {
+                    // if (rowCount != countSeparateSign_Epod) {
                         
-                        pageAverage = pageTotal/(rowCount - countSeparateSign);
-                        displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
+                    //     pageAverage = pageTotal/(rowCount - countSeparateSign_Epod);
+                    //     displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
 
+                    // } else {
+                    //     displayResult = "-";
+                    // }
+
+
+                   if (countSeparateSign_Epod != 0) {
+                        pageAverage = pageTotal/countSeparateSign_Epod;
+                        displayResult = numeral(pageAverage).format('0,0.00') + '<br/><small>(' + numeral(pageTotal).format('0,0.00') + ')</small>';
                     } else {
                         displayResult = "-";
                     }
+                    
 
                     if ((i == (objSize(dataSet_Epod[0]) - 1)) || (i == (objSize(dataSet_Epod[0]) - 2))) {
                         displayResult = "";
                     }
 
                     
-                    // console.log(countSeparateSign);
+                    // console.log(countSeparateSign_Epod);
 
                     //     // Update footer
                     $( api.column( i ).footer() ).html(
