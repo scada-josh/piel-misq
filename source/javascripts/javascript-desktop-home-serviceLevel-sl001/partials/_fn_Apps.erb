@@ -15,6 +15,9 @@ Apps: function () {
     fn.Check_iCheck();
 
 
-
+    $("#botKillLoading").on("tap",function(){
+        $.metroLoadingKill();
+        $("#botKillLoading").fadeOut();
+    });
 	
 }

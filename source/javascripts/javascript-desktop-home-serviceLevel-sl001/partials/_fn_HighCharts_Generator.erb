@@ -7,6 +7,12 @@ HighCharts_Generator: function () {
     fn.leadTimeHighCharts = new Highcharts.Chart({
                 chart: {
                   renderTo: 'container-leadTime-highCharts',
+                  events: {
+                    redraw: function(event) {
+                      // alert ('Chart loaded');
+                      fn.CloseLoadingMessageBox(); 
+                    }
+                  }, 
                   //showAxes: true
                   // borderWidth:1,
                   // type: 'spline',

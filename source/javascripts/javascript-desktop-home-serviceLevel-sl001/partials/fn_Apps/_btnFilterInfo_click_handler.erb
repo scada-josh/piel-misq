@@ -18,15 +18,22 @@
 		 var customerID;
 
 		
-		fn.paramCustomer = $("#customer-id").val();
+		fn.paramCustomer = $("#customer-id").val().trim();
 		
 
+        if (fn.paramCustomer.length == 0) {
+            // alert("กรุณาระบุรหัสลูกค้า");
+            fn.AlertMetro("open", "กรุณาระบุรหัสลูกค้า", "warning");
 
+            return false;
+        }
 
         // console.log("startDate" + myStartDate.format('YYYY-MM-DD'));
         // console.log("endDate : " + myEndDate.format('YYYY-MM-DD'));
         // console.log("customerID : " + fn.paramCustomer);
         // console.log("goodsType : " + fn.paramGoodsType);
+
+        fn.ShowLoadingMessageBox(); 
 
         var resultDataTableSL001HeaderTemplate = Handlebars.compile($("#datatable-sl001-header-template").html());
 
@@ -35,6 +42,7 @@
         	fn.DataTable_SL001_Generator(fn.paramCustomer, fn.paramGoodsType, myStartDate.format('YYYY-MM-DD'), myEndDate.format('YYYY-MM-DD'));
         	fn.HeaderFilter(fn.paramCustomer, fn.paramGoodsType, myStartDate.format('DD/MM/YYYY'), myEndDate.format('DD/MM/YYYY'));
 
+            // fn.CloseLoadingMessageBox(); 
         });
 
 
