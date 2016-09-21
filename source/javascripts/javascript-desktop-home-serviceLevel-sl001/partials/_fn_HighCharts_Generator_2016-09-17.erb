@@ -19,7 +19,6 @@ HighCharts_Generator: function () {
                   zoomType: 'xy',
                   // height: '400px'
                   // height: $(document).height()/2
-                  alignTicks: false
                 },
                 title: {
                   text: 'LEAD TIME '
@@ -44,43 +43,13 @@ HighCharts_Generator: function () {
 
 
                 },
-                // yAxis: {
-                //   title: {
-                //     text: '% Percent'
-                //   },
-                //   min: 0, 
-                //   max: 100
-                // },
-                yAxis: [{ // Primary yAxis
-                    labels: {
-                        format: '{value} %',
-                        style: {
-                            color: Highcharts.getOptions().colors[1]
-                        }
-                    },
-                    title: {
-                        text: '% Percent',
-                        style: {
-                            color: Highcharts.getOptions().colors[1]
-                        }
-                    },
-                    min: 0,
-                    max: 100
-                }, { // Secondary yAxis
-                    title: {
-                        text: 'จำนวนบิล',
-                        style: {
-                            color: Highcharts.getOptions().colors[0]
-                        }
-                    },
-                    labels: {
-                        format: '{value} บิล',
-                        style: {
-                            color: Highcharts.getOptions().colors[0]
-                        }
-                    },
-                    opposite: true
-                }],
+                yAxis: {
+                  title: {
+                    text: '% Percent'
+                  },
+                  min: 0, 
+                  max: 100
+                },
                 credits: {
                   enabled: false
                 }

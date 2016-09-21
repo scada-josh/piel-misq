@@ -18,6 +18,10 @@ DataTable_SL001_Generator: function (paramCustomer, paramGoodsType, paramStartDa
           fn.leadTimeHighCharts.series[0].remove();
         }
 
+
+
+
+
         /***********************/
         /******* % Total *******/
         /***********************/
@@ -35,6 +39,9 @@ DataTable_SL001_Generator: function (paramCustomer, paramGoodsType, paramStartDa
               name: "% Total",
               color: '#00AB4E',
               type: 'line',
+              tooltip: {
+                valueSuffix: ' %'
+              },
               data: tmpTotalPercentageSerie
         }
 
@@ -59,6 +66,9 @@ DataTable_SL001_Generator: function (paramCustomer, paramGoodsType, paramStartDa
               name: "% IEL",
               color: '#0072BC',
               type: 'line',
+              tooltip: {
+                valueSuffix: ' %'
+              },
               data: tmpIelPercentageSerie
         }
 
@@ -82,10 +92,48 @@ DataTable_SL001_Generator: function (paramCustomer, paramGoodsType, paramStartDa
               name: "% DC",
               color: '#EC008C',
               type: 'line',
+              tooltip: {
+                valueSuffix: ' %'
+              },
               data: tmpDcPercentageSerie
         }
 
         fn.leadTimeHighCharts.addSeries(dcPercentageSeries);
+
+
+        /***********************/
+        /******* จำนวนบิล *******/
+        /***********************/
+        var tmpBillSerie = [];
+        for (var i=0; i < result.rows.length; i++ ) {
+
+            // console.log(result.rows[i].section)
+            // var tmpVal = result.rows[i].total_percentage;
+            var tmpVal = numeral(result.rows[i].bill_all).format('0');
+            tmpBillSerie.push([result.rows[i].section, parseInt(tmpVal)]);
+        }
+
+
+        var billSeries = {
+              name: "จำนวนบิล",
+              // color: '#00AB4E',
+              type: 'column',
+              yAxis: 1,
+              // tooltip: {
+              //   valueSuffix: ' บิล'
+              // },
+              tooltip: {
+                // formatter: function() {
+                //     // return 'The value for <b>' + this.x + '</b> is <b>' + this.y + '</b>, in series '+ this.series.name;
+                //     return "Hello";
+                // },
+                valueSuffix: ' บิล'
+              },
+              data: tmpBillSerie
+        }
+
+        fn.leadTimeHighCharts.addSeries(billSeries);
+
 
 
         /******* leadTimeHighCharts config. *******/

@@ -19,6 +19,46 @@ DatatableVehicle_Daily: function () {
 
         objDatatableVehicle_Daily_DataCollections = {};
 
+
+
+        /* ******** Update EPOD Header ************ */
+        $("#epod_average_drop_begin_id").html(result.epod_average_drop_begin);
+        $("#epod_average_drop_success_id").html(result.epod_average_drop_success);
+        $("#epod_average_box_begin_id").html(result.epod_average_box_begin);
+        $("#epod_average_box_success_id").html(result.epod_average_box_success);
+        // $("#epod_average_percent_update_id").html(result.epod_average_percent_update);
+        $('#epod_average_percent_update_id').each(function() {
+            var newValue = result.epod_average_percent_update;
+            $(this).data('easyPieChart').update(newValue);
+            $('span', this).text(newValue);
+        });
+
+        /* ******** Update Non-EPOD Header ************ */
+        $("#non_epod_average_drop_begin_id").html(result.non_epod_average_drop_begin);
+        $("#non_epod_average_drop_success_id").html(result.non_epod_average_drop_success);
+        $("#non_epod_average_box_begin_id").html(result.non_epod_average_box_begin);
+        $("#non_epod_average_box_success_id").html(result.non_epod_average_box_success);
+        // $("#non_epod_average_percent_update_id").html(result.non_epod_average_percent_update);
+        $('#non_epod_average_percent_update_id').each(function() {
+            var newValue = result.non_epod_average_percent_update;
+            $(this).data('easyPieChart').update(newValue);
+            $('span', this).text(newValue);
+        });
+
+        /* ******** Update ALL Header ************ */
+        $("#all_average_drop_begin_id").html(result.all_average_drop_begin);
+        $("#all_average_drop_success_id").html(result.all_average_drop_success);
+        $("#all_average_box_begin_id").html(result.all_average_box_begin);
+        $("#all_average_box_success_id").html(result.all_average_box_success);
+        // $("#all_average_percent_update_id").html(result.all_average_percent_update);
+        $('#all_average_percent_update_id').each(function() {
+            var newValue = result.all_average_percent_update;
+            $(this).data('easyPieChart').update(newValue);
+            $('span', this).text(newValue);
+        });
+
+        
+
         var i = 0;
         var j = 0;
 
