@@ -56,7 +56,16 @@ pageSubTitle: "Lead time"
                             <!-- BEGIN PAGE CONTENT INNER -->
                             <div class="page-content-inner">
 
-                                <%= partial partials_desktop_home + "/service-level/lt-002/partials/_prototype_cover" %>
+                                <div class="row">
+                                        <div class="col-md-4 ">
+                                            <%= partial partials_desktop_home + "/service-level/lt-002/partials/_form_filter" %>
+                                        </div>
+                                        <div class="col-md-8 " id="infomation-portlet">
+                                            <%= partial partials_desktop_home + "/service-level/lt-002/partials/_portlet_datatable_lt002" %>
+                                        </div>
+                                </div>
+
+                                <button id="botKillLoading" class="btn btn-danger" style="display: none;"><i class="fa fa-trash-o"></i> Stop Loading... </button>
 
 
                             </div>

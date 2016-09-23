@@ -1,0 +1,53 @@
+  $('#btnFilterInfo').on('click', function() {
+        // console.log('btnFilterInfo');
+
+        // fn.HeaderFilter(fn.paramCustomer, fn.paramGoodsType, fn.paramStartDate, fn.paramEndDate);
+
+	    if ($.fn.DataTable.isDataTable('#datatable_lt002') ) {
+	        $('#datatable_lt002').empty();
+	        $('#datatable_lt002').dataTable().fnDestroy();
+	        $('#datatable_lt002 > thead > tr').remove();
+	        $('#datatable_lt002 > tfoot > tr').remove();
+	        // $('#datatable_lt002').deleteTFoot();
+	    }
+
+    
+        var myStartDate = moment(fn.paramStartDate);
+        var myEndDate = moment(fn.paramEndDate); 
+
+		 var customerID;
+
+		
+		fn.paramCustomer = $("#customer-id").val().trim();
+		
+
+        if (fn.paramCustomer.length == 0) {
+            // alert("กรุณาระบุรหัสลูกค้า");
+            fn.AlertMetro("open", "กรุณาระบุรหัสลูกค้า", "warning");
+
+            return false;
+        }
+
+        // console.log("startDate" + myStartDate.format('YYYY-MM-DD'));
+        // console.log("endDate : " + myEndDate.format('YYYY-MM-DD'));
+        // console.log("customerID : " + fn.paramCustomer);
+        // console.log("goodsType : " + fn.paramGoodsType);
+
+        fn.ShowLoadingMessageBox(); 
+
+        var resultDataTableLT002HeaderTemplate = Handlebars.compile($("#datatable-lt002-header-template").html());
+
+        $('#datatable_lt002').html(resultDataTableLT002HeaderTemplate()).promise().done(function(){
+            fn.HighCharts_Generator();
+        	fn.DataTable_LT002_Generator(fn.paramCustomer, fn.paramGoodsType, myStartDate.format('YYYY-MM-DD'), myEndDate.format('YYYY-MM-DD'));
+        	fn.HeaderFilter(fn.paramCustomer, fn.paramGoodsType, myStartDate.format('DD/MM/YYYY'), myEndDate.format('DD/MM/YYYY'));
+
+            // fn.CloseLoadingMessageBox(); 
+        });
+
+
+
+                 
+
+        return false;
+  });

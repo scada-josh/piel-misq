@@ -8,5 +8,17 @@ Apps: function () {
     	fn.Logout();
     });
 
+    // fn.paramGoodsType = 1;
 
+    // btnFilterInfo click handler
+    <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/fn_Apps/_btnFilterInfo_click_handler" %>
+
+    fn.Check_iCheck();
+
+
+    $("#botKillLoading").on("tap",function(){
+        $.metroLoadingKill();
+        $("#botKillLoading").fadeOut();
+    });
+    
 }

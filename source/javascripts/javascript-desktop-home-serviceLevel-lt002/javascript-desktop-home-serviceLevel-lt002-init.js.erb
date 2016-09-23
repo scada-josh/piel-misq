@@ -17,12 +17,48 @@
  
     var fn = {
 
+        paramCustomer: "",
+        paramGoodsType: 1,
+        paramStartDate: moment(),
+        paramEndDate: moment(),
+        leadTimeHighCharts: {},
+
+
         // Launch Functions
         Launch: function () {
+
+            fn.DateRangePicker();
+            fn.FullscreenToggle();
+
             fn.MenuGenerator();
             fn.Apps();
         },
         
+        // MetroBanner - Alert
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_AlertMetro" %>
+        // MetroNotification 
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_ShowLoadingMessageBox" %>
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_CloseLoadingMessageBox" %>
+                
+        // Full Screen Button
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_FullscreenToggle" %>
+
+        // HighChart
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_HighCharts_Generator" %>
+
+        // DataTable_LT002_Generator
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_DataTable_LT002_Generator" %>
+
+        // Report - Date Range Picker
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_DateRangePicker" %>
+
+        // iCheck
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_Check_iCheck" %>
+
+        // Header Filter
+        <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/_fn_HeaderFilter" %>
+
+
         // Menu Generator
         <%= partial js_dir + "/common-partials/_fn_ConvertToContext" %>
         <%= partial js_dir + "/common-partials/_fn_MenuGenerator" %>
