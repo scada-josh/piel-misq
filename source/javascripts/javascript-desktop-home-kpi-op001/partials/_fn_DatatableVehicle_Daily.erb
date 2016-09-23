@@ -21,40 +21,45 @@ DatatableVehicle_Daily: function () {
 
 
 
+
+
+
         /* ******** Update EPOD Header ************ */
-        $("#epod_average_drop_begin_id").html(result.epod_average_drop_begin);
-        $("#epod_average_drop_success_id").html(result.epod_average_drop_success);
-        $("#epod_average_box_begin_id").html(result.epod_average_box_begin);
-        $("#epod_average_box_success_id").html(result.epod_average_box_success);
+        $("#epod_average_drop_begin_id").html(numeral(result.epod_average_drop_begin).format('0.00'));
+        $("#epod_average_drop_success_id").html(numeral(result.epod_average_drop_success).format('0.00'));
+        $("#epod_average_box_begin_id").html(numeral(result.epod_average_box_begin).format('0.00'));
+        $("#epod_average_box_success_id").html(numeral(result.epod_average_box_success).format('0.00'));
         // $("#epod_average_percent_update_id").html(result.epod_average_percent_update);
         $('#epod_average_percent_update_id').each(function() {
-            var newValue = result.epod_average_percent_update;
+            var newValue = numeral(result.epod_average_percent_update).format('0.00');
             $(this).data('easyPieChart').update(newValue);
-            $('span', this).text(newValue);
+            $('span', this).text(newValue );
         });
+
 
         /* ******** Update Non-EPOD Header ************ */
-        $("#non_epod_average_drop_begin_id").html(result.non_epod_average_drop_begin);
-        $("#non_epod_average_drop_success_id").html(result.non_epod_average_drop_success);
-        $("#non_epod_average_box_begin_id").html(result.non_epod_average_box_begin);
-        $("#non_epod_average_box_success_id").html(result.non_epod_average_box_success);
+        $("#non_epod_average_drop_begin_id").html(numeral(result.non_epod_average_drop_begin).format('0.00'));
+        $("#non_epod_average_drop_success_id").html(numeral(result.non_epod_average_drop_success).format('0.00'));
+        $("#non_epod_average_box_begin_id").html(numeral(result.non_epod_average_box_begin).format('0.00'));
+        $("#non_epod_average_box_success_id").html(numeral(result.non_epod_average_box_success).format('0.00'));
         // $("#non_epod_average_percent_update_id").html(result.non_epod_average_percent_update);
         $('#non_epod_average_percent_update_id').each(function() {
-            var newValue = result.non_epod_average_percent_update;
+            var newValue = numeral(result.non_epod_average_percent_update).format('0.00');
             $(this).data('easyPieChart').update(newValue);
-            $('span', this).text(newValue);
+            $('span', this).text(newValue );
         });
 
+
         /* ******** Update ALL Header ************ */
-        $("#all_average_drop_begin_id").html(result.all_average_drop_begin);
-        $("#all_average_drop_success_id").html(result.all_average_drop_success);
-        $("#all_average_box_begin_id").html(result.all_average_box_begin);
-        $("#all_average_box_success_id").html(result.all_average_box_success);
+        $("#all_average_drop_begin_id").html(numeral(result.all_average_drop_begin).format('0.00'));
+        $("#all_average_drop_success_id").html(numeral(result.all_average_drop_success).format('0.00'));
+        $("#all_average_box_begin_id").html(numeral(result.all_average_box_begin).format('0.00'));
+        $("#all_average_box_success_id").html(numeral(result.all_average_box_success).format('0.00'));
         // $("#all_average_percent_update_id").html(result.all_average_percent_update);
         $('#all_average_percent_update_id').each(function() {
-            var newValue = result.all_average_percent_update;
+            var newValue = numeral(result.all_average_percent_update).format('0.00');
             $(this).data('easyPieChart').update(newValue);
-            $('span', this).text(newValue);
+            $('span', this).text(newValue );
         });
 
         

@@ -134,17 +134,26 @@ ConsumeDailyInformation: function () {
 
 
 
-                $('#datatableVehicle_Daily_Epod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
-                  fn.DataTableVehicle_Daily_Epod_Generator();
-                });
+                // $('#datatableVehicle_Daily_Epod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                //   fn.DataTableVehicle_Daily_Epod_Generator();
+                // });
 
-                $('#datatableVehicle_Daily_NonEpod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
-                  fn.DataTableVehicle_Daily_NonEpod_Generator();
-                });
+                // $('#datatableVehicle_Daily_NonEpod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                //   fn.DataTableVehicle_Daily_NonEpod_Generator();
+                // });
 
                 $('#datatableVehicle_Daily').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
                   fn.DatatableVehicle_Daily();
                   fn.DataTableVehicle_Daily_Click_Handler();
+
+                    $('#datatableVehicle_Daily_Epod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                      fn.DataTableVehicle_Daily_Epod_Generator();
+                    });
+
+                    $('#datatableVehicle_Daily_NonEpod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
+                      fn.DataTableVehicle_Daily_NonEpod_Generator();
+                    });
+                  
                 });
 
 

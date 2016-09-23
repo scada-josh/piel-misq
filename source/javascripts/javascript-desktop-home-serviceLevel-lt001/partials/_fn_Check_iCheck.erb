@@ -1,0 +1,34 @@
+Check_iCheck: function () {
+  // console.log('Check_iCheck');
+
+
+
+
+
+        if (!$().iCheck) {
+            return;
+        }
+
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-red',
+          radioClass: 'iradio_square-red',
+          // increaseArea: '20%' // optional
+        });
+
+        
+        $('input').on('ifChecked', function(event){
+          // console.log(event);
+          // console.log($(this));
+          // console.log($(this).val());
+            // alert(event.type + ' callback');
+
+          fn.paramGoodsType = $(this).val();
+        });
+
+
+
+    
+},
+
+
+

@@ -1,0 +1,97 @@
+HighCharts_Generator: function () {
+	// console.log('HighCharts_Generator');
+
+
+
+
+    fn.leadTimeHighCharts = new Highcharts.Chart({
+                chart: {
+                  renderTo: 'container-leadTime-highCharts',
+                  events: {
+                    redraw: function(event) {
+                      // alert ('Chart loaded');
+                      fn.CloseLoadingMessageBox(); 
+                    }
+                  }, 
+                  //showAxes: true
+                  // borderWidth:1,
+                  // type: 'spline',
+                  zoomType: 'xy',
+                  // height: '400px'
+                  // height: $(document).height()/2
+                  alignTicks: false
+                },
+                title: {
+                  text: 'LEAD TIME '
+                },
+                subtitle: {
+                  text: ''
+                },
+                xAxis: {
+                  title: {
+                    text: ''
+                  },
+                  // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                  categories: [],
+                  //#######################
+                  lineWidth: 2,
+                  lineColor: '#82A7CD',
+
+                  tickWidth: 2,
+                  tickColor: '#82A7CD',
+
+                  tickmarkPlacement: 'on'
+
+
+                },
+                // yAxis: {
+                //   title: {
+                //     text: '% Percent'
+                //   },
+                //   min: 0, 
+                //   max: 100
+                // },
+                yAxis: [{ // Primary yAxis
+                    labels: {
+                        format: '{value} %',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    title: {
+                        text: '% Percent',
+                        style: {
+                            color: Highcharts.getOptions().colors[1]
+                        }
+                    },
+                    min: 0,
+                    max: 100
+                }, { // Secondary yAxis
+                    title: {
+                        text: 'จำนวนบิล',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    labels: {
+                        format: '{value} บิล',
+                        style: {
+                            color: Highcharts.getOptions().colors[0]
+                        }
+                    },
+                    opposite: true
+                }],
+                credits: {
+                  enabled: false
+                }
+
+    });
+
+    // fn.leadTimeHighCharts.setSize($(document).width(), $(document).height()/2, false);
+
+    $( window ).resize(function() {
+        fn.leadTimeHighCharts.redraw();
+        fn.leadTimeHighCharts.reflow();
+    });
+
+},
