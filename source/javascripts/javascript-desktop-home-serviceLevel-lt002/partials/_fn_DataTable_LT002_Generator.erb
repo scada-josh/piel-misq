@@ -200,63 +200,9 @@ DataTable_LT002_Generator: function (paramCustomer, paramGoodsType, paramStartDa
             "paging":         false,
             // "data": dataSet,
             // "aaData": dataSet,
-            "aoColumnDefs": [
-                    {
-                        'bSortable': true,
-                        "bAutoWidth": true,
-                        'aTargets': [0]
-                    },{
-                        // The `data` parameter refers to the data for the cell (defined by the
-                        // `data` option, which defaults to the column being worked with, in
-                        // this case `data: 0`.
-                        "render": function ( data, type, row ) {
-                            // console.log(row);
-                            //return '<input type="checkbox" />';
-                            return row.section;
-                            // return '-';
-                        },
-                        "targets": 0
-                    },{
-                        "render": function ( data, type, row ) {
-                            return row.bill_all;
-                        },
-                        "targets": 1
-                    },{
-                        "render": function ( data, type, row ) {
-                            return row.bill_in_commitment;
-                        },
-                        "targets": 2
-                    },{
-                        "render": function ( data, type, row ) {
-                            // return row.total_percentage;
-                            return numeral(row.total_percentage).format('0,0.00') + " %";
-                        },
-                        "targets": 3
-                    },{
-                        "render": function ( data, type, row ) {
-                            return row.customer_error;
-                        },
-                        "targets": 4
-                    },{
-                        "render": function ( data, type, row ) {
-                            // return row.iel_percentage;
-                            return numeral(row.iel_percentage).format('0,0.00') + " %";
-                        },
-                        "targets": 5
-                    },
-                    // {
-                    //     "render": function ( data, type, row ) {
-                    //         return row.non_branch_error;
-                    //     },
-                    //     "targets": 6
-                    // },{
-                    //     "render": function ( data, type, row ) {
-                    //         // return row.dc_percentage;
-                    //         return numeral(row.dc_percentage).format('0,0.00') + " %";
-                    //     },
-                    //     "targets": 7
-                    // }
-            ],
+
+            <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/fn_DataTable_LT002_Generator/_aoColumnDefs" %>
+            <%= partial js_dir + "/javascript-desktop-home-serviceLevel-lt002/partials/fn_DataTable_LT002_Generator/_footerCallback" %>
                                                                                  
             "order" : [] //disable default sorting, eg sorting on 1st column
 

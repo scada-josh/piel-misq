@@ -148,6 +148,7 @@ ConsumeDailyInformation: function () {
 
                     $('#datatableVehicle_Daily_Epod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
                       fn.DataTableVehicle_Daily_Epod_Generator();
+                      fn.DataTableVehicle_Daily_Epod_Click_Handler();
                     });
 
                     $('#datatableVehicle_Daily_NonEpod').html(resultDataTableDailyHeaderTemplate(context)).promise().done(function(){
