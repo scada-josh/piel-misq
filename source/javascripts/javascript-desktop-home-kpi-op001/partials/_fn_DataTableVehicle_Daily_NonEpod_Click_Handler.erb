@@ -1,18 +1,18 @@
-DataTableVehicle_Daily_Epod_Click_Handler: function () {
-	// console.log("DataTableVehicle_Daily_Epod_Click_Handler");
+DataTableVehicle_Daily_NonEpod_Click_Handler: function () {
+	// console.log("DataTableVehicle_Daily_NonEpod_Click_Handler");
 
 
 
-          $('#datatableVehicle_Daily_Epod tbody').on( 'click', 'td', function () {
-              // alert( 'Clicked on cell in visible column: ' + datatableVehicle_Daily_Epod.cell( this ).index().columnVisible );
+          $('#datatableVehicle_Daily_NonEpod tbody').on( 'click', 'td', function () {
+              // alert( 'Clicked on cell in visible column: ' + datatableVehicle_Daily_NonEpod.cell( this ).index().columnVisible );
 
-              var data = datatableVehicle_Daily_Epod.row($(this).closest('tr')).data();
+              var data = datatableVehicle_Daily_NonEpod.row($(this).closest('tr')).data();
               // console.log(data);
 
-              var rowIdx = datatableVehicle_Daily_Epod.cell( this ).index().row;
+              var rowIdx = datatableVehicle_Daily_NonEpod.cell( this ).index().row;
               // console.log(rowIdx);
 
-              var columnIdx = datatableVehicle_Daily_Epod.cell( this ).index().column;
+              var columnIdx = datatableVehicle_Daily_NonEpod.cell( this ).index().column;
               // console.log(columnIdx);
               // console.log(data[columnIdx]);
 
@@ -78,7 +78,7 @@ DataTableVehicle_Daily_Epod_Click_Handler: function () {
                         tmpMsg += "</ul>";
 
 
-                  if ((tmpObj.job_no != "-") && (_deliveryType == "EPOD")) {
+                  if ((tmpObj.job_no != "-") && (_deliveryType == "NON_EPOD")) {
                       // var tmpMsg = "Job No. : <button type='button' class='btn btn-link'>" + myJobNo + "</button>";
                       toastr["success"](tmpMsg, "<h3>Information : </h3>");
                       // toastr.info('Date : ' + myJobDate);
